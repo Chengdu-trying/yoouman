@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+/*正文*/
+/**
+ * 中部
+ */
+
+#register_center {
+	max-width: 980px;
+	height: 610px;
+	border: 0px solid red;
+	background: url(../img/002.jpg) no-repeat;
+	background-size: cover;
+}
+#defaultForm {
+	max-width: 400px;
+	padding: 15px;
+	margin: 30px auto;
+}

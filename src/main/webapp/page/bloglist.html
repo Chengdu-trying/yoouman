@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>wangEditor2 test</title>
+     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"">
+    <style type="text/css">
+        #editor-trigger {
+            height: 300px;
+            max-height: 500px;
+        }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+        .lianjie{
+        	width: 10%;
+        	margin: 0px 15%;
+        	float: left;
+        	
+        }
+    </style>
+</head>
+<body style="padding:0 20px;">
+<iframe NAME="content_frame" style="margin: 0px;padding: 0px;" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="../header.html"></iframe>
+
+
+    <div id="bloglist" class="lianjie">
+    
+    
+    </div>
+    <a href="../upload.jsp" class="lianjie">头像管理</a>
+    
+    <script type="text/javascript" src="../dist/js/lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$.post("../blog!getBlogList.action",function(list,status){
+			
+			
+			var strText="";
+			for(var i=0;i<list.length;i++){
+				strText+="<a href='../blog!postBlogContext.action?blogId="+list[i].blogId+"'>"+list[i].blogName+"</a><br />";
+			}
+			$("#bloglist").html(strText);
+			//$("#userImage").attr("alt",user.userName);
+			//$("#userImage").attr("src",user.userImage);
+			
+		},"json");
+    	
+    });
+    </script>
+</body>
+</html>

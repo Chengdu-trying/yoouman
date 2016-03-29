@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+/*正文*/
+body{width:980px;height:auto;margin:0px auto;}
+
+#footer {width: 980px; margin: 10px auto 0;text-align:center; color:#aaa; line-height:20px;}
+.friendship{ margin:0px auto}
+#footer p { color:#666;  line-height:30px; text-align:center; height:auto; display:block  }
+#footer a { color:#666; text-decoration: none;margin-left:7px; margin-right:4px; display:inline; white-space: nowrap;}
+#footer a:hover { text-decoration: underline; }
+
+
+
+
+
+
+
+
+
+

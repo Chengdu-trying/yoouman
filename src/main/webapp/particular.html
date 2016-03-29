@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>商品查看</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/particular.css" />
+	</head>
+	</head>
+
+	<body>
+		<!-- 头部 -->
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="head.html"></iframe>
+
+		<div id="middle" style="z-index: -1;">
+			<!-- 购买 -->
+			<div id="middle_buy">
+				<!-- 图片展示 -->
+				<div id="middle_buy_img">
+					<div id="big_show">
+						<a href="javascript:void(0)">
+							<div id="big_img" style="background: url(${goods.img_src}.340x340.jpg) no-repeat center center;"></div>
+						</a>
+					</div>
+					<div class="container" id="small_show">
+						<div id="small_div">
+							<a href="javascript:void(0)">
+								<div id="small_img" style="background: url(${goods.img_src}.50x50.jpg) no-repeat center center;"></div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- 文字介绍 -->
+				<div id="recommend">
+					<!-- 标题介绍 -->
+					<h1 id="title_recommend">
+						${goods.goods_name }<br />
+						<span>
+							货 号：
+							YMT1<font id="goods_id" title="">${goods.goods_id}</font>
+						</span>
+					</h1>
+					<!-- 定价 -->
+					<ul>
+						<!-- 价格 -->
+						<li>
+							<span>价 格：</span>
+							<span class="recommend_price" style="font-size: 18px;">￥</span>
+							<span class="recommend_price" style="font-size: 27px;">
+								<strong id="product_price" title="35.00">${goods.goods_price}</strong>
+							</span>
+						</li>
+						<!-- 配送至 -->
+						<li>
+							<span>配 送 至：</span>
+							<span style="color: #666;">请选择</span>
+						</li>
+					</ul>
+					<!-- 商品数量选择 -->
+					<div class="container" id="num_select">
+						<dl>
+							<dt>购买数量：</dt>
+							<dd>
+								<span>
+									<input type="text" name="num" value="1" class="goods_num">
+									<div class="container" id="alter_num">
+										<a href="javascript:void(0);" class="augmented">
+											<div class="container" id="num_add"></div>
+										</a>
+										<a href="javascript:void(0);" class="diminished">
+											<div class="container" id="num_cut"></div>
+										</a>
+									</div>	
+								</span> 件
+							</dd>
+						</dl>
+						<!-- 购物车标 -->
+						<div class="container" id="shopping_img">
+							<a href="javascript:void(0);">
+								<div class="img_buy"></div>
+							</a>
+							<a href="javascript:void(0);">
+								<div class="img_shopping_char"></div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<!-- 产品详情 -->
+			<div class="container" id="particulars">
+				<!-- 新品上架 -->
+				<div class="container" id="new_shopping">
+					<div class="container" id="img_new"></div>
+					<ul>
+						<li>
+							<div class="new_div">
+								<a href="javascript:void(0)">
+									<div class="new_div_img">
+									</div>
+								</a>
+							</div>
+							<div class="new_font">
+								<a href="javascript:void(0)">MK十周年典藏...</a>
+							</div>
+							<div class="new_font_shopping">
+								商城价
+								<font>￥58.00</font>
+							</div>
+						</li>
+						<li>
+							<div class="new_div">
+								<a href="javascript:void(0)">
+									<div class="new_div_img">
+									</div>
+								</a>
+							</div>
+							<div class="new_font">
+								<a href="javascript:void(0)">MK十周年典藏...</a>
+							</div>
+							<div class="new_font_shopping">
+								商城价
+								<font>￥58.00</font>
+							</div>
+						</li>
+						<li>
+							<div class="new_div">
+								<a href="javascript:void(0)">
+									<div class="new_div_img">
+									</div>
+								</a>
+							</div>
+							<div class="new_font">
+								<a href="javascript:void(0)">MK十周年典藏...</a>
+							</div>
+							<div class="new_font_shopping">
+								商城价
+								<font>￥58.00</font>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- 产品描述 -->
+				<ul id="describe">
+					<li>
+						<a id="product_details" href="javascript:void(0)">产品详情</a>
+					</li>
+					<li>
+						<a id="evaluate" href="javascript:void(0)">商品评价(0)</a>
+					</li>
+				</ul>
+				<div class="container" id="product_desc">
+					${goods.g_desc}
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- 底部 -->
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
+
+		<script type="text/javascript" src="js/jquery.min-1.9.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				alert("getJSON");
+				$.getJSON("productdoInfo.action",{productId:GetQueryString("productId")},function(product){
+					$("#title_recommend").html(product.pName+"<br /><span>"+
+					"货 号：YMMK0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
+					"</span>");
+					$("#product_price").html(product.pPrice);
+					$("#product_desc").html(product.pDesc);
+					$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
+					$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
+				});
+			});
+			function GetQueryString(name)
+			{
+			     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			     var r = window.location.search.substr(1).match(reg);
+			     if(r!=null)return  unescape(r[2]); return null;
+			}
+			$("#product_details").click(function() {
+				$("#gooda_evaluate").css("hidden", "hidden");
+			});
+			$(".augmented").click(function() {
+				var num = $(".goods_num").val();
+				num++;
+				if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
+					alert("数量不能为空，且只能为正整数");
+					$(".goods_num").val(1);
+					return;
+				}
+				$(".goods_num").val(num);
+				calcshopping();
+			});
+			 //- 减少购买数量
+			$(".diminished").click(function() {
+				var num = $(".goods_num").val();
+				num--;
+				if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
+					alert("数量不能为空，且只能为正整数");
+					$(".goods_num").val(1);
+					return;
+				}
+				$(".goods_num").val(num);
+				calcshopping();
+			});
+			 //修改数量
+			$(".goods_num").blur(function() {
+				var value = $(".goods_num").val();
+				if ((value == "") || !(/^[0-9]*[1-9][0-9]*$/.test(value))) {
+					alert("数量不能为空，且只能为正整数");
+					$(this).val(1);
+				}
+				calcshopping();
+			});
+		</script>
+	</body>
+
+</html>

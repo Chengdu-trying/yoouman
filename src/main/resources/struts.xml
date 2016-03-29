@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!-- 页面上对应的请求链接:actionName!MethodName.action -->
+    <package name="dmi" extends="struts-default">
+    	<!-- 全局result，404页面	502页面 -->
+    	<global-results>
+    		<result name="error">/error.html</result>
+    		<result name="login">/Login.html</result>
+    	</global-results>
+    	<action name="user*" class="userAction" method="{1}">
+    		<result	name="success" type="redirect">/index.html</result>
+    	</action>
+    	<action name="product*" class="productAction" method="{1}">
+    		<result name="success">/particular.html</result>
+    	</action>
+    	<action name="test" class="testAction" method="hello">
+    		<result	name="success" type="redirect">/page/bloglist.html</result>
+    	</action>
+    </package>
+</struts>

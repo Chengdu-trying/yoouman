@@ -1,0 +1,77 @@
+/*bottom*/
+
+.bottom_big {
+	background: #FFFFFF;
+	margin-top: 20px;
+	overflow: hidden;
+}
+.bottom_big .help_big {
+	margin: 0 auto 15px;
+	padding-left: 30px;
+	overflow: hidden;
+}
+.bottom_big .help_big .help {
+	height: auto;
+	float: left;
+	display: inline;
+	margin-left: 20px;
+}
+.bottom_big .help_big .help .biao_help {
+	width: 100%;
+	line-height: 37px;
+	text-align: left;
+	font-family: "微软雅黑", "宋体";
+	font-size: 18px;
+	text-indent: 44px;
+	color: #313131;
+	position: relative
+}
+.help .biao_help .biao_help_1,
+.help .biao_help .biao_help_2,
+.help .biao_help .biao_help_3,
+.help .biao_help .biao_help_4,
+.help .biao_help .biao_help_5 {
+	width: 36px;
+	height: 37px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0;
+	overflow: hidden
+}
+.help .biao_help .biao_help_1 {
+	background: url(../img/index_x.png) -48px -353px no-repeat
+}
+.help .biao_help {} .help .biao_help .biao_help_2 {
+	background: url(../img/index_x.png) 0 -353px no-repeat
+}
+.help .biao_help .biao_help_3 {
+	background: url(../img/index_x.png) -95px -353px no-repeat
+}
+.help .biao_help .biao_help_4 {
+	background: url(../img/index_x.png) -143px -353px no-repeat
+}
+.help .biao_help .biao_help_5 {
+	background: url(../img/index_x.png) -190px -353px no-repeat
+}
+.bottom_big .help_big .help ul {
+	width: 120px;
+	height: auto;
+	float: left;
+	padding: 0px;
+	margin-left: 45px;
+	display: inline;
+}
+.bottom_big .help_big .help ul li {
+	width: 120px;
+	height: 28px;
+	line-height: 28px;
+	text-align: left;
+	float: left
+}
+.bottom_big .help_big .help ul li a {
+	color: #999999;
+}
+.bottom_big .help_big .help ul li a:hover {
+	text-decoration: none
+}

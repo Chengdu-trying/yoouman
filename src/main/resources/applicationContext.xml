@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+					       http://www.springframework.org/schema/context 
+					       http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+					       http://www.springframework.org/schema/aop 
+					       http://www.springframework.org/schema/aop/spring-aop-3.1.xsd 
+					       http://www.springframework.org/schema/tx 
+					       http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"
+					       default-autowire="byName" default-lazy-init="false"
+					       >
+	
+	<!-- 此整合方式是将hibernate配置文件整合到Spring的配置文件中 -->
+	<!-- 下面表示的是可以将数据库连接作为属性文件写在外面，直接导入Spring的配置文件后取键值 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/> 
+	<context:component-scan base-package="com.yoouman"  />
+	<!-- 配置数据源：c3p0(连接池)/dbcp(逐渐不使用) -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}">
+		</property>
+		<property name="jdbcUrl" value="${jdbc.Url}">
+		</property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<!--initialPoolSize：连接池中初始化的连接数
+			maxPoolSize：最大连接数
+			minPoolSize：最小连接数
+			acquireIncrement：连接池中的连接耗尽的时候c3p0一次同时获取的连接数
+			maxIdleTime：最大空闲时间,20秒内未使用则连接被丢弃,若为0表示永不丢弃  
+		-->
+		<!--maxStatements与maxStatementsPerConnection：
+			JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。
+			但由于预缓存的statements属于单个connection而不是整个连接池。
+			所以设置这个参数需要考虑到多方面的因素:
+			如果maxStatements与maxStatementsPerConnection均为0，
+			则缓存被关闭。Default: 0 
+		-->
+		<property name="initialPoolSize" value="3"></property>
+		<property name="maxPoolSize" value="5"></property>
+		<property name="minPoolSize" value="3"></property>
+		<property name="acquireIncrement" value="2"></property>
+		<property name="maxIdleTime" value="20"></property>
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+	</bean>
+	<!-- xml版本的session对象 AnnotationConfiguration -->
+	<!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean 
+	org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean
+	rg.springframework.orm.hibernate3.LocalSessionFactoryBean
+	-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<!-- 注入数据源 -->
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 配置Hibernate的数据库的基本参数 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<!-- org.hibernate.cache.EhCache 
+				org.hibernate.cache.ehcache.EhCacheRegionFactory
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.EhCache</prop>  
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>  
+                -->	
+			</props>
+		</property>
+		  
+		<property name="packagesToScan" value="com.yoouman.entity" />
+		<!-- 配置实体映射<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/yoouman/model/</value>
+			</list>
+		</property> -->   
+	</bean>
+	<!-- 事务 -->
+	<bean id="txManager" 
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		
+	</bean>
+	<!-- 1.spring事务的传播行为分为几种，哪一种最常用？
+			解决的方向通常是数据库的事务的资源节约
+		 2.spring事务的隔离级别最高和最低是哪一种？
+		 	解决的项目中方法之间的干扰（脏读，幻读，不可重读读）
+	 -->
+	<!-- 声明式的事务
+	 propagation:传播行为
+		1.read-only:“只读事务”并不是一个强制选项，它只是一个“暗示”，提示数据库驱动程序和数据库系统，
+		这个事务并不包含更改数据的操作，那么JDBC驱动程序和数据库就有可能根据这种情况对该事务进行一些特定的优化， 
+		因此，“只读事务”仅仅是一个性能优化的推荐配置而已，并非强制你要这样做不可。	
+		
+		2.REQUIRED-如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。
+		3.PROPAGATION_SUPPORTS-支持当前事务，如果当前没有事务，就以非事务方式执行。
+		4.PROPAGATION_REQUIRES_NEW-新建事务，如果当前存在事务，把当前事务挂起。
+	 
+	 isolation：隔离行为
+	 	1.DEFAULT-使用数据库默认的事务隔离级别
+	 	2.ISOLATION_READ_UNCOMMITTED-事务最低的隔离级别，它充许令外一个事务可以看到这个事务未提交的数据。
+	 	3.ISOLATION_READ_COMMITTED-保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据
+	 	4.ISOLATION_REPEATABLE_READ-保证一个事务不能读取另一个事务未提交的数据外，还保证了避免不可重复读的情况发生。
+	 	5.ISOLATION_SERIALIZABLE-花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。
+	 read-only:决定方法是否以事务方式执行
+	 	查询一般不走事务方式：true
+	 	增加、修改、更新一般走事务方式：false
+	 -->
+	<tx:advice id="advice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" ></tx:method>
+			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" ></tx:method>
+			<tx:method name="do*" read-only="true" propagation="REQUIRED"></tx:method>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<!-- 切面 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="perform" expression="execution(* com.yoouman.action..*.*(..))" />
+		<aop:advisor advice-ref="advice" pointcut-ref="perform"/>
+	</aop:config>
+	<!-- bean工厂 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+         <property name="sessionFactory">
+             <ref bean="sessionFactory" />
+         </property>
+     </bean>
+	<bean id="baseDao" class="com.yoouman.dao.BaseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="productDao" class="com.yoouman.dao.ProductDao"></bean>
+	
+	<bean id="productAction" class="com.yoouman.action.ProductAction"></bean>
+	<bean id="userAction" class="com.yoouman.action.UserAction"></bean>
+	<bean id="userDao" class="com.yoouman.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="mapper" class=" org.codehaus.jackson.map.ObjectMapper">
+	</bean>
+	<bean id="product" class="com.yoouman.entity.Product"></bean>
+	<bean id="user" class="com.yoouman.entity.User" ></bean>
+	
+</beans>

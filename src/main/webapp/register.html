@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<!--
+	作者：974725151@qq.com
+	时间：2016-01-13
+	描述：注册
+-->
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>注册</title>
+		<!-- 导入css文件 -->
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrapValidator.css" />
+		<link rel="stylesheet" href="css/index.css"></link>
+		<link rel="stylesheet" href="css/register.css" />
+	</head>
+
+	<body>
+		<!-- 头部 -->
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="head.html"></iframe>
+
+		<div class="container" id="register_center">
+			<!-- 注册表单 -->
+			<form id="defaultForm" method="post" class="form-horizontal" action="./RegistedServlet" data-bv-message="This value is not valid" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+				<!-- 昵称 -->
+				<div class="form-group">
+					<label class="col-lg-3 control-label">昵称</label>
+					<div class="col-lg-8">
+						<input type="text" class="form-control" name="name" data-bv-message="The username is not valid" required data-bv-notempty-message="昵称不能为空" placeholder="请输入昵称" data-bv-stringlength="true" data-bv-stringlength-min=4 data-bv-stringlength-max=8 data-bv-stringlength-message="昵称长度4~8位"
+						/>
+					</div>
+				</div>
+				<!-- 邮箱 -->
+				<div class="form-group">
+					<label class="col-lg-3 control-label">邮箱地址</label>
+					<div class="col-lg-8">
+						<input class="form-control" name="email" type="email" placeholder="请输入邮箱地址" required data-bv-notempty-message="邮箱不能为空" data-bv-emailaddress-message="请输入正确的邮箱地址" />
+					</div>
+				</div>
+				<!-- 密码 -->
+				<div class="form-group">
+					<label class="col-lg-3 control-label">密码</label>
+					<div class="col-lg-8">
+						<input type="password" class="form-control" name="pwd" placeholder="请输入密码" required data-bv-notempty-message="密码不能为空" data-bv-stringlength="true" data-bv-stringlength-min="6" data-bv-stringlength-max=12 data-bv-stringlength-message="密码长度6~12位" />
+					</div>
+				</div>
+				<!-- 确认密码 -->
+				<div class="form-group">
+					<label class="col-lg-3 control-label">确认密码</label>
+					<div class="col-lg-8">
+						<input type="password" class="form-control" name="repwd" placeholder="请输入确认密码" required data-bv-notempty-message="确认密码不能为空" data-bv-identical="true" data-bv-identical-field="pwd" data-bv-identical-message="确认密码和密码不一致" />
+					</div>
+				</div>
+				<!-- 性别 -->
+				<div class="form-group">
+					<label class="col-lg-3 control-label">性别</label>
+					<div class="col-lg-8" style="vertical-align: middle;">
+						<div class="radio">
+							<label>
+								<input type="radio" name="gender" value="male" required data-bv-notempty-message="请选择性别" /> 男
+							</label>
+
+							<label>
+								<input type="radio" name="gender" value="female" /> 女
+							</label>
+						</div>
+					</div>
+				</div>
+				<!--出生日期-->
+				<div class="form-group">
+					<label class="col-lg-3 control-label">出生日期</label>
+					<div class="col-lg-8">
+						<input type="text" class="form-control" name="birthday" data-bv-date="false" data-bv-date-format="YYYY/MM/DD" data-bv-date-message="The birthday is not valid" required data-bv-notempty-message="出生日期不能为空" /> (YYYY/MM/DD)
+					</div>
+				</div>
+
+				<!-- 注册按钮 -->
+				<div class="form-group">
+					<div class="col-lg-8 col-lg-offset-3">
+						<button type="submit" class="btn btn-lg btn-success btn-block">提交注册</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- 底部 -->
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
+
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/bootstrapValidator.js"></script>
+		<script type="text/javascript" src="js/TestAddress.js"></script>
+		<script type="text/javascript" src="js/TestChooseAddress.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#defaultForm').bootstrapValidator();
+			});
+		</script>
+	</body>
+
+</html>

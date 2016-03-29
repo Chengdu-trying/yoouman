@@ -1,0 +1,76 @@
+﻿
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>登录</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrapValidator.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	
+	<body>
+		<iframe NAME="content_frame" style="margin: 0px;padding: 0px;" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="header.html"></iframe>
+		
+		
+		<div class="container" style="max-width: 980px;height: 560px;border: 1px solid #CCD9EA;background: url(images/001.jpg) no-repeat;background-size: cover;height: ;">
+
+	      	<form id="defaultForm" method="post" class="form-horizontal" action="userdoLogin.action" style="max-width: 330px;padding: 45px;margin: 100px auto;border: 0px solid #CCD9EA;">
+	      		<h2 class="form-signin-heading">登   录</h2>
+                <div class="form-group">
+                    <label class="sr-only">Email address</label>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" name="name" placeholder="请输入邮箱地址" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <div class="col-lg-12">
+                        <input type="password" class="form-control" name="pwd" placeholder="请输入你的密码" />
+                    </div>
+                </div>
+                
+				<div class="form-group">
+	          		<label class="col-lg-12">
+	            		<input type="checkbox" value="remember-me"> 记住密码
+	          		</label>
+	        	</div>
+	        	
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
+                    </div>
+                </div>
+                <div class="container" style="max-width: 300px;border: 0px solid #101010;margin-top: 10px;padding: 0px;text-align: center;">
+	        		<a href="Register.html">没有账号？点击注册</a>
+	        	</div>
+            </form>
+
+    	</div>
+    	
+    	<!-- 底部 -->
+		
+		
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrapValidator.min.js" ></script>
+		<script type="text/javascript">
+		   $(document).ready(function() {
+			   $("input").focus(function(){
+					$(this).val("");
+					
+				});
+			  // loadUserName();
+			   
+		   });
+		   function loadUserName(){
+				$.getJSON("user!getUserObj.action",function(user){
+					alert(user.user_name);
+					$("#user_name").text(user.user_name);
+					
+				})
+			}
+   	</script>
+	</body>
+</html>

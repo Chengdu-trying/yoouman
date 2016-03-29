@@ -1,0 +1,69 @@
+﻿
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>header</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrapValidator.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<style type="text/css">
+			#userImage{margin: 0px;padding: 0px;}
+			#myFilghtLine li{margin: 0px;padding: 0px; width: 30px;}
+		</style>
+	</head>
+	
+	<body>
+		<div class="yemei">
+        <nav class="navbar navbar-default" role="navigation" style="padding-left:150px;">
+           <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">个人技术博客</a>
+           </div>
+           <div>
+              <ul class="nav navbar-nav">
+
+                 <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                      	 我的博客
+                       <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" id="myFilghtLine">
+                       <li><a href="flight!openMyFlight.action">已公开博客</a></li>
+                       <li><a href="flight!openMyFlight.action">未公开博客</a></li>
+                       <li><a href="javascript:void(0)">草稿</a></li>
+                    </ul>
+                 </li>
+                 <li><a href="shoppingList.jsp"><span class="gouwu"></span>新建博客</a>
+                 </li>
+                  <li class="fore Id menu_1"><a href="javascript:void(0)">个人中心</a></li>
+                   <li><a href="Login.html" id="user_name">请登录</a></li>
+	                 <li><a href="Register.html" id="user_register">免费注册</a></li>
+              </ul>
+           </div>
+        </nav>
+  </div>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrapValidator.min.js" ></script>
+		<script type="text/javascript">
+		   $(document).ready(function() {
+			   loadUserName();
+			   
+		   });
+		   function loadUserName(){
+				$.getJSON("user!getUserObj.action",function(user){
+					var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
+							+"<img src='"+user.userImage+"' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+				   			+"</div>";
+					$("#user_name").html(s);
+					$("#user_name").attr("href","");
+					$("#user_name").attr("padding","8px 0px 0px 0px");
+					$("#user_name").attr("margin","0px");
+					//$("#userImage").attr("alt",user.userName);
+					//$("#userImage").attr("src",user.userImage);
+					
+				});
+			}
+   	</script>
+	</body>
+</html>

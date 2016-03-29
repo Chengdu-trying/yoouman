@@ -1,0 +1,259 @@
+@charset "UTF-8";
+/* CSS Document */
+/*========================================共公部分开始==================================================================*/
+
+yemei_big {
+	width: 980px;
+	height: 40px;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif, "宋体", "黑体";
+}
+* {
+	margin: 0px auto;
+}
+ul {
+	list-style-type: none;
+}
+div h2 p a li ul {
+	margin: 0px;
+	padding: 0px;
+}
+#top {
+	width: 980px;
+	height: 30px;
+	border: 1px solid #333;
+	line-height: 30px;
+}
+img {
+	border: none;
+}
+a {
+	text-decoration: none;
+}
+/*--=====================================logo+导航========================================*/
+
+.top {
+	width: 980px;
+	height: 133px;
+}
+#logo {
+	width: 980px;
+	height: auto;
+	background: #ffffff;
+	margin: 0 auto
+}
+#logo .header {
+	width: 151px;
+	height: 60px;
+	float: left;
+	margin-top: 42px;
+	background: url(../img/logo.jpg) no-repeat;
+	display: inline
+}
+#logo .navigation {
+	width: 602px;
+	height: 49px;
+	float: left;
+	margin-left: 226px;
+	background: url(../img/navigation.jpg) no-repeat center;
+	display: inline;
+	margin-top: 48px;
+}
+/*--=====================================指示牌========================================*/
+
+.instructions {
+	width: 980px;
+	height: 39px;
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFF;
+	line-height: 31px;
+	text-indent: 10px;
+	background: url(../img/arrow.jpg) left top no-repeat;
+}
+.instructions span {
+	float: right;
+	line-height: 39px;
+	color: #FF0000;
+	text-align: right;
+	font-size: 12px;
+	font-weight: normal
+}
+/*--=====================================订单========================================*/
+
+#shelf {
+	width: 980px;
+	border: 1px solid #f8d6c1;
+	border-bottom: 3px solid #fbbe9a;
+	border-top: 4px solid #f37020;
+}
+td input {
+	vertical-align: text-bottom;
+	margin-left: 5px;
+	display: inline
+}
+/*--=====================================书本展示 文字========================================*/
+
+.show {
+	width: 970px;
+	margin: 9px auto;
+}
+#ziti {
+	text-decoration: line-through;
+	font-size: 12px;
+	color: #959595;
+}
+/*//展示一*/
+
+#googs_price {
+	color: #f37020;
+	font-weight: bold;
+	font-size: 12px;
+}
+#price {
+	text-align: left;
+	line-height: 24px;
+}
+.bookone {
+	width: 970px;
+	border: 1px solid #eeeeee;
+	border-bottom: none
+}
+.bookone table {
+	border-bottom: 1px solid #eeeeee
+}
+.bookone table tr td {
+	margin: 0px;
+	padding: 0px;
+	height: 82px;
+}
+.bookone table tr td em {
+	padding: 0px;
+	margin: 0px;
+	font-style: normal;
+	width: 350px;
+	height: 40px;
+	line-height: 20px;
+	padding-left: 20px;
+	display: block;
+	float: left;
+}
+#shanchu {
+	text-decoration: underline;
+	color: #313131;
+	font-size: 12px;
+}
+.baobei {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #CCC;
+}
+.baobei {
+	width: 60px;
+	height: 60px;
+	background-position: center center!important;
+	background-repeat: no-repeat!important;
+	border: 1px solid #e5e5e5;
+	float: left;
+	margin-left: 20px;
+	display: inline;
+}
+/*//展示一 图标*/
+
+.tb input {
+	height: 24px;
+	border: 1px solid #ccc;
+}
+/*--=====================================继续购买========================================*/
+
+.buy {
+	width: 980px;
+	height: auto;
+	border: 1px solid #fbd0c1;
+	margin-top: 10px;
+}
+/*热卖商品*/
+
+#hot {
+	position: relative;
+	top: 20px;
+	height: 220px;
+	margin: 0 auto;
+	width: 920px;
+	overflow: hidden
+}
+.frame {
+	width: 160px;
+	width: 160px;
+}
+#footer {
+	width: 980px;
+	margin: 10px auto 0;
+	overflow: hidden;
+	text-align: center;
+	color: #aaa;
+	line-height: 20px;
+	position: relative;
+	top: 30px;
+}
+.friendship {
+	margin: 10px auto
+}
+#footer p {
+	color: #666;
+	line-height: 30px;
+	text-align: center;
+	height: auto;
+	display: block
+}
+#footer a {
+	color: #666;
+	text-decoration: none;
+	margin-left: 7px;
+	margin-right: 4px;
+	display: inline;
+	white-space: nowrap;
+}
+#footer a:hover {
+	text-decoration: underline;
+}
+/**
+ * 指示牌
+ */
+
+.instructions p span {
+	float: right;
+	color: #333333;
+	font-size: 14px;
+	font-weight: normal;
+}
+#order_button {
+	padding-left: 12px;
+}
+#order_button span {
+	font-size: 12px;
+	font-weight: bold;
+}
+.order_font {
+	font-size: 12px;
+	font-weight: bold;
+	color: #313131;
+}
+#shopping_price {
+	font-size: 14px;
+	color: #313131;
+	font-family: Arial, Helvetica, sans-serif, '宋体', '黑体';
+	text-align: center
+}
+#goods_introduce {
+	font-size: 12px;
+	color: #535353;
+	text-align: left
+}
+.diminished {} .augmented {} .goods_num {
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+}

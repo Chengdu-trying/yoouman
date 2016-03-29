@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+
+.selling_big {
+	border: 1px solid #E5E5E5;
+	height: 250px;
+	margin: 10px auto;
+	padding-bottom: 15px;
+	position: relative;
+	width: 100%;
+}
+.selling_big_biao {
+	background: none repeat scroll 0 0 #EEEEEE;
+	color: #313131;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	line-height: 28px;
+	margin-top: 1px;
+	text-align: left;
+	text-indent: 15px;
+	width: 100%;
+}
+.selling_big s,
+.selling_big b {
+	cursor: pointer;
+	display: block;
+	height: 51px;
+	overflow: hidden;
+	position: absolute;
+	width: 25px;
+}
+.selling_big s {
+	background: url(../img/user.gif) no-repeat scroll 0 -487px transparent;
+	left: 8px;
+	top: 100px;
+}
+.selling_big b {
+	background: url(../img/user.gif) no-repeat scroll -28px -487px transparent;
+	right: 8px;
+	top: 100px;
+}
+.selling {
+	height: auto;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	padding-left: 0px;
+	width: 1092px;
+}
+.selling li {
+	display: inline;
+	float: left;
+	height: 220px;
+	margin-left: 17px;
+	margin-right: 15px;
+	width: 150px;
+}
+.selling li .productImg-wrap {
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	border: 1px solid #E5E5E5;
+	display: block;
+	height: 148px;
+	margin: 0 auto 4px;
+	width: 148px;
+}
+.selling li .wenzhi {
+	font-size: 12px;
+	font-weight: normal;
+	height: auto;
+	line-height: 20px;
+	text-align: center;
+	width: 138px;
+	margin: 0px;
+}
+.selling li .wenzhi a {
+	color: #535353;
+	text-align: center;
+}
+.selling li .wenzhi a:hover {
+	color: #F37020;
+	text-decoration: underline;
+}
+.selling li p {
+	color: #E60012;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	width: 138px;
+}

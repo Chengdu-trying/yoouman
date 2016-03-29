@@ -1,0 +1,261 @@
+@charset "utf-8";
+/* CSS Document */
+/*==================================================基本资料========================================*/
+
+.position_common .ziliao {
+	border: 1px solid #d4d4d4;
+}
+/*=================================================系统消息=========================================*/
+
+#table_form_1 {
+	width: 794px;
+}
+#table_form_1 tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px dashed #facdbc;
+}
+#table_form_1 tr td .book_1 {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #CCC;
+}
+#table_form_1 tr td ul {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #448aca;
+}
+#table_form_1 tr td p {
+	float: right;
+	color: #eb5701;
+	font-weight: bolder;
+}
+#table_form_1 .riqi {
+	color: #959595;
+	padding-left: 70px;
+}
+#table_form_1 .riqi_1 {
+	color: #CCC;
+	padding-right: 355px;
+	font-weight: normal;
+}
+#table_form_2 {
+	width: 794px;
+}
+#table_form_2 tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 0px solid #facdbc;
+}
+#table_form_2 tr td .book_1 {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #CCC;
+}
+#table_form_2 tr td ul {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #448aca;
+}
+#table_form_2 tr td p {
+	float: right;
+	color: #eb5701;
+	font-weight: bolder;
+}
+#table_form_2 .riqi {
+	color: #959595;
+	padding-left: 70px;
+}
+#table_form_2 .riqi_1 {
+	color: #CCC;
+	padding-right: 355px;
+	font-weight: normal;
+}
+/*=========================================商品咨询===============================================*/
+
+#table_form_3 {
+	width: 795px;
+}
+#table_form_3 tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 0px solid #facdbc;
+}
+#table_form_3 p {
+	padding-left: 28px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bolder;
+	color: #585858;
+}
+#table_form_3 tr td ul {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #448aca;
+}
+#table_form_3 .riqi {
+	color: #959595;
+	padding-left: 180px;
+}
+#table_form_3 .riqi_1 {
+	color: #CCC;
+	padding-right: 355px;
+	font-weight: normal;
+}
+#table_form_4 {
+	width: 795px;
+}
+#table_form_4 tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #facdbc;
+}
+#table_form_4 p {
+	padding-left: 28px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bolder;
+	color: #585858;
+}
+#table_form_4 tr td ul {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #448aca;
+}
+/*产品回复*/
+
+#table_form_5 {
+	width: 795px;
+}
+#table_form_5 tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #facdbc;
+}
+#table_form_5 p {
+	padding-left: 28px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bolder;
+	color: #585858;
+}
+#table_form_5 tr td ul {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #448aca;
+}
+/*===================================================会员积分===========================================================*/
+
+<!--位置--> .position_common_2 {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bolder;
+	padding-right: 100px;
+}
+/*全部积分*/
+
+#table_integral {
+	width: 795px;
+}
+#table_integral tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid #fce2d1;
+	color: #313131;
+}
+#table_integral .dingdan {
+	width: 250px;
+	height: 25px;
+	border: 1px solid #f9ddcc;
+	background: #fffaf3;
+	float: right;
+	font-size: 12px;
+	color: #a0a0a0;
+	padding-left: 5px;
+}
+#table_integral tr td img {
+	padding-right: 50px;
+}
+/*积分来源用途*/
+
+#table_integral_1 {
+	width: 795px;
+}
+#table_integral_1 tr td {
+	line-height: 20px;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid #fce2d1;
+	color: #313131;
+}
+#table_integral_1 .word_1 {
+	border-bottom: none;
+	border-right: none;
+	font-weight: bolder;
+}
+#table_integral_1 .word_2 {
+	border-bottom: none;
+	border-right: none;
+	font-weight: bolder;
+}
+#table_integral_1 .word_3 {
+	border-bottom: none;
+	border-right: none;
+	font-weight: bolder;
+}
+#table_integral_1 .word_4 {
+	border-bottom: none;
+	border-right: none;
+}
+#table_integral_1 .word_4 .word_tupian {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #e3e4e5;
+	margin-left: 10px;
+}
+#table_integral_1 .word_5 {
+	border-bottom: none;
+}
+#table_integral_1 .word_6 {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #448aca;
+	border-bottom: none;
+	border-right: none;
+}
+#table_integral_1 .word_6 p {
+	color: #b6b6b6;
+	padding-left: 8px;
+}
+/*=============================================会员中心我的优惠卡卷===========================================================*/
+/*横幅广告栏*/
+
+.advertising_1 {
+	width: 795px;
+	height: 76px;
+	padding-bottom: 20px;
+}
+.input-text_1 {
+	width: 250px;
+	height: 23px;
+	line-height: 23px;
+	border: 1px solid #fad6cd;
+	font-size: 12px;
+	color: #CCC;
+}
+.w-70_1 {
+	width: 70px;
+}

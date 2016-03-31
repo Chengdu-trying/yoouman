@@ -29,7 +29,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cId;
 	// 评价内容
-	@Column(name = "comment_Content")
+	@Column(name = "comment_Content",columnDefinition="longtext")
 	private String cContent;
 	// 评价时间
 	@Column(name = "comment_Date")

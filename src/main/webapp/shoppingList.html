@@ -8,8 +8,81 @@
 		<link rel="stylesheet" href="css/shopping.css" />
 		<link rel="stylesheet" href="css/hslider_style1.css" />
 	</head>
+	<style>
+		#nav_{
+			padding-left:50%;
+			}
+		#banner{
+			text-align:left;
+		}
+		#top_{
+			width:75%;
+		}
+	</style>
 
 	<body>
+		<div class="container" id="top_">
+			<nav class="navbar navbar-default" id="nav_">
+					<div class="row">
+						<div>
+						  <ul class="nav navbar-nav ">
+							<li><a href="#">请登录 </a></li>
+							
+							<li><a href="Register.html" id="user_register">免费注册</a></li>
+							 <li><a href="javascript:void(0);">收藏本店</a></li>
+							 <li class="dropdown">
+								<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+									我的账户
+								   <b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+								   <li><a href="#">待付款订单</a></li>
+								   <li><a href="#">已付款订单</a></li>
+								   <li><a href="#">短消息</a></li>
+								</ul>
+							 </li>
+							 <li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
+							 </li>
+							  <li class="fore"><s></s><a href="javascript:void(0)">收藏夹</a></li>			                  
+						  </ul>
+					   </div>				  	
+					  </div>				  
+					</nav>
+					<div class="row" id="banner">
+						<img src="images/logo.jpg.jpg" />
+						 
+					</div>
+					<!--搜索-->
+					<div class="row" style="padding-bottom:10px;">
+						<div class="col-md-6 text-left">
+							<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
+							</div> 			
+						 </div>		 	
+						 <div class="col-md-6">
+								<div class="row" >				  				
+										<table align="right" border="0px" cellspacing="0px" cellpadding="0px" width="80%">				  					
+											<tr>
+												<td>
+													<span class="glyphicon glyphicon-search"></span>
+												</td>
+												<td>
+													<input type="text" class="form-control " placeholder="请输入关键词搜索">
+												</td>
+												
+												<td>
+													<button type="button" class="btn btn-info">搜索</button>				  							
+												</td>
+											</tr>
+										</table>				  			
+								</div>
+						 </div>			  	 
+						</div>
+				<ol class="breadcrumb text-left">
+				  <li><a class="#">首页</a></li>
+				  <li><a class="#">个人中心</a> </li>
+				  <li type="active">商品列表</li>
+				</ol>
+			</div>
 		<!--logo+导航-->
 		<div id="logo">
 			<div class="top">

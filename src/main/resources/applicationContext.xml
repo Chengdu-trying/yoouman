@@ -143,6 +143,7 @@
 	</bean>
 	<bean id="mapper" class=" org.codehaus.jackson.map.ObjectMapper">
 	</bean>
+	<bean id="shoppingCar" class="com.yoouman.entity.ShoppingCar"></bean>
 	<bean id="product" class="com.yoouman.entity.Product"></bean>
 	<bean id="user" class="com.yoouman.entity.User" ></bean>
 	

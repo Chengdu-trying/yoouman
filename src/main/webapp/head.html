@@ -1,66 +1,115 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
-		<title>index</title>
+		<title>head1</title>
 	</head>
-
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<style type="text/css">
-		.nav_ {
-			padding-bottom: 10px;
-		}
-		#title {}
-	</style>
-
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
+	<link rel="stylesheet" href="css/head.css" />
 	<body>
-		<div style="overflow: visible";>
+		<!--
+        	作者：2338133722@qq.com
+        	时间：2016-03-22
+        	描述：容器
+        -->
+		<div class="container">
 			<!--
             	作者：2338133722@qq.com
             	时间：2016-03-22
             	描述：导航
             -->
 			<div id="title">
-
-				<nav class="navbar navbar-default nav_">
+				
+				<nav class="navbar navbar-default navbar-static-top" id="nav_">
 					<div class="row">
-						<div class="col-xs-5 col-md-5 ">
-							<div class="navbar navbar-brand ">
-								<h3><a>优漫网首页</a></h3>
-							</div>
-						</div>
-						<div class="col-xs-11 col-sm-7 col-md-8" style="padding-top: 20px;">
-							<div>
-								<ul class="nav navbar-nav ">
-									<li><a href="javascript:void(0)" id="user_name">请登录</a></li>
-									<li><a href="javascript:void(0)" id="user_register">免费注册</a></li>
-									<li><a href="javascript:void(0);">收藏本店</a></li>
-									<li class="dropdown">
-										<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-			                      	 	我的账户 
-			                       		<b class="caret"></b>
-			                    	</a>
-			                    		<ul class="dropdown-menu">
-											<li><a href="javascript:void(0)">待付款订单</a></li>
-											<li><a href="javascript:void(0)">已付款订单</a></li>
-											<li><a href="javascript:void(0)">短消息</a></li>
-										</ul>
-										
-									</li>
-									<li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
-									</li>
-									<li class="fore Id menu_1"><s></s><a href="javascript:void(0)">收藏夹</a></li>
-
-								</ul>
-							</div>
-						</div>
-					</div>
+					 	<div>
+			              <ul class="nav navbar-nav ">
+			              	<li><a href="#">请登录 </a></li>
+			              	
+				            <li><a href="Register.html" id="user_register">免费注册</a></li>
+			                 <li><a href="javascript:void(0);">收藏本店</a></li>
+			                 <li class="dropdown">
+			                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+			                      	我的账户
+			                       <b class="caret"></b>
+			                    </a>
+			                    <ul class="dropdown-menu">
+			                       <li><a href="#">待付款订单</a></li>
+			                       <li><a href="#">已付款订单</a></li>
+			                       <li><a href="#">短消息</a></li>
+			                    </ul>
+			                 </li>
+			                 <li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
+			                 </li>
+			                  <li class="fore Id menu_1"><s></s><a href="javascript:void(0)">收藏夹</a></li>			                  
+			              </ul>
+			           </div>				  	
+					  </div>				  
 				</nav>
 			</div>
-		</div>
-		<script type="text/javascript" src="js/jquery.min-1.9.1.js"></script>
-		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+			<!--
+					banner
+				-->
+			<div class="row" id="banner">
+				<div class="col-md-4" id="logo">
+					<img src="images/logo.jpg.jpg" />
+				</div>
+				 <div class="col-md-8">
+				 	<img src="images/00.png" />
+				 </div>
+			</div>
+				
+			<!--
+            	作者：2338133722@qq.com
+            	时间：2016-03-22
+            	描述：搜索
+            -->
+			 <div class="row" style="padding-bottom:10px;">
+			 	<div class="col-md-6 text-left">
+			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
+	    			</div> 			
+				 </div>		 	
+				 <div class="col-md-6">
+				  		<div class="row" >				  				
+				  				<table align="right" border="0px" cellspacing="0px" cellpadding="0px" width="80%">				  					
+				  					<tr>
+				  						<td>
+				  							<span class="glyphicon glyphicon-search"></span>
+				  						</td>
+				  						<td>
+				  							<input type="text" class="form-control " placeholder="请输入关键词搜索">
+				  						</td>
+				  						
+				  						<td>
+				  							<button type="button" class="btn btn-info">搜索</button>				  							
+				  						</td>
+				  					</tr>
+				  				</table>				  			
+				  		</div>
+				 </div>			  	 
+				</div>
+				
+				<!--
+            	作者：2338133722@qq.com
+            	时间：2016-03-26
+            	描述：面包屑导航
+            	-->			
+				<ol class="breadcrumb">
+				  <li><a href="#">首页</a></li>
+				  <li class="active">所有商品</li>
+				</ol>
+			
+			</div>
+		</div>		
+	<script type="text/javascript">
+		$('.carousel').carousel({
+		  interval: 100
+		})
+	</script>
+	<script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	
 	</body>
-
 </html>

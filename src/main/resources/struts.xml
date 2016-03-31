@@ -17,8 +17,5 @@
     	<action name="product*" class="productAction" method="{1}">
     		<result name="success">/particular.html</result>
     	</action>
-    	<action name="test" class="testAction" method="hello">
-    		<result	name="success" type="redirect">/page/bloglist.html</result>
-    	</action>
     </package>
 </struts>

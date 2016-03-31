@@ -1,9 +1,12 @@
 package com.yoouman;
 
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.yoouman.dao.ProductDao;
+import com.yoouman.dao.UserDao;
 import com.yoouman.entity.PType;
 import com.yoouman.entity.Product;
 import com.yoouman.entity.User;
@@ -19,7 +22,11 @@ public class App
     	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     
     	ProductDao dao=(ProductDao) context.getBean("productDao");
-    	System.out.println(dao.getProductById(17).getpName());
+    	List<Product> products=dao.getIndexlist();
+    	System.out.println(products.size());
+    	for (Product product : products) {
+			System.out.println(product.getpType().gettName());
+		}
 //		Session session= hTemplate.getSessionFactory().openSession();
 //    	List<User> users=(List<User>) session.createQuery("from bean.user");
 //    	System.out.println(users.size());

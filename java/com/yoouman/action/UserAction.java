@@ -2,6 +2,10 @@ package com.yoouman.action;
 
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -27,7 +31,12 @@ public class UserAction extends BaseAction{
 	private UserDao dao;
 	
 	private String name;	//登录用户
-	private String pwd;		//登录密码
+	private String pwd;		//登录密码		/注册
+	
+	private String email;
+	private String gender;
+	private String birthday;
+	
 	private String x;		//图片剪切需求参数
 	private String y;
 	private String w;
@@ -61,12 +70,24 @@ public class UserAction extends BaseAction{
 			return Action.LOGIN;
 		}
 	}
+	
+	public String saveUserByRegisted() throws NumberFormatException, ParseException{
+		
+		System.out.println(pwd+"///"+email+"///"+name);
+		System.out.println(gender+"///"+birthday);
+		User user=new User(name, email, pwd, new SimpleDateFormat("yyyy-MM-dd").parse(birthday), Integer.parseInt(gender));
+		if(dao.saveUserByRegin(user)>0){
+			session.setAttribute("user", user);
+			return Action.SUCCESS;
+		}
+		return Action.ERROR;
+	}
 	/**
 	 * 保存头像
 	 * @return
 	 * @throws IOException	流未找到
 	 */
-	public String SaveImage() throws IOException{
+	public String updateImage() throws IOException{
 		File file=(File) session.getAttribute("fileImage");	//得到源文件
 		
 		Double fileX=ImageIO.read(file).getWidth()/Double.parseDouble(realW);	//缩放比例X轴
@@ -97,24 +118,26 @@ public class UserAction extends BaseAction{
 	/**
 	 * 得到用户json数据
 	 * @return
+	 * @throws IOException 
 	 */
-	public String getUserObj(){
+	public String doGetUserObj() throws IOException{
 		ObjectMapper mapper=new ObjectMapper();
 		User user=(User) session.getAttribute("user");
 		response.setContentType("text/html;charset=utf-8");
-		try {
-			String json=mapper.writeValueAsString(user);
-			System.out.println(json);
-			response.getWriter().print(json);
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(user!=null){
+			try {
+				String json=mapper.writeValueAsString(user);
+				System.out.println(json);
+				response.getWriter().print(json);
+			} catch (JsonGenerationException e) {
+				// json序列化异常
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// json映射异常
+				e.printStackTrace();
+			}
+		}else{
+			response.getWriter().print(0);
 		}
 		return Action.NONE;
 	}
@@ -172,6 +195,31 @@ public class UserAction extends BaseAction{
 	public void setRealH(String realH) {
 		this.realH = realH;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
 	public UserDao getDao() {
 		return dao;
 	}

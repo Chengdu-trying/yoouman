@@ -27,7 +27,7 @@ public class ProductAction extends BaseAction{
 		response.setContentType("text/html");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		List<Product> products=dao.getListByType(1);
+		List<Product> products=dao.getIndexlist();
 		String string=mapper.writeValueAsString(products);
 		response.getWriter().print(string);
 		System.out.println(string);

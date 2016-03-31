@@ -7,11 +7,39 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/bootstrapValidator.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/bottom.css" />
+		
 	</head>
+	<style>
+	
+	#footer{ font-size: 10px;}
+	.bottom_big ul{list-style-type: none; font-size: 10px;}
+	#banner{
+		padding-bottom:20px;
+	}
+</style>
 	
 	<body>
-		<iframe NAME="content_frame" style="margin: 0px;padding: 0px;" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="header.html"></iframe>
-		
+					<!--
+					banner
+				-->
+			<div class="row" id="banner">
+				<div class="col-md-4" id="logo">
+					<img src="images/logo.jpg.jpg" />
+				</div>
+				
+			</div>
+			<!--
+			作者：2338133722@qq.com
+			时间：2016-03-26
+			描述：面包屑导航
+			-->			
+			<ol class="breadcrumb">
+			  <li><a href="index.html">首页</a></li>
+			  <li class="active">登录</li>
+			</ol>
+	
 		
 		<div class="container" style="max-width: 980px;height: 560px;border: 1px solid #CCD9EA;background: url(images/001.jpg) no-repeat;background-size: cover;height: ;">
 
@@ -49,8 +77,8 @@
 
     	</div>
     	
-    	<!-- 底部 -->
-		
+    <!-- 底部 -->
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
 		
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
 		<script type="text/javascript" src="js/bootstrap.min.js" ></script>

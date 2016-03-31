@@ -15,14 +15,28 @@
 		<link rel="stylesheet" href="css/index.css"></link>
 		<link rel="stylesheet" href="css/register.css" />
 	</head>
-
+	<style>
+		#banner{
+		padding-bottom:20px;
+		}
+	</style>
 	<body>
 		<!-- 头部 -->
-		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="head.html"></iframe>
+			
+			<div class="row" id="banner">
+				<div class="col-md-4" id="logo">
+					<img src="images/logo.jpg.jpg" />
+				</div>
+				
+			</div>
+			<ol class="breadcrumb">
+			  <li><a href="index.html">首页</a></li>
+			  <li class="active">注册</li>
+			</ol>
 
 		<div class="container" id="register_center">
 			<!-- 注册表单 -->
-			<form id="defaultForm" method="post" class="form-horizontal" action="./RegistedServlet" data-bv-message="This value is not valid" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+			<form id="defaultForm" method="post" class="form-horizontal" action="usersaveUserByRegisted.action" data-bv-message="This value is not valid" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
 				<!-- 昵称 -->
 				<div class="form-group">
 					<label class="col-lg-3 control-label">昵称</label>
@@ -58,11 +72,11 @@
 					<div class="col-lg-8" style="vertical-align: middle;">
 						<div class="radio">
 							<label>
-								<input type="radio" name="gender" value="male" required data-bv-notempty-message="请选择性别" /> 男
+								<input type="radio" name="gender" value="1" required data-bv-notempty-message="请选择性别" /> 男
 							</label>
 
 							<label>
-								<input type="radio" name="gender" value="female" /> 女
+								<input type="radio" name="gender" value="0" /> 女
 							</label>
 						</div>
 					</div>
@@ -79,25 +93,30 @@
 				<div class="form-group">
 					<div class="col-lg-8 col-lg-offset-3">
 						<button type="submit" class="btn btn-lg btn-success btn-block">提交注册</button>
+						&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="login.html">已有账号，立即登录</a>
 					</div>
 				</div>
 			</form>
 		</div>
 
 		<!-- 底部 -->
-		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
+		
 
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/bootstrapValidator.js"></script>
 		<script type="text/javascript" src="js/TestAddress.js"></script>
 		<script type="text/javascript" src="js/TestChooseAddress.js"></script>
+		<link rel="stylesheet" href="css/bottom.css" />
 
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#defaultForm').bootstrapValidator();
 			});
 		</script>
+<!-- 底部 -->
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
 	</body>
 
 </html>

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -22,6 +23,7 @@ import com.yoouman.util.CustomDateSerializer;
 
 @Entity
 @Table(name = "comment")
+@JsonIgnoreProperties(value={"product"})
 public class Comment {
 	// 评价id
 	@Id
@@ -33,7 +35,7 @@ public class Comment {
 	private String cContent;
 	// 评价时间
 	@Column(name = "comment_Date")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonSerialize(using = CustomDateSerializer.class)
 	private Date cDate;
 	// 评价人 外键：用户表id
@@ -71,19 +73,33 @@ public class Comment {
 		this.cDate = cDate;
 	}
 
-	public User getUser() {
+
+
+	public User getOwner() {
 		return owner;
 	}
 
-	public void setUser(User user) {
-		this.owner = user;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
-	public Comment(String cContent, Date cDate, User user) {
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	
+
+	public Comment(int cId, String cContent, Date cDate, User owner, Product product) {
 		super();
+		this.cId = cId;
 		this.cContent = cContent;
 		this.cDate = cDate;
-		this.owner = user;
+		this.owner = owner;
+		this.product = product;
 	}
 
 	public Comment() {

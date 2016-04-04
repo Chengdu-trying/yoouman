@@ -17,5 +17,7 @@
     	<action name="product*" class="productAction" method="{1}">
     		<result name="success">/particular.html</result>
     	</action>
+    	<action name="comment*" class="commentAction" method="{1}">
+    	</action>
     </package>
 </struts>

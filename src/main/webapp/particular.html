@@ -1,7 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!DOCTYPE html
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,7 +18,7 @@
 		}
 	</style>
 
-	<body>
+	<body class="container">
 		<nav class="navbar navbar-default" id="nav_">
 			<div class="row">
 				<div>
@@ -219,8 +217,13 @@
 						<a id="evaluate" href="javascript:void(0)">商品评价(0)</a>
 					</li>
 				</ul>
-				<div class="container" id="product_desc">
-					${goods.g_desc}
+				<div class="col-md-10 container" id="product_desc">
+					<div  class="doComent">
+						<a href="javascript:void(0)" class="comment_owner"><div style='width:35px; height:35px; border-radius:50%; overflow:hidden;display: inline-block;'><img src="Public/header/myface.jpg" width="35px" height="35px"/></div>947458520</a><span class="comment_date">2016-01-19 21:40:33</span>
+						<p class="comment_content">
+							可以货到付款么
+						</p>
+					</div>
 				</div>
 				
 			</div>
@@ -233,6 +236,7 @@
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
+				
 				$.getJSON("productdoInfo.action",{productId:GetQueryString("productId")},function(product){
 					$("#title_recommend").html(product.pName+"<br /><span>"+
 					"货 号：YMMK0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
@@ -243,6 +247,7 @@
 					$("#product_desc").html(product.pDesc);
 					$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
 					$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
+					$("#evaluate").attr("href","javascript:doInfo("+product.pId+")");
 				});
 			});
 			function GetQueryString(name)
@@ -286,6 +291,28 @@
 				}
 				calcshopping();
 			});
+			//加载评价
+			function doInfo(productId){
+				
+				$("#product_details").css("background","#ffffff");
+				$("#product_desc").css("border","0px");
+				$("#evaluate").addClass("activeComment");
+				$.getJSON("commentdoInfo.action",{productId:productId},function(comments){
+					if(comments!="none"){
+						comments=eval(comments);
+						var str="";
+						for(var i=0;i<comments.length;i++){					
+							str+="<div  class='doComent'><a href='javascript:void(0)' class='comment_owner'>"
+							+"<div style='width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;'>"
+							+"<img src='Public/header/myface.jpg' width='30px' height='30px'/>"
+							+"</div>"+comments[i].owner.userName+"</a><span class='comment_date'>"+comments[i].cDate+"</span>"
+							+"<p class='comment_content'>"+comments[i].cContent+"</p></div>"		
+						}
+						$("#product_desc").html(str);
+					}
+					
+				});
+			}
 		</script>
 	</body>
 

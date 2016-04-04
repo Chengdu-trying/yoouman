@@ -1,12 +1,19 @@
 package com.yoouman;
 
 
+import java.io.IOException;
 import java.util.List;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.yoouman.dao.CommentDao;
 import com.yoouman.dao.ProductDao;
 import com.yoouman.dao.UserDao;
+import com.yoouman.entity.Comment;
 import com.yoouman.entity.PType;
 import com.yoouman.entity.Product;
 import com.yoouman.entity.User;
@@ -17,15 +24,15 @@ import com.yoouman.entity.User;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
     	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-    
-    	ProductDao dao=(ProductDao) context.getBean("productDao");
-    	List<Product> products=dao.getIndexlist();
-    	System.out.println(products.size());
-    	for (Product product : products) {
-			System.out.println(product.getpType().gettName());
+    	CommentDao dao=(CommentDao) context.getBean("commentDao");
+    	List<Comment> comments=dao.findByProductId(2);
+    	ObjectMapper mapper=(ObjectMapper) context.getBean("mapper");
+    	System.out.println(mapper.writeValueAsString(comments));
+    	for (Comment comment : comments) {
+			System.out.println(comment.getcDate()+"/n"+comment.getOwner().getUserName());
 		}
 //		Session session= hTemplate.getSessionFactory().openSession();
 //    	List<User> users=(List<User>) session.createQuery("from bean.user");

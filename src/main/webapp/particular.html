@@ -1,13 +1,13 @@
-<!DOCTYPE html
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>商品查看</title>
+		<title>优漫-你身边的动漫商城--商品查看</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/particular.css" />
-	
+	<link rel="stylesheet" type="text/css" href="dist/css/wangEditor.min.css">
 	</head>
 	<style>
 		#nav_{
@@ -23,10 +23,7 @@
 			<div class="row">
 				<div>
 				  <ul class="nav navbar-nav ">
-					<li><a href="#">请登录 </a></li>
 					
-					<li><a href="Register.html" id="user_register">免费注册</a></li>
-					 <li><a href="javascript:void(0);">收藏本店</a></li>
 					 <li class="dropdown">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
 							我的账户
@@ -40,7 +37,11 @@
 					 </li>
 					 <li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
 					 </li>
-					  <li class="fore"><s></s><a href="javascript:void(0)">收藏夹</a></li>			                  
+					  <li class="fore"><s></s><a href="javascript:void(0)">收藏夹</a></li>
+					   <li><a href="Login.html" id="user_name">请登录 </a></li>
+					
+					<li><a href="register.html" id="user_register">免费注册</a></li>
+					 <li><a href="javascript:void(0);">收藏本店</a></li>	
 				  </ul>
 			   </div>				  	
 			  </div>				  
@@ -211,20 +212,16 @@
 				<!-- 产品描述 -->
 				<ul id="describe">
 					<li>
-						<a id="product_details" href="javascript:void(0)">产品详情</a>
+						<a id="product_details" class="activeComment" href="javascript:void(0)">产品详情</a>
 					</li>
 					<li>
 						<a id="evaluate" href="javascript:void(0)">商品评价(0)</a>
 					</li>
 				</ul>
 				<div class="col-md-10 container" id="product_desc">
-					<div  class="doComent">
-						<a href="javascript:void(0)" class="comment_owner"><div style='width:35px; height:35px; border-radius:50%; overflow:hidden;display: inline-block;'><img src="Public/header/myface.jpg" width="35px" height="35px"/></div>947458520</a><span class="comment_date">2016-01-19 21:40:33</span>
-						<p class="comment_content">
-							可以货到付款么
-						</p>
-					</div>
+					<button class="btn btn-info btnSend" onclick="commitNew()"></button>
 				</div>
+				
 				
 			</div>
 		</div>
@@ -232,88 +229,10 @@
 		<!-- 底部 -->
 		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
 
-		<script type="text/javascript" src="js/jquery.min-1.9.1.js"></script>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				
-				$.getJSON("productdoInfo.action",{productId:GetQueryString("productId")},function(product){
-					$("#title_recommend").html(product.pName+"<br /><span>"+
-					"货 号：YMMK0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
-					"</span>");
-					$("#pType").html(product.pType.tName);
-					$("#product_Name").html(product.pName);
-					$("#product_price").html(product.pPrice);
-					$("#product_desc").html(product.pDesc);
-					$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
-					$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
-					$("#evaluate").attr("href","javascript:doInfo("+product.pId+")");
-				});
-			});
-			function GetQueryString(name)
-			{
-			     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-			     var r = window.location.search.substr(1).match(reg);
-			     if(r!=null)return  unescape(r[2]); return null;
-			}
-			$("#product_details").click(function() {
-				$("#gooda_evaluate").css("hidden", "hidden");
-			});
-			$(".augmented").click(function() {
-				var num = $(".goods_num").val();
-				num++;
-				if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
-					alert("数量不能为空，且只能为正整数");
-					$(".goods_num").val(1);
-					return;
-				}
-				$(".goods_num").val(num);
-				calcshopping();
-			});
-			 //- 减少购买数量
-			$(".diminished").click(function() {
-				var num = $(".goods_num").val();
-				num--;
-				if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
-					alert("数量不能为空，且只能为正整数");
-					$(".goods_num").val(1);
-					return;
-				}
-				$(".goods_num").val(num);
-				calcshopping();
-			});
-			 //修改数量
-			$(".goods_num").blur(function() {
-				var value = $(".goods_num").val();
-				if ((value == "") || !(/^[0-9]*[1-9][0-9]*$/.test(value))) {
-					alert("数量不能为空，且只能为正整数");
-					$(this).val(1);
-				}
-				calcshopping();
-			});
-			//加载评价
-			function doInfo(productId){
-				
-				$("#product_details").css("background","#ffffff");
-				$("#product_desc").css("border","0px");
-				$("#evaluate").addClass("activeComment");
-				$.getJSON("commentdoInfo.action",{productId:productId},function(comments){
-					if(comments!="none"){
-						comments=eval(comments);
-						var str="";
-						for(var i=0;i<comments.length;i++){					
-							str+="<div  class='doComent'><a href='javascript:void(0)' class='comment_owner'>"
-							+"<div style='width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;'>"
-							+"<img src='Public/header/myface.jpg' width='30px' height='30px'/>"
-							+"</div>"+comments[i].owner.userName+"</a><span class='comment_date'>"+comments[i].cDate+"</span>"
-							+"<p class='comment_content'>"+comments[i].cContent+"</p></div>"		
-						}
-						$("#product_desc").html(str);
-					}
-					
-				});
-			}
-		</script>
+		<script type="text/javascript" src="dist/js/wangEditor.min.js"></script>
+		<script type="text/javascript" src="js/particular.js"></script>
 	</body>
 
 </html>

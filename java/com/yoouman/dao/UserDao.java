@@ -1,36 +1,27 @@
 package com.yoouman.dao;
 
-import java.util.List;
-
 import com.yoouman.entity.User;
 
 
-public class UserDao extends  BaseDao<User>{
-	
-	
-	public UserDao() {
-		super();	
-		super.setT(new User());
-		//super.setHibernateTemplate((HibernateTemplate) MyApplicationContext.getApplicationContext().getBean("hibernateTemplate"));
-	}
-	public List<User> getObjByLogin(User u){
-		 List<User> users=getHibernateTemplate().findByExample(u);
-		return users;
-	}
-
-	public int saveUserByRegin(User u){
-		int result=(int) getHibernateTemplate().save(u);
-		return result;
-	}
+public interface UserDao{
 	/**
-	 * 更新用户头像
-	 * @param imageUrl	头像地址
-	 * @param user	当前用户
-	 * @return	Int
+	 * 登录方法
+	 * @param name	用户Email
+	 * @param pwd	用户密码
+	 * @return 		用户对象
 	 */
-	public int UpdateUserImage(User user){
-		//s.saveOrUpdate(user);
-		super.getHibernateTemplate().update(user);
-		return 1;
-	}
+	User login(String name,String pwd);
+	/**
+	 * 注册方法
+	 * @param user	用户对象
+	 * @return	数据库插入值行号，>0 则注册成功
+	 */
+	int saveUserByRegin(User user);
+	/**
+	 * 更新用户头像/用户基本信息
+	 * @param user	用户对象
+	 * @return	
+	 */
+	int updateUserImage(User user);
+	
 }

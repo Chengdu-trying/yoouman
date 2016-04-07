@@ -1,5 +1,6 @@
 package com.yoouman.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,11 @@ import com.yoouman.util.JsonToObj;
 
 @Entity
 @Table(name = "orders")
-public class Orders {
+public class Orders implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 853729769426539395L;
 	// 排序编号
 	@Id
 	@Column(name = "order_Id")

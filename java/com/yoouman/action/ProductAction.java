@@ -5,17 +5,14 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.Action;
 import com.yoouman.dao.ProductDao;
 import com.yoouman.entity.Product;
-
+@Controller("productAction")@Scope("prototype")  
 public class ProductAction extends BaseAction{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Resource(name="productDao")
 	private ProductDao dao;
 	@Resource(name="mapper")
@@ -41,26 +38,13 @@ public class ProductAction extends BaseAction{
 		response.setCharacterEncoding("utf-8");
 		
 		String pid=request.getParameter("productId");
-		System.out.println(pid);
-		String json=mapper.writeValueAsString(dao.getProductById(Integer.parseInt(pid)));
+		//查询单个产品
+		Product product=dao.getProductById(Integer.parseInt(pid));
+		session.setAttribute("product", product);
+		String json=mapper.writeValueAsString(product);
 		response.getWriter().print(json);
 		System.out.println(json);
 		return Action.NONE;
-	}
-	public ProductDao getDao() {
-		return dao;
-	}
-
-	public void setDao(ProductDao dao) {
-		this.dao = dao;
-	}
-
-	public ObjectMapper getMapper() {
-		return mapper;
-	}
-
-	public void setMapper(ObjectMapper mapper) {
-		this.mapper = mapper;
 	}
 	
 }

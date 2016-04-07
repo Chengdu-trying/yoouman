@@ -87,11 +87,11 @@
 		   $(document).ready(function() {
 			   $("input").focus(function(){
 					$(this).val("");
-					
 				});
 			  // loadUserName();
 			   
 		   });
+		   
 		   function loadUserName(){
 				$.getJSON("user!getUserObj.action",function(user){
 					alert(user.user_name);

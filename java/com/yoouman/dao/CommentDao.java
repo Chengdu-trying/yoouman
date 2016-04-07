@@ -1,28 +1,39 @@
 package com.yoouman.dao;
 
+
 import java.util.List;
-
 import com.yoouman.entity.Comment;
+import com.yoouman.entity.Page;
 
-public class CommentDao extends BaseDao<Comment>{
-
-	public CommentDao() {
-		super();
-		
-		// TODO Auto-generated constructor stub
-	}
-	public int saveNewComment(Comment comment){
-		int result=(int) getHibernateTemplate().save(comment);
-		return result;
-	}
-	public List<Comment> findByProductId(int productId){
-		List<Comment> comments=getHibernateTemplate().find("from Comment c where c.product.pId=?", productId);
-		return comments;
-	}
-	
-	public List<Comment> findByUserId(int userId){
-		List<Comment> comments=getHibernateTemplate().find("from Comment c where c.owner.userId=?",userId);
-		
-		return comments;
-	}
+public interface CommentDao{
+	/**
+	 * 增加新评论
+	 * @param comment	评论体
+	 * @return	>0 则新增成功、否则失败
+	 */
+	int saveNewComment(Comment comment);
+	/**
+	 * 通过商品id查询该商品下所有评论
+	 * @param productId	商品id
+	 * @return	评论集合
+	 */
+	List<Comment> findByProductId(int productId);
+	/**
+	 * 按照
+	 * @param productId
+	 * @return
+	 */
+	List<Comment> getListForPageByPId(int productId,Page page);
+	/**
+	 * 通过用户id查询该用户所有评论
+	 * @param userId	用户id
+	 * @return	评论集合
+	 */
+	List<Comment> findByUserId(int userId);
+	/**
+	 * 查询商品下的评论数
+	 * @param productId	商品id
+	 * @return	int 评论总数
+	 */
+	int getCommentsCount(int productId);
 }

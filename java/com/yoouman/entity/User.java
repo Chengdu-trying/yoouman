@@ -1,6 +1,7 @@
 package com.yoouman.entity;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,11 @@ import com.yoouman.util.JsonToObj;
 @Entity
 @Table(name="uac_user")
 @JsonIgnoreProperties(value={"userPwd","products","list_product","orders","comments"})
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2533025785429130375L;
 	//用户编号
 	@Id
 	@Column(name="user_id")

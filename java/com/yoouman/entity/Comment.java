@@ -1,5 +1,6 @@
 package com.yoouman.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,11 @@ import com.yoouman.util.CustomDateSerializer;
 @Entity
 @Table(name = "comment")
 @JsonIgnoreProperties(value={"product"})
-public class Comment {
+public class Comment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4786633424761439037L;
 	// 评价id
 	@Id
 	@Column(name = "comment_Id")

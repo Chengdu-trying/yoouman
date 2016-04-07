@@ -1,18 +1,18 @@
 package com.yoouman.action;
 
 
-import java.io.*;
-import java.text.DateFormat;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.yoouman.dao.UserDao;
 import com.yoouman.entity.User;
@@ -25,8 +25,8 @@ import com.opensymphony.xwork2.Action;
  * 	b.对象传值
  * 	c.模型传值
  */
+@Controller("userAction")@Scope("prototype")  
 public class UserAction extends BaseAction{
-	private static final long serialVersionUID = 5457268965108906071L;
 	@Resource(name="userDao")
 	private UserDao dao;
 	
@@ -47,17 +47,12 @@ public class UserAction extends BaseAction{
 	 * 不在方法里面设置参数，是为了跟Servlet划清界限，解耦和是其替代方式
 	 */
 	public String doLogin() throws Exception{
-		System.out.println(name+"//"+pwd+"///"+realW);		
-    	User user=new User();
-		user.setUserEmail(name);
-		user.setUserPwd(pwd);
-		
-		//ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
+		System.out.println(name+"//"+pwd);				
 //		String string1=MD5Util.md5Encode(name);
 //		String string2=MD5Util.md5Encode(pwd);
 //		System.out.println(string1);
 //		System.out.println(string2);
-		User u=dao.getObjByLogin(user).get(0);
+		User u=dao.login(name, pwd);
 		System.out.println(u);
 		if(u!=null){			
 			session.setAttribute("user", u);
@@ -98,7 +93,6 @@ public class UserAction extends BaseAction{
 		int newW=(int) (Double.parseDouble(w)*fileX);
 		int newH=(int) (Double.parseDouble(h)*fileY);		//通过缩放比例计算实际剪切尺寸
 		
-		UserDao dao=new UserDao();
 		User user=(User) session.getAttribute("user");		//得到用户对象
 		
 		String src=UploadConfigurationRead.getInstance()
@@ -110,7 +104,7 @@ public class UserAction extends BaseAction{
 	    //调用工具类剪切图片
 		ImageHelper.cutImage(file.getAbsolutePath(),file.getAbsolutePath(),newX,newY,newW,newH,type);
 		//向数据库中存入数据
-		if (dao.UpdateUserImage(user)>0) {			
+		if (dao.updateUserImage(user)>0) {			
 			return "SaveSUCCESS";
 		}
 		return Action.ERROR;
@@ -142,11 +136,6 @@ public class UserAction extends BaseAction{
 		return Action.NONE;
 	}
 	
-	public String getUserJson(){
-		User user=(User) session.getAttribute("user");
-		System.out.println(user.getUserEmail());
-		return Action.SUCCESS;
-	}
 	public String getName() {
 		return name;
 	}

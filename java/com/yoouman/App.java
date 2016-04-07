@@ -1,12 +1,9 @@
 package com.yoouman;
 
 
-import java.io.IOException;
+
 import java.util.List;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -29,11 +26,11 @@ public class App
     	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     	CommentDao dao=(CommentDao) context.getBean("commentDao");
     	List<Comment> comments=dao.findByProductId(2);
-    	ObjectMapper mapper=(ObjectMapper) context.getBean("mapper");
-    	System.out.println(mapper.writeValueAsString(comments));
+    	
     	for (Comment comment : comments) {
-			System.out.println(comment.getcDate()+"/n"+comment.getOwner().getUserName());
+			System.out.println(comment.getcContent()+"//"+comment.getcDate());
 		}
+    	System.out.println(dao.getCommentsCount(2));
 //		Session session= hTemplate.getSessionFactory().openSession();
 //    	List<User> users=(List<User>) session.createQuery("from bean.user");
 //    	System.out.println(users.size());

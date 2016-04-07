@@ -5,7 +5,7 @@
 
 <struts>
     <!-- 页面上对应的请求链接:actionName!MethodName.action -->
-    <package name="dmi" extends="struts-default">
+    <package name="dmi" namespace="/" extends="struts-default">
     	<!-- 全局result，404页面	502页面 -->
     	<global-results>
     		<result name="error">/error.html</result>
@@ -18,6 +18,10 @@
     		<result name="success">/particular.html</result>
     	</action>
     	<action name="comment*" class="commentAction" method="{1}">
+    		<result name="fail">/page/fail.html</result>
+    		<result name="success">/particular.html</result>
+    	</action>
+    	<action name="fileUploadSingleAction" class="com.yoouman.action.FileUploadSingleAction" method="uploadFile">
     	</action>
     </package>
 </struts>

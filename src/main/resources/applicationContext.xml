@@ -133,22 +133,5 @@
      </bean>
 	<bean id="mapper" class=" org.codehaus.jackson.map.ObjectMapper">
 	</bean>
-	<bean id="comment" class="com.yoouman.entity.Comment"></bean>
-	<bean id="shoppingCar" class="com.yoouman.entity.ShoppingCar"></bean>
-	<bean id="product" class="com.yoouman.entity.Product"></bean>
-	<bean id="user" class="com.yoouman.entity.User" ></bean>
-	<bean id="baseDao" class="com.yoouman.dao.BaseDao">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="productDao" class="com.yoouman.dao.ProductDao"></bean>
-	<bean id="commentDao" class="com.yoouman.dao.CommentDao">
-		<property name="t" ref="comment"></property>
-	</bean>
-	<bean id="productAction" class="com.yoouman.action.ProductAction"></bean>
-	<bean id="commentAction" class="com.yoouman.action.CommentAction"></bean>
-	<bean id="userAction" class="com.yoouman.action.UserAction"></bean>
-	<bean id="userDao" class="com.yoouman.dao.UserDao">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
 	
 </beans>

@@ -330,9 +330,8 @@ body {
 	line-height: 28px;
 }
 #product_details {
+	color: #FFFFFF;
 	border-top: 1px solid #DA4453;
-	background: #DA4453 none repeat scroll 0% 0%;
-	color: #FFF;
 	border-right: 1px solid #DA4453;
 	display: block;
 	width: auto !important;
@@ -365,6 +364,11 @@ body {
 	padding: 10px 30px;
 	line-height: 28px;
 }
+#recomments{
+	height: 15%;
+	border: 1px solid #37BD9C;
+	max-height: 25%;
+}
 .comment_owner,.comment_date{
 	font-family: "微软雅黑";
 	font-size: 10px;
@@ -373,6 +377,10 @@ body {
 .comment_content{
 	font-family: "微软雅黑";
 	font-size: 14px;
+	cursor: pointer;
+}
+.comment_content:hover{
+	
 }
 .comment_date{
 	margin-left:5%;
@@ -380,7 +388,12 @@ body {
 .doComent{
 	padding:10px;
 	border: 1px solid #EEEEEE;
+	margin-bottom: 1%;
 	
+}
+.btnSend{
+	width: 10%;
+	float: right;
 }
 #evaluate:hover{
     border-top: 1px solid #da4453;

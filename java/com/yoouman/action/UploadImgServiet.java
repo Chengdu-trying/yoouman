@@ -19,11 +19,6 @@ import com.yoouman.util.UploadConfigurationRead;
 
 public class UploadImgServiet extends HttpServlet {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public UploadImgServiet() {
         super();
     }
@@ -66,7 +61,7 @@ public class UploadImgServiet extends HttpServlet {
         /**********************/
 
         //获取图片url地址
-        String imgUrl = "../"+hostPath+"/"+ fileName;
+        String imgUrl = hostPath+"/"+ fileName;
         response.setContentType("text/text;charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(imgUrl);  //返回url地址

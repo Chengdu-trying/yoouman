@@ -3,17 +3,11 @@ package com.yoouman.entity;
 import java.util.List;
 
 public class ShoppingCar {
-
-	private List<Product> products_all;		//挑选商品表
+	
 	private List<Product> products_buy;		//购买商品表
 	private int size;		//商品总数
 	private double price;	//购买总价
-	public List<Product> getProducts_all() {
-		return products_all;
-	}
-	public void setProducts_all(List<Product> products_all) {
-		this.products_all = products_all;
-	}
+	
 	public List<Product> getProducts_buy() {
 		return products_buy;
 	}
@@ -36,9 +30,8 @@ public class ShoppingCar {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ShoppingCar(List<Product> products_all, List<Product> products_buy, int size, double price) {
+	public ShoppingCar(List<Product> products_buy, int size, double price) {
 		super();
-		this.products_all = products_all;
 		this.products_buy = products_buy;
 		this.size = size;
 		this.price = price;

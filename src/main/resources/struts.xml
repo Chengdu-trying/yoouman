@@ -17,5 +17,8 @@
     	<action name="product*" class="productAction" method="{1}">
     		<result name="success">/particular.html</result>
     	</action>
+    	<action name="shoppingCar*" class="shoppingCarAction" method="{1}">
+    		<result name="success">/shoppingList.html</result>
+    	</action>
     </package>
 </struts>

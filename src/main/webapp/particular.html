@@ -145,12 +145,7 @@
 						</dl>
 						<!-- 购物车标 -->
 						<div class="container" id="shopping_img">
-							<a href="shoppingList.html;">
-								<div class="img_buy"></div>
-							</a>
-							<a href="shoppingList.html;">
-								<div class="img_shopping_char"></div>
-							</a>
+							
 						</div>
 
 					</div>
@@ -243,6 +238,8 @@
 					$("#product_desc").html(product.pDesc);
 					$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
 					$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
+					$("#shopping_img").html("<a href='shoppingList.html'><div class='img_buy'></div></a><a href='shoppingCaradd?productId="+product.pId+"'><div class='img_shopping_char'></div></a>");
+					
 				});
 			});
 			function GetQueryString(name)

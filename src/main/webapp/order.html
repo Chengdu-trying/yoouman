@@ -31,13 +31,77 @@
 			body {
 				background: #FFFFFF
 			}
+			#nav_{
+				padding-left:45%;
+			}
+			#banner{
+				text-align:left;
+			}
 		</style>
 	</head>
 
 	<body>
-		<!-- 头部 -->
-		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" marginwidth=0 marginheight=0 SRC="head.html"></iframe>
-
+	
+			<nav class="navbar navbar-default" id="nav_">
+			<div class="row">
+				<div>
+				  <ul class="nav navbar-nav ">
+					<li><a href="#">请登录 </a></li>
+					
+					<li><a href="Register.html" id="user_register">免费注册</a></li>
+					 <li><a href="javascript:void(0);">收藏本店</a></li>
+					 <li class="dropdown">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+							我的账户
+						   <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+						   <li><a href="#">待付款订单</a></li>
+						   <li><a href="#">已付款订单</a></li>
+						   <li><a href="#">短消息</a></li>
+						</ul>
+					 </li>
+					 <li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
+					 </li>
+					  <li class="fore"><s></s><a href="javascript:void(0)">收藏夹</a></li>			                  
+				  </ul>
+			   </div>				  	
+			  </div>				  
+			</nav>
+			<div class="row" id="banner">
+				<img src="images/logo.jpg.jpg" />
+				 
+			</div>
+			<!--搜索-->
+			<div class="row" style="padding-bottom:10px;">
+			 	<div class="col-md-6 text-left">
+			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
+	    			</div> 			
+				 </div>		 	
+				 <div class="col-md-6">
+				  		<div class="row" >				  				
+				  				<table align="right" border="0px" cellspacing="0px" cellpadding="0px" width="80%">				  					
+				  					<tr>
+				  						<td>
+				  							<span class="glyphicon glyphicon-search"></span>
+				  						</td>
+				  						<td>
+				  							<input type="text" class="form-control " placeholder="请输入关键词搜索">
+				  						</td>
+				  						
+				  						<td>
+				  							<button type="button" class="btn btn-info">搜索</button>				  							
+				  						</td>
+				  					</tr>
+				  				</table>				  			
+				  		</div>
+				 </div>			  	 
+				</div>
+		<ol class="breadcrumb text-left">
+		  <li><a class="#">首页</a></li>
+		  <li><a class="#">个人中心</a></li>
+		  <li type="active">订单管理</li>
+		</ol>
 		<div class="nav_big">
 			<!-- 新品上架 -->
 			<div class="container" id="new_shopping">
@@ -95,17 +159,10 @@
 			<div class="Personal_center_right_big" style="max-width: 772px;">
 				<!--位置-->
 				<div class="position_common">
-					您的当前位置：
-					<a href="javascript:void(0)">首页</a> &gt; <a href="javascript:void(0)">个人中心</a> &gt; <a href="javascript:void(0)">我的订单</a>
-
+					
 				</div>
 				<!--订单，评论，确认-->
-				<ul class="order_big">
-					<li><a href="javascript:void(0)">所有订单</a></li>
-					<li><a href="javascript:void(0)" class="hongdi">待付款</a></li>
-					<li><a href="javascript:void(0)">已付款</a></li>
-					<li><a href="javascript:void(0)">已收货</a></li>
-				</ul>
+				
 				<div class="clear"></div>
 				<!--订单-->
 				<div class="center_table_big">

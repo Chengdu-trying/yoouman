@@ -22,7 +22,7 @@ public class Product {
 	@Column(name = "product_Name")
 	private String pName;
 	// 商品描述
-	@Column(name = "product_Desc")
+	@Column(name = "product_Desc",columnDefinition="longtext")
 	private String pDesc;
 	// 商品类型
 	@OneToOne(cascade = { CascadeType.ALL })

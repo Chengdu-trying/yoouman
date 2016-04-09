@@ -12,7 +12,7 @@ public class BaseDao<T> extends HibernateDaoSupport{
 	public void setT(T t) {
 		this.t = t;
 	}
-	public List<T> findBylist(String hql) {
+	public List<T> findBylist() {
 		List<T> list=super.getHibernateTemplate().find("from "+t.getClass().getSimpleName());
 		return list;
 	}

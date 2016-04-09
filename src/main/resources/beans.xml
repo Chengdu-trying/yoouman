@@ -14,12 +14,14 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="productDao" class="com.yoouman.dao.ProductDao"></bean>
-	
-	<bean id="productAction" class="com.yoouman.action.ProductAction"></bean>
-	<bean id="userAction" class="com.yoouman.action.UserAction"></bean>
 	<bean id="userDao" class="com.yoouman.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<bean id="productAction" class="com.yoouman.action.ProductAction"></bean>
+	<bean id="userAction" class="com.yoouman.action.UserAction"></bean>
+	<bean id="shoppingCarAction" class="com.yoouman.action.ShoppingCarAction"></bean>
+	
 	<bean id="product" class="com.yoouman.entity.Product"></bean>
 	<bean id="user" class="com.yoouman.entity.User" ></bean>
 </beans>

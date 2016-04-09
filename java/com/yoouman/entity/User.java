@@ -36,7 +36,7 @@ public class User {
 	@Column(name="user_borndate")
 	@Temporal(TemporalType.DATE)
 	private Date borndate;
-	//性别	1：男 0：女  2:不详
+	//性别	1：男  0：女  2:不详
 	@Column(name="user_gender")
 	private int gender;
 	//地址
@@ -83,6 +83,15 @@ public class User {
 		this.orders = orders;
 		this.comments = comments;
 		this.products = products;
+	}
+
+	public User(String userName, String userEmail, String userPwd, Date borndate, int gender) {
+		super();
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPwd = userPwd;
+		this.borndate = borndate;
+		this.gender = gender;
 	}
 
 	public int getUserId() {

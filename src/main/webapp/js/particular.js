@@ -3,9 +3,16 @@ var loginFlag=false;	//是否登录
 var productId=GetQueryString("productId");	//当前商品id
 (function(){
 	//初始化=ready()
-	function init(){
+	function init(){		
+		if(productId==null){
+			location.href="error.html";
+		}
 		Login();
-		$.getJSON("productdoInfo.action",{productId:productId},function(product){
+		$.getJSON("productdoInfo.action",{pId:productId},function(product){
+			if(product=="none"){
+				location.href="404.htm";
+			}
+			
 			$("#title_recommend").html(product.pName+"<br /><span>"+
 			"货 号：YMMK0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
 			"</span>");
@@ -87,7 +94,7 @@ function GetQueryString(name)
 		var str="<p style='color:#c0c0c0;'>评论空空如也，快来添加吧！</p>";
 		//添加回复编辑框与按钮
 		var editor="<div class='col-md-12 container' id='recomments'></div><button class='btn-info btn btnSend' onclick='commitNew()'>发表评论</button>";
-		$.getJSON("commentdoInfo.action",{productId:productId},function(comments){
+		$.getJSON("commentdoInfo.action",{pId:productId},function(comments){
 			if(comments!="[]" && comments!="none"){						
 				comments=eval(comments);
 				$("#evaluate").html("商品评价("+comments.length+")");
@@ -148,7 +155,7 @@ function GetQueryString(name)
 	}
 function commitNew(){
 				// 获取编辑器区域完整html代码
-	            var html = editor.$txt.html();				
+	            var html = editor.$txt.html();
 	        	$.post("commentsaveNewComment.action",{context:html},function(data){
 	        		if(data="success"){
 	        			alert("发表成功！");
@@ -161,7 +168,6 @@ function Login(){
 			url:"userdoGetUserObj.action",
 			type:"POST",
 			dataType:"json",
-			data:{"check":"check"},
 			success:function(user){
 				if(user!=0){
 					if(user.headerImg!="" && user.headerImg!=null){

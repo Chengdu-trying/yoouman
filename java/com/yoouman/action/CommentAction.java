@@ -13,21 +13,20 @@ import com.yoouman.dao.CommentDao;
 import com.yoouman.entity.Comment;
 import com.yoouman.entity.Product;
 import com.yoouman.entity.User;
-@Controller("commentAction")@Scope("prototype")  
+@Controller("commentAction")@Scope("singleton")
 public class CommentAction extends BaseAction{
 	@Resource(name="commentDao")
 	private CommentDao dao;
 	@Resource(name="mapper")
 	private ObjectMapper mapper;
-	private int productId;
+	private int pId;
 	private String context;
 	
 	public String doInfo() throws Exception{
 		setPageEncoding();
-		List<Comment> comments=dao.findByProductId(productId);
+		List<Comment> comments=dao.findByProductId(pId);
 		String string=mapper.writeValueAsString(comments);
 		if(comments!=null){
-			System.out.println(string);
 			response.getWriter().print(string);
 		}else{
 			response.getWriter().print("none");
@@ -44,7 +43,6 @@ public class CommentAction extends BaseAction{
 			comment.setOwner((User) session.getAttribute("user"));
 			comment.setProduct((Product) session.getAttribute("product"));
 			int result=dao.saveNewComment(comment);
-			System.err.println(result);
 			if (result>0) {
 				System.err.println();
 				response.getWriter().print("success");
@@ -83,12 +81,11 @@ public class CommentAction extends BaseAction{
 		this.mapper = mapper;
 	}
 
-	public int getProductId() {
-		return productId;
+	public int getpId() {
+		return pId;
 	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
 	public String getContext() {
 		return context;

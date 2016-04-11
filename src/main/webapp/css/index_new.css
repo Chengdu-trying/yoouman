@@ -6,6 +6,7 @@ body {
 	width: 980px;
 	height: auto;
 	margin: 0px auto;
+	font-family: "微软雅黑";
 }
 a:hover {
 	text-decoration: none;
@@ -99,13 +100,15 @@ a:hover {
 .goods_big li .nav_big .jiage_big .goumai {
 	width: 62px;
 	height: 23px;
+	font-family: "微软雅黑";
+	font-size: 10px;
 	color: #FFFFFF;
 	text-align: center;
 	float: left;
 	margin-left: 2px;
 	background: #949494;
 	display: block;
-	line-height: 23px;
+	line-height: 14px;
 }
 .biaoti_big
 /*当被选择时*/

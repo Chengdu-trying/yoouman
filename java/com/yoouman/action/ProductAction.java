@@ -7,11 +7,9 @@ import javax.annotation.Resource;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-import com.opensymphony.xwork2.Action;
 import com.yoouman.dao.ProductDao;
 import com.yoouman.entity.Product;
-@Controller("productAction")@Scope("prototype")  
+@Controller("productAction")@Scope("singleton")  
 public class ProductAction extends BaseAction{
 	@Resource(name="productDao")
 	private ProductDao dao;
@@ -29,7 +27,7 @@ public class ProductAction extends BaseAction{
 		response.getWriter().print(string);
 		System.out.println(string);
 		session.setAttribute("products", products);
-		return Action.NONE;
+		return "none";
 	}
 
 	public String doInfo() throws Exception{
@@ -37,14 +35,19 @@ public class ProductAction extends BaseAction{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		String pid=request.getParameter("productId");
+		String pid=request.getParameter("pId");
 		//查询单个产品
+		System.out.println(pid);
 		Product product=dao.getProductById(Integer.parseInt(pid));
-		session.setAttribute("product", product);
-		String json=mapper.writeValueAsString(product);
-		response.getWriter().print(json);
-		System.out.println(json);
-		return Action.NONE;
+		if (product==null) {
+			response.getWriter().print(mapper.writeValueAsString("none"));
+		}else{
+			session.setAttribute("product", product);
+			String json=mapper.writeValueAsString(product);
+			response.getWriter().print(json);
+			System.out.println(json);
+		}
+		return "none";
 	}
 	
 }

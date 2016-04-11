@@ -35,7 +35,7 @@ public class Product {
 	// 商品单价
 	@Column(name = "product_Price")
 	private double pPrice;
-	// 商品已被购买数量
+	// 商品被购买数量
 	@Column(name = "product_Count")
 	private int pBuyCount;
 	//商品图片

@@ -2,6 +2,7 @@ package com.yoouman.dao;
 
 
 import java.util.List;
+import com.yoouman.entity.Page;
 import com.yoouman.entity.Product;
 
 public interface ProductDao{
@@ -23,6 +24,15 @@ public interface ProductDao{
 	 * @return	30商品表集
 	 */
 	List<Product> getIndexlist();
+	
+	
+	/**
+	 * 按照商品类型id对该商品下的评论分页
+	 * @param tid	商品类型id
+	 * @param page	页面
+	 * @return	该页评论
+	 */
+	List<Product> getListForPageBytId(int tid,Page page);
 
 
 }

@@ -19,9 +19,10 @@ public interface CommentDao{
 	 */
 	List<Comment> findByProductId(int productId);
 	/**
-	 * 按照
-	 * @param productId
-	 * @return
+	 * 按照商品id对该商品下的评论分页
+	 * @param productId	商品id
+	 * @param page	页面
+	 * @return	该页评论
 	 */
 	List<Comment> getListForPageByPId(int productId,Page page);
 	/**

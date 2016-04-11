@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.yoouman.util.UploadConfigurationRead;
 
-
+@Controller("uploadImgAction")@Scope("singleton")  
 public class UploadImgServiet extends HttpServlet {
+
 
 	public UploadImgServiet() {
         super();

@@ -34,17 +34,17 @@ public class Orders implements Serializable{
 	private int orderStatus;
 	// 订单创建日期
 	@Column(name = "createDate")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonSerialize(using = CustomDateSerializer.class)
 	private Date createDate;
 	// 付款日期
 	@Column(name = "payDate")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonSerialize(using = CustomDateSerializer.class)
 	private Date payDate;
 	// 完成收货日期
 	@Column(name = "compDate")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonSerialize(using = CustomDateSerializer.class)
 	private Date compDate;
 	// 订单总价

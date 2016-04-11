@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.Action;
  * 	b.对象传值
  * 	c.模型传值
  */
-@Controller("userAction")@Scope("prototype")  
+@Controller("userAction")@Scope("singleton")  
 public class UserAction extends BaseAction{
 	@Resource(name="userDao")
 	private UserDao dao;

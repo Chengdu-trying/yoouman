@@ -22,6 +22,7 @@ var productId=GetQueryString("productId");	//当前商品id
 			$("#product_desc").html(product.pDesc);
 			$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
 			$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
+			$("#shopping_img").html("<a href='shoppingList.html'><div class='img_buy'></div></a><a href='shoppingCaraddProduct.action?productId="+product.pId+"'><div class='img_shopping_char'></div></a>");
 		});
 		$("#evaluate").hover(function(){
 			$("#evaluate").addClass("activeComment");

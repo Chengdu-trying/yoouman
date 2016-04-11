@@ -1,6 +1,7 @@
 package com.yoouman.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCar implements Serializable{
@@ -32,6 +33,9 @@ public class ShoppingCar implements Serializable{
 	}
 	public ShoppingCar() {
 		super();
+		if(products_buy==null){
+			products_buy=new ArrayList<Product>();
+		}
 		// TODO Auto-generated constructor stub
 	}
 	public ShoppingCar(List<Product> products_buy, int size, double price) {

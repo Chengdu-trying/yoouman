@@ -78,16 +78,16 @@
 						 </div>			  	 
 						</div>
 				<ol class="breadcrumb text-left">
-				  <li><a class="#">首页</a></li>
-				  <li><a class="#">个人中心</a> </li>
-				  <li type="active">商品列表</li>
+				  <li><a href="index.html">首页</a></li>
+				  <li><a href="#">个人中心</a> </li>
+				  <li type="active">购物车</li>
 				</ol>
 			</div>
 		<!--logo+导航-->
 		<div id="logo">
 			<div class="top">
 				<div class="header" style="background:none">
-					<a href="javascript:void(0);"></a>
+					<a href="index.html"></a>
 				</div>
 				<div class="navigation"></div>
 			</div>
@@ -123,49 +123,7 @@
 					<div class="bookone" id="cart">
 
 						<table width="957" border="0" cellspacing="0" class="cart" id="cartList">
-							<!--书本展示一-->
-							<c:forEach var="goods" items="${Shoppinglist}" varStatus="vs">
-								<tr>
-									<!--  宝贝一-->
-									<td width="10">
-										<input type="checkbox" name="cart_id[${goods.goods_id }]" value="${goods.goods_id }" reachName='' checked="checked" class="check" />
-									</td>
-									<td width="80">
-										<a href="javascript:void(0);" target="_blank">
-											<div class="baobei" style="background:url(${goods.img_src}.50x50.jpg); cursor:pointer"></div>
-										</a>
-									</td>
-									<td width="353" id="goods_introduce">
-										<em>
-				  							<a  href="GoodsInfoServlet?goods_id=${goods.goods_id }" target="_blank">${goods.goods_name }<span class="reachName"></span> 				  
-				  							<br><span style="color:#cccccc">款式 :普通</span></a>
-			  							</em>
-									</td>
-									<td width="144">
-										<p id="shopping_price">
-											￥<span id="shop_price_437134" class="goodsprice">${goods.goods_price }</span>
-										</p>
-									</td>
-
-									<td width="111">
-										<div class="tb">
-											<a href="javascript:void(0);" class="diminished">
-												<img src="img/buy_20.jpg" width="24" height="24" /></a>
-											<input type="text" id="goods_${goods.goods_id }" value="1" class="goods_num" />
-											<a href="javascript:void(0);" class="augmented">
-												<img src="img/buy_22.jpg" width="24" height="24" />
-											</a>
-										</div>
-									</td>
-									<td width="112" id="googs_price">
-										￥ <span id="subtotal_${goods.goods_id }" class="subtotal" data="${goods.goods_id }"></span>
-									</td>
-									<td width="57" id="shanchu">
-										<a href="javascript:void(0)" class="delete" data='${goods.goods_id }'>删除</a>
-									</td>
-								</tr>
-							</c:forEach>
-
+							
 						</table>
 
 						<div style="clear:both;"></div>
@@ -190,7 +148,7 @@
 							<td>&nbsp;</td>
 							<td height="46">&nbsp;</td>
 							<td colspan="2" style=" border-top:1px solid  #fbccb0;">
-								<span class="span_1">总金额（不含运费）：</span>
+								<span class="span_1">总金额（含运费）：</span>
 								<span class="span_2" style="font-size:24px;">￥
 	        						<label id="totalPrices">0.00</label>
 	        					</span>
@@ -259,134 +217,106 @@
 
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/jquery.dialog.js"></script>
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/jquery.hslider.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$(".hsliber").hslider({
-					width: 920
-				});
-				//商品计算函数
-				function calcshopping() {
-					var shoppingTotal = 0;
-					$("#cartList").find("tr").each(function(i, ele) {
-						//商品数量
-						var num = $(ele).find(".goods_num").val();
-						var price_sigle = $(ele).find(".goodsprice").html() * num;
-						//商品的价格累加
-						shoppingTotal += price_sigle;
-						//将值显示到页面上
-						var a_b = price_sigle + "";
-						var n_a = a_b.indexOf(".");
-						$(ele).find(".subtotal").text(parseInt(price_sigle) + "." + a_b.substr(n_a + 1, 2));
-					});
-					var a_n = (shoppingTotal - parseInt(shoppingTotal)) + "";
-					var n1 = a_n.indexOf(".");
-					$("#youhui").text(parseInt(a_n) + "." + a_n.substr(n1 + 1, 2));
-					$("#totalPrice").text(parseInt(shoppingTotal) + "." + a_n.substr(n1 + 1, 2));
-					$("#totalPrices").text(parseInt(shoppingTotal) + ".00");
-					$("#totalPrices_hidden").val(parseInt(shoppingTotal) + 8);
-				};
-				calcshopping();
-				//修改数量
-				$(".goods_num").blur(function() {
-					var value = $(".goods_num").val();
-					if ((value == "") || !(/^[0-9]*[1-9][0-9]*$/.test(value))) {
-						alert("数量不能为空，且只能为正整数");
-						$(this).val(1);
-					}
-					calcshopping();
-				});
-				<!--删除商品列表-->
-				$(".delete").click(function() {
-					var flag = confirm("您确认要删除此商品吗?");
-					var num = $(this).attr("data");
-					if (flag == true) {
-						$(this).parent().parent().remove();
-						$.ajax({
-							url: "RemoveGoodsServlet",
-							type: "POST",
-							dataType: "json",
-							data: {
-								"goods_id": num
-							},
-							success: function(data) {
-								if (data) {} else {}
-							}
-						});
-						goCar();
-					}
-					calcshopping();
-				});
-				$(".augmented").click(function() {
-					var num = $(this).siblings(".goods_num").val();
-					num++;
-					if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
-						alert("数量不能为空，且只能为正整数");
-						$(this).siblings(".goods_num").val(1);
-						return;
-					}
-					$(this).siblings(".goods_num").val(num);
-					calcshopping();
-				});
-				//- 减少购买数量
-				$(".diminished").click(function() {
-					var num = $(this).siblings(".goods_num").val();
-					num--;
-					if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
-						alert("数量不能为空，且只能为正整数");
-						$(this).siblings(".goods_num").val(1);
-						return;
-					}
-					$(this).siblings(".goods_num").val(num);
-					calcshopping();
-				});
-				$("#submit_button").click(function() {
-					$("#myform").action = "InsertOrdersServlet?totalPrices=" + $("#totalPrices_hidden").val();
-					$("#myform").submit();
-				});
-				goCar();
-				$.ajax({
-					url: "LoginServlet",
-					type: "POST",
-					dataType: "json",
-					data: {
-						"check": "check"
-					},
-					success: function(data) {
-						if (data != 0) {
-							$("#user_name").text(data.user_name);
-							$("#user_name").css("font-size", "10");
-							$("#user_name").css("color", "red");
-							$("#user_register").remove();
-						} else {}
-					},
-					error: function() {
-						alert("出错啦！");
-					}
-				});
-			});
 
-			function goCar() {
-				$.ajax({
-					url: "ShoppingCarServlet",
-					type: "POST",
-					dataType: "json",
-					data: {
-						"message": "size"
-					},
-					success: function(data) {
-						if (data != null) {
-							$("#cart_number").text(data);
-							$("#cart_number").css("color", "red");
-						}
-					},
-					error: function() {
-						alert("出错啦！");
-					}
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+	 			url:"shoppingCargetList.action",
+	 			type:"POST",
+	 			dataType:"json",
+	 			success:function(data){
+	 				var list=eval(data.products_buy);
+	 				var str_new="";
+	 				for(var i=0;i<list.length;i++){
+	 					str_new+="<tr><td width='10'>"
+	 							+"<input type='checkbox' name='cart_id["+list[i].pId+"]' value="+list[i].pId+" checked='checked' class='check' /></td>"
+	 							+"<td width='80'><a href='javascript:void(0);' target='_blank'>"
+	 							+"<div class='baobei' style='background:url("+list[i].imgUrl+".50x50.jpg); cursor:pointer'></div></a></td>"
+	 							+"<td width='353' id='goods_introduce'><em><a  href='GoodsInfoServlet?goods_id=${goods.goods_id }' target='_blank'>"+list[i].pName
+ 								+"<span class='reachName'></span><br><span style='color:#cccccc'>款式 :普通</span></a></em></td><td width='144'><p id='shopping_price'>￥<span id='shop_price_437134' class='goodsprice'>"+list[i].pPrice
+ 								+"</span></p></td><td width='111'><div class='tb'><a href='javascript:cut("+i+");' class='diminished'><img src='img/buy_20.jpg' width='24' height='24' /></a><input type='text' id='goods_"+list[i].pId
+ 								+"' value='1' class='goods_num' /><a href='javascript:add("+i+");' class='augmented'><img src='img/buy_22.jpg' width='24' height='24' /></a></div></td><td width='112' id='googs_price'>￥ <span id='subtotal_"+list[i].pId
+ 								+"' class='subtotal' data="+list[i].pId
+ 								+"></span></td><td width='57' id='shanchu'><a href='shoppingCardelete.action?productId="+list[i].pId
+								+"' class='delete' data='"+list[i].pId
+								+"'>删除</a></td></tr>";
+	 				}
+	 				$("#cartList").append(str_new);
+	 				calcshopping();
+	 			},
+	 			error: function() {
+					alert("获取出错！");
+				}
+	 		});
+		});
+			//商品计算函数
+			function calcshopping() {
+				var shoppingTotal = 0.0;
+				$("#cartList").find("tr").each(function(i, ele) {
+					//商品数量
+					var num = $(ele).find(".goods_num").val();
+					var priceSigle=$(ele).find(".goodsprice").html();
+					var price_sigle = parseFloat(priceSigle) * num;
+					//商品的价格累加
+					shoppingTotal += price_sigle;
+					//将值显示到页面上
+					var n_a = priceSigle.indexOf(".");
+					$(ele).find(".subtotal").text(price_sigle);
 				});
-			}
+				var shoppingTotalStr=shoppingTotal+"";
+				var n1 = shoppingTotalStr.indexOf(".");
+				if (n1!=-1) {
+					if (shoppingTotalStr.substr(n1 + 1, 2).length<2) {
+						shoppingTotalStr+="0";
+					}
+				}else{
+					shoppingTotalStr+=".00";
+				}		
+				$("#totalPrice").text(shoppingTotalStr);
+				$("#totalPrices").text(shoppingTotalStr);
+				$("#totalPrices_hidden").val(parseInt(shoppingTotal) + 8);
+			};
+			
+			calcshopping();
+			
+			//修改数量
+			$(".goods_num").blur(function() {
+				var value = $(".goods_num").val();
+				if ((value == "") || !(/^[0-9]*[1-9][0-9]*$/.test(value))) {
+					alert("数量不能为空，且只能为正整数");
+					$(this).val(1);
+				}
+				calcshopping();
+			});
+			
+			function add(obj) {
+				var num = $($(".goods_num").get(obj)).val();
+				num++;
+				if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
+					alert("数量不能为空，且只能为正整数");
+					$($(".goods_num").get(obj)).val(1);
+					return;
+				}
+				$($(".goods_num").get(obj)).val(num);
+				calcshopping();
+			};
+			
+			function cut(obj) {
+				var num = $($(".goods_num").get(obj)).val();
+				num--;
+				if ((num == "") || !(/^[0-9]*[1-9][0-9]*$/.test(num))) {
+					alert("数量不能为空，且只能为正整数");
+					$($(".goods_num").get(obj)).val(1);
+					return;
+				}
+				$($(".goods_num").get(obj)).val(num);
+				calcshopping();
+			};
+			
+			$("#submit_button").click(function() {
+				$("#myform").action = "InsertOrdersServlet?totalPrices=" + $("#totalPrices_hidden").val();
+				$("#myform").submit();
+			});
 		</script>
 
 	</body>

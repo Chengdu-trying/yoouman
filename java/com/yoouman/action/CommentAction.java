@@ -19,12 +19,15 @@ public class CommentAction extends BaseAction{
 	private CommentDao dao;
 	@Resource(name="mapper")
 	private ObjectMapper mapper;
-	private int pId;
+	
+	
 	private String context;
 	
 	public String doInfo() throws Exception{
 		setPageEncoding();
-		List<Comment> comments=dao.findByProductId(pId);
+		String pId=request.getParameter("pId");
+		System.out.println(pId);
+		List<Comment> comments=dao.findByProductId(Integer.parseInt(pId));
 		String string=mapper.writeValueAsString(comments);
 		if(comments!=null){
 			response.getWriter().print(string);
@@ -65,28 +68,7 @@ public class CommentAction extends BaseAction{
 		response.setCharacterEncoding("utf-8");
 	}
 	
-	public CommentDao getDao() {
-		return dao;
-	}
 
-	public void setDao(CommentDao dao) {
-		this.dao = dao;
-	}
-
-	public ObjectMapper getMapper() {
-		return mapper;
-	}
-
-	public void setMapper(ObjectMapper mapper) {
-		this.mapper = mapper;
-	}
-
-	public int getpId() {
-		return pId;
-	}
-	public void setpId(int pId) {
-		this.pId = pId;
-	}
 	public String getContext() {
 		return context;
 	}

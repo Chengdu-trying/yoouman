@@ -209,11 +209,5 @@ public class UserAction extends BaseAction{
 		this.birthday = birthday;
 	}
 
-	public UserDao getDao() {
-		return dao;
-	}
-	public void setDao(UserDao dao) {
-		this.dao = dao;
-	}
 	
 }

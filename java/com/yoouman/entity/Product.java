@@ -34,7 +34,7 @@ public class Product {
 	private String oPrice;
 	// 商品单价
 	@Column(name = "product_Price")
-	private double pPrice;
+	private String pPrice;
 	// 商品被购买数量
 	@Column(name = "product_Count")
 	private int pBuyCount;
@@ -80,11 +80,11 @@ public class Product {
 		this.pType = pType;
 	}
 
-	public double getpPrice() {
+	public String getpPrice() {
 		return pPrice;
 	}
 
-	public void setpPrice(double pPrice) {
+	public void setpPrice(String pPrice) {
 		this.pPrice = pPrice;
 	}
 
@@ -130,7 +130,7 @@ public class Product {
 
 
 
-	public Product(int pId, String pName, String pDesc, PType pType, String oPrice, double pPrice, int pBuyCount,
+	public Product(int pId, String pName, String pDesc, PType pType, String oPrice, String pPrice, int pBuyCount,
 			String imgUrl, int pStockCount, Set<Comment> comments) {
 		super();
 		this.pId = pId;

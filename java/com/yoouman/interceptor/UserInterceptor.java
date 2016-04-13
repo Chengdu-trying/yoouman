@@ -1,7 +1,6 @@
 package com.yoouman.interceptor;
 
 import java.util.Map;
-
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.yoouman.entity.User;
@@ -18,6 +17,7 @@ public class UserInterceptor extends AbstractInterceptor{
 		}
 		return "login";
 	}
+
 
 
 }

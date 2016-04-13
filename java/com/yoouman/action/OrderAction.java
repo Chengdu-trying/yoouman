@@ -1,6 +1,7 @@
 package com.yoouman.action;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -37,6 +38,25 @@ public class OrderAction extends BaseAction{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "success";
+	}
+	
+	public String saveNewOrder(){
+		Enumeration names = request.getHeaderNames();
+        System.out.println("===================================================================");
+	      while(names.hasMoreElements()){
+	        String name = (String) names.nextElement();
+	            System.out.println(name + ":" + request.getHeader(name));
+	      }
+        System.out.println("now service sessionid :"+session.getId());
+        System.out.println("===================================================================");
+        Enumeration e = request.getParameterNames();
+        while(e.hasMoreElements()){
+          String name = (String) e.nextElement();
+          String value = request.getParameter(name);
+          System.out.println(name+"="+value);
+        }
+		
 		return "success";
 	}
 }

@@ -32,17 +32,13 @@ public class ShoppingCarAction extends BaseAction {
 	public String addProduct() {
 		// 获取商品id
 		String id = request.getParameter("productId");
-		System.out.println(id);
 		Product pro = productDao.getProductById(Integer.parseInt(id));
-		System.out.println(pro.getpId());
-
 		for (Product product : shoppingList.getProducts_buy()) {
 			if (product.getpId() == pro.getpId()) {
 				System.out.println("该商品已经在购物车中!");
 				return Action.SUCCESS;
 			}
 		}
-
 		shoppingList.getProducts_buy().add(pro);
 		// 根据id获取商品信息
 		System.out.println("添加成功!");
@@ -54,9 +50,6 @@ public class ShoppingCarAction extends BaseAction {
 		response.setContentType("text/html");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-
-		System.out.println("get");
-
 		String string = mapper.writeValueAsString(shoppingList);
 		response.getWriter().print(string);
 		System.out.println(string);

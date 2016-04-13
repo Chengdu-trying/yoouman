@@ -39,4 +39,6 @@ public interface OrderDao {
 	 */
 	int getOrderNumByUserId(int userId);
 	
+	int updateOrderByid(Orders order);
+	
 }

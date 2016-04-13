@@ -43,8 +43,8 @@ public class OderDaoImpl extends HibernateTemplate implements OrderDao{
 
 	@Override
 	public Orders getOrderByOrderId(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		Orders orders=(Orders) find("from Orders o where o.orderId=?",orderId).get(0);
+		return orders;
 	}
 
 	@Override
@@ -57,6 +57,12 @@ public class OderDaoImpl extends HibernateTemplate implements OrderDao{
 	public int getOrderNumByUserId(int userId) {
 		long result=(long)find("select count(*) from Orders o where o.owner.userId=?",userId).get(0);
 		return Integer.parseInt(String.valueOf(result));
+	}
+
+	@Override
+	public int updateOrderByid(Orders order) {
+		update(order);
+		return 1;
 	}
 
 }

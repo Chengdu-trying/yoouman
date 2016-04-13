@@ -2,6 +2,7 @@ package com.yoouman;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -30,10 +31,20 @@ public class App
     	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     	
     	OrderDao dao=(OrderDao) context.getBean("orderDao");
+//    	ProductDao dao2=(ProductDao) context.getBean("productDao");
+//    	ObjectMapper mapper=(ObjectMapper) context.getBean("mapper");
+//    	List<Product> list=dao2.getListByType(1).subList(0, 2);
+//    	for (Product product : list) {
+//			product.setpDesc("介绍已删除");
+//		}
     	Page<Orders> page=new Page<>();
     	page.setPageCount(5);
     	page.setCount(dao.getOrderNumByUserId(1));
-    	System.out.println(dao.getListByUserIdForPage(1, page).get(0).getOrderNum());
+    	Orders orders=dao.getOrderByOrderId(3);
+//    	System.out.println(orders);
+//    	orders.setProducts_str(mapper.writeValueAsString(list));
+//    	System.out.println(dao.updateOrderByid(orders));
+    	System.out.println(dao.getListByUserIdForPage(1, page).get(0).getProducts().get(0).getpBuyCount());
 //    	CommentDao dao=(CommentDao) context.getBean("commentDao");
 //    	Page<Comment> page=new Page<Comment>();
 //    	int count1=dao.getCommentsCount(2);

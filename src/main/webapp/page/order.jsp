@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -143,7 +144,7 @@
 							</a>
 						</div>
 						<div class="new_shopping_font">
-							<a href="javascript:void(0)">MK十周年典藏...</a>
+							<a href="javascript:alert(${orderList});">MK十周年典藏...</a>
 						</div>
 						<div class="new_shopping_price">
 							商城价
@@ -191,7 +192,7 @@
 												<tbody>
 													<tr>
 														<td class="baobei borde_right" style="border-bottom:none;">
-															<a href="#" class="tuzhan" style="background:url(${product.imgUrl }.50x50.jpg);"></a>
+															<a href="#" class="tuzhan" style="background:url(http://localhost:8080/UACshopping/${product.imgUrl }.50x50.jpg);"></a>
 															<div class="wenzhan"><a href="GoodsInfoServlet?goods_id=${product.pId }" class="baobei-name">${product.pName }</a>
 																<!-- <div class="spec"><span>第一删</span><span>第一删</span></div>-->
 															</div>
@@ -371,17 +372,14 @@
 		</div>
 		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=200 marginwidth=0 marginheight=0 SRC="../bottom.html"></iframe>
 
-		<script src="js/jquery-1.9.1.js" type="text/javascript"></script>
-		<script src="js/bootstrap.js" type="text/javascript"></script>
-
-		<script type="text/javascript" src="../js/jquery.dialog.js"></script>
-		<script type="text/javascript" src="../js/common.js"></script>
-		<script type="text/javascript" src="../js/jquery.hslider.js"></script>
+		<script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
+		<script src="../js/bootstrap.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$(".hsliber").hslider({
 					width: 728
 				});
+				
 			});
 		</script>
 	</body>

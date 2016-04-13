@@ -24,6 +24,7 @@ public class CommentAction extends BaseAction{
 	private String context;
 	
 	public String doInfo() throws Exception{
+		System.out.println("11111111111111111");
 		setPageEncoding();
 		String pId=request.getParameter("pId");
 		System.out.println(pId);
@@ -68,7 +69,6 @@ public class CommentAction extends BaseAction{
 		response.setCharacterEncoding("utf-8");
 	}
 	
-
 	public String getContext() {
 		return context;
 	}

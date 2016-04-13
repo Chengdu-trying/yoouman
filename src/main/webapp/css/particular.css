@@ -367,7 +367,7 @@ body {
 #recomments{
 	height: 15%;
 	border: 1px solid #37BD9C;
-	max-height: 25%;
+	max-height: 150px;
 }
 .comment_owner,.comment_date{
 	font-family: "微软雅黑";
@@ -389,7 +389,12 @@ body {
 	padding:10px;
 	border: 1px solid #EEEEEE;
 	margin-bottom: 1%;
-	
+}
+p img{
+	max-height: 130px;
+	max-width: 130px;
+	width: auto;
+	height: auto;
 }
 .btnSend{
 	width: 10%;

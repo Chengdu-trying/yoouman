@@ -1,6 +1,8 @@
 var editor;		//编辑器
 var loginFlag=false;	//是否登录
 var productId=GetQueryString("productId");	//当前商品id
+var commentsStr="";
+var product;
 (function(){
 	//初始化=ready()
 	function init(){		
@@ -8,40 +10,32 @@ var productId=GetQueryString("productId");	//当前商品id
 			location.href="error.html";
 		}
 		Login();
-		$.getJSON("productdoInfo.action",{pId:productId},function(product){
-			if(product=="none"){
+		$.post("productdoInfo.action",{pId:productId},function(data){
+			if(data=="none"){
 				location.href="404.htm";
 			}
-			
-			$("#title_recommend").html(product.pName+"<br /><span>"+
-			"货 号：YMMK0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
-			"</span>");
-			$("#pType").html(product.pType.tName);
-			$("#product_Name").html(product.pName);
-			$("#product_price").html(product.pPrice);
-			$("#product_desc").html(product.pDesc);
-			$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
-			$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
-			$("#shopping_img").html("<a href='shoppingList.html'><div class='img_buy'></div></a><a href='shoppingCaraddProduct.action?productId="+product.pId+"'><div class='img_shopping_char'></div></a>");
-		});
-		$("#evaluate").hover(function(){
-			$("#evaluate").addClass("activeComment");
-			$("#product_details").removeClass("activeComment");
-			$("#product_details").css("color","#1B1B1B");
-		});
-		$("#evaluate").click(function(){
-			loadInfo(productId);
-		});
-		$("#product_details").hover(function(){
-			$("#evaluate").removeClass("activeComment");
-			$("#product_details").addClass("activeComment");
-			$("#product_details").css("color","#FFFFFF");
-		});
-		
+			product=data;
+			loadProductInfo();
+		},"json");
+		loadInfo(productId);	
 	}
-	
+	$("#evaluate").hover(function(){
+		$("#evaluate").addClass("activeComment");
+		$("#product_details").removeClass("activeComment");
+		$("#product_details").css("color","#1B1B1B");
+	});
+	$("#evaluate").click(function(){
+		
+		$("#product_desc").html(commentsStr);
+		newEditor();
+	});
+	$("#product_details").hover(function(){
+		$("#evaluate").removeClass("activeComment");
+		$("#product_details").addClass("activeComment");
+		$("#product_details").css("color","#FFFFFF");
+	});
 	$("#product_details").click(function() {
-		$("#gooda_evaluate").css("hidden", "hidden");
+		loadProductInfo();
 	});
 	$(".augmented").click(function() {
 		var num = $(".goods_num").val();
@@ -85,21 +79,31 @@ function GetQueryString(name)
 	     var r = window.location.search.substr(1).match(reg);
 	     if(r!=null)return  unescape(r[2]); return null;
 	}
-//加载评价
+	//加载商品介绍
+	function loadProductInfo() {
+		$("#title_recommend").html(product.pName+"<br /><span>"+
+				"货 号：YMMK0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
+				"</span>");
+				$("#pType").html(product.pType.tName);
+				$("#product_Name").html(product.pName);
+				$("#product_price").html(product.pPrice);
+				$("#product_desc").html(product.pDesc);
+				$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
+				$("#small_img").css("background","url("+product.imgUrl+".50x50.jpg) no-repeat center center");
+				$("#shopping_img").html("<a href='shoppingList.html'><div class='img_buy'></div></a><a href='shoppingCaraddProduct.action?productId="+product.pId+"'><div class='img_shopping_char'></div></a>");
+	}
+	//加载评价
 	function loadInfo(productId){
-		
-		$("#product_details").removeClass("activeComment");
-		$("#product_desc").css("border","0px");
-		$("#evaluate").addClass("activeComment");
+
 		//评论
-		var str="<p style='color:#c0c0c0;'>评论空空如也，快来添加吧！</p>";
+		commentsStr="<p style='color:#c0c0c0;'>评论空空如也，快来添加吧！</p>";
 		//添加回复编辑框与按钮
 		var editor="<div class='col-md-12 container' id='recomments'></div><button class='btn-info btn btnSend' onclick='commitNew()'>发表评论</button>";
-		$.getJSON("commentdoInfo.action",{pId:productId},function(comments){
+		$.post("commentdoInfo.action",{pId:productId},function(comments){
 			if(comments!="[]" && comments!="none"){						
 				comments=eval(comments);
 				$("#evaluate").html("商品评价("+comments.length+")");
-				str="";
+				commentsStr="";
 				var imgstr="";
 				for(var i=0;i<comments.length;i++){	
 					if(comments[i].owner.headerImg!=null){
@@ -107,22 +111,19 @@ function GetQueryString(name)
 					}else{
 						imgstr="<img src='Public/header/default.jpg' width='30px' height='30px'/>";
 					}
-					str+="<div  class='doComent'><a href='javascript:void(0)' class='comment_owner'>"
+					commentsStr+="<div  class='doComent'><a href='javascript:void(0)' class='comment_owner'>"
 					+"<div style='width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;'>"
 					+imgstr
 					+"</div>"+comments[i].owner.userName+"</a><span class='comment_date'>"+comments[i].cDate+"</span>"
 					+"<span class='comment_content' onclick='newReEditor(this)'>"+comments[i].cContent+"</span></div>"
 								
 				}
-				
-				$("#product_desc").html(str);
 			}
 			if(loginFlag){				
-				str+=editor;		
+				commentsStr+=editor;		
 			}
-			$("#product_desc").html(str);
-			newEditor();
-		});
+			
+		},"json");
 	}
 	function newEditor(){
 		editor = new wangEditor('recomments');
@@ -133,9 +134,9 @@ function GetQueryString(name)
 	        // xhr 是 xmlHttpRequest 对象，IE8、9中不支持
 	
 	        // 如果 resultText 是图片的url地址，可以这样插入图片：
-	        //editor.command(null, 'insertHtml', '<img src="' + resultText + '" style="max-width:100%;"/>');
+	        editor.command(null, 'insertHtml', '<img src="' + resultText + '" style="max-width:100%;"/>');
 	        // 如果不想要 img 的 max-width 样式，也可以这样插入：
-	        editor.command(null, 'InsertImage', resultText);
+	       // editor.command(null, 'InsertImage', resultText);
 	    };
 	    editor.config.menus = [
 		        'bold',        
@@ -191,4 +192,13 @@ function Login(){
 				alert("检测用户登录异常！");
 			}
 		});
+}
+function resize(element, maxWidth, maxHeight){
+	if(element.width > maxWidth || element.height > maxHeight){
+		if(element.width / element.height > maxWidth / maxHeight){
+			element.width = maxWidth;
+		}else{
+			element.height = maxHeight;
+		}
+	}
 }

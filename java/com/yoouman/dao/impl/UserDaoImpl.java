@@ -14,7 +14,6 @@ public class UserDaoImpl extends HibernateTemplate implements UserDao{
 	@Override
 	public User login(String name, String pwd) {
 		List<User> users= find("from User u where u.userEmail=? and u.userPwd=?",new Object[]{name,pwd});		
-		System.out.println(users.size()+"-------------");
 		return (users==null || users.size()==0)?null:(User)users.get(0);
 	}
 

@@ -66,6 +66,16 @@ public class Orders implements Serializable{
 	private List<Product> products;
 
 	public List<Product> getProducts() {
+		if(products_str!=null){
+			System.out.println("////////////////");
+			//订单商品列表
+			try {
+				this.products=JsonToObj.jacksonToCollection(products_str, ArrayList.class, Product.class);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return products;
 	}
 
@@ -78,16 +88,7 @@ public class Orders implements Serializable{
 	}
 
 	public void setProducts_str(String products_str) {
-		if(products_str!=null){
 			this.products_str = products_str;
-			//订单商品列表
-			try {
-				this.products=JsonToObj.jacksonToCollection(products_str, ArrayList.class, Product.class);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 
 	public int getOrderId() {

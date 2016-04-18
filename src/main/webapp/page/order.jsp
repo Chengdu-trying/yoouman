@@ -379,7 +379,34 @@
 				$(".hsliber").hslider({
 					width: 728
 				});
-				
+				$.ajax({
+			url:"../userdoGetUserObj.action",
+			type:"POST",
+			dataType:"json",
+			data:{"check":"check"},
+			success:function(user){
+				if(user!=0){
+					if(user.headerImg!="" && user.headerImg!=null){
+						var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
+							+"<img src='../"+user.headerImg+"' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+				   			+"</div>";
+				   			$("#user_name").html(s);
+							$("#user_name").attr("href","");
+							$("#user_name").css("padding","5px 0px 0px 0px");
+							$("#user_name").css("margin","0px");
+							$("#user_register").remove();
+					}else{
+							var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
+							+"<img src='../Public/header/defaultHeader.gif' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+				   			+"</div>";
+				   			$("#user_name").html(s);
+					}
+				}
+			},
+			error:function(){
+				alert("检测用户登录异常！");
+			}
+		});
 			});
 		</script>
 	</body>

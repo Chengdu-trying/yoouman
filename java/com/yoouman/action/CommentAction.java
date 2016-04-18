@@ -3,7 +3,6 @@ package com.yoouman.action;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.Resource;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.annotation.Scope;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.yoouman.dao.CommentDao;
 import com.yoouman.entity.Comment;
+import com.yoouman.entity.Page;
 import com.yoouman.entity.Product;
 import com.yoouman.entity.User;
 @Controller("commentAction")@Scope("singleton")
@@ -23,39 +23,50 @@ public class CommentAction extends BaseAction{
 	
 	private String context;
 	
-	public String doInfo() throws Exception{
-		System.out.println("11111111111111111");
+	public String doInfo(){
 		setPageEncoding();
 		String pId=request.getParameter("pId");
-		System.out.println(pId);
-		List<Comment> comments=dao.findByProductId(Integer.parseInt(pId));
-		String string=mapper.writeValueAsString(comments);
-		if(comments!=null){
-			response.getWriter().print(string);
-		}else{
-			response.getWriter().print("none");
+		String pageIndex=request.getParameter("pageIndex");
+		System.err.println("productId:"+pId+"pageIndex:"+pageIndex);	
+		Page<Comment> page=dao.getListForPageByPId(Integer.parseInt(pId),Integer.parseInt(pageIndex),5);
+		String string="";
+		try {
+			string = mapper.writeValueAsString(page);
+			if(page.getList()!=null){
+				response.getWriter().print(string);			
+			}else{
+				response.getWriter().print("none");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return "none";
 	}
-	public String saveNewComment() throws IOException{
+	public String saveNewComment(){
 		setPageEncoding();
 		System.out.println(context);
-		if(context!=null){
-			Comment comment=new Comment();
-			comment.setcContent(context);
-			comment.setcDate(new Date());
-			comment.setOwner((User) session.getAttribute("user"));
-			comment.setProduct((Product) session.getAttribute("product"));
-			int result=dao.saveNewComment(comment);
-			if (result>0) {
-				System.err.println();
-				response.getWriter().print("success");
-				return "none";
-			}else{
-				response.getWriter().print("fail");
+		try {
+			if(context!=null){
+				Comment comment=new Comment();
+				comment.setcContent(context);
+				comment.setcDate(new Date());
+				comment.setOwner((User) session.getAttribute("user"));
+				comment.setProduct((Product) session.getAttribute("product"));
+				int result=dao.saveNewComment(comment);			
+				if (result>0) {
+					System.err.println();
+						response.getWriter().print(mapper.writeValueAsString(comment));
+					return "none";
+				}else{
+					response.getWriter().print("fail");
+				}
+			}else {
+				response.getWriter().print("内容为空！发布失败。");
 			}
-		}else {
-			response.getWriter().print("内容为空！发布失败。");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return "fail";
 	}
@@ -63,9 +74,14 @@ public class CommentAction extends BaseAction{
 	 * 设置页面编码，防止中文乱码
 	 * @throws UnsupportedEncodingException
 	 */
-	public void setPageEncoding() throws UnsupportedEncodingException{
+	public void setPageEncoding(){
 		response.setContentType("text/html");
-		request.setCharacterEncoding("utf-8");
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		response.setCharacterEncoding("utf-8");
 	}
 	

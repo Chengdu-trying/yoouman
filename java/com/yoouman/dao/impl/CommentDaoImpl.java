@@ -43,14 +43,19 @@ public class CommentDaoImpl extends HibernateTemplate implements CommentDao{
 	}
 
 	@Override
-	public List<Comment> getListForPageByPId(final int productId, final Page page) {
+	public Page<Comment> getListForPageByPId(final int productId, final int pageIndex, int pageCount) {
+		@SuppressWarnings("unchecked")
+		final Page<Comment> page=new Page<Comment>();
+		page.setPageCount(pageCount);
 		@SuppressWarnings("unchecked")
 		List<Comment> comments=execute(new HibernateCallback() {
-
 			@Override
 			public List<Comment> doInHibernate(Session session) throws HibernateException, SQLException {
-				Query query = session.createQuery("from Comment c where c.product.pId=?");
+				Query query = session.createQuery("from Comment c where c.product.pId=? order by c.cId desc");
 				query.setInteger(0, productId);
+				page.setCount(query.list().size());
+				page.setPageIndex(pageIndex);
+				
 				query.setFirstResult((page.getPageIndex()-1)*page.getPageCount()); 
 				query.setMaxResults(page.getPageCount()); 
 				List<Comment> list = query.list(); 
@@ -58,7 +63,9 @@ public class CommentDaoImpl extends HibernateTemplate implements CommentDao{
 			}
 			
 		});
-		return comments;
+		page.setList(comments);
+		return page;
 	}
+
 
 }

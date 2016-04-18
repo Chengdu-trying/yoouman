@@ -34,5 +34,19 @@ public interface ProductDao{
 	 */
 	List<Product> getListForPageBytId(int tid,Page page);
 
-
+	/**
+	 * 分页查询所有商品
+	 * @param pageCount	每页数量
+	 * @param pageIndex	页码值
+	 * @return	page
+	 */
+	Page<Product> getPageForAllList(int pageCount,int pageIndex);
+	/**
+	 * 按关键词分页查询商品
+	 * @param keywords	关键词
+	 * @param pageCount	每页数量
+	 * @param pageIndex	页码
+	 * @return	page
+	 */
+	Page<Product> getPageByKeyWords(String keywords,int pageCount,int pageIndex);
 }

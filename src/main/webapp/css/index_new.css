@@ -28,13 +28,13 @@ a:hover {
 	height:18px;
 	float:left;*/
 	
-	color: #666;
+	color: #337ab7;
 	margin-right: 7px;
 }
 .item-col a:hover {
 	/*color: #FFFFFF;*/
 	
-	color: #666;
+	color: #ED5565;
 	text-decoration: underline
 }
 /*幻灯片*/
@@ -128,16 +128,17 @@ a:hover {
 	width: 100%;
 	height: auto;
 	overflow: hidden;
+	margin: 0px;
 }
 .new_stores_2 {
 	width: 100%;
-	padding-bottom: 10px;
+	padding-bottom: 0px;
 	overflow: hidden;
 }
 /*标题 */
 
 .new_stores_2 .biaoti_big {
-	width: 100%;
+	width: 92.6%;
 	height: 36px;
 	background: #ed5565;
 	float: left;
@@ -162,7 +163,7 @@ a:hover {
 	margin-top: 8px;
 	display: inline
 }
-.advertising_big_2 {} .advertising_big_1 {
+.advertising_big_1 {
 	height: auto;
 	background: url(images/shangcheng_42.jpg) repeat-y;
 	margin-top: 10px
@@ -178,7 +179,6 @@ a:hover {
 	margin-left: 7px;
 	display: inline
 }
-.advertising_big_2 .advertising .advertising2 {}
 /*版块分类*/
 
 .section_1 {
@@ -188,7 +188,7 @@ a:hover {
 }
 .section_2 {
 	width: 100%;
-	padding-bottom: 10px;
+	padding-bottom: 0px;
 	overflow: hidden;
 }
 .section_2 .section_left {
@@ -210,6 +210,7 @@ a:hover {
 	float: left;
 	margin-left: 9px;
 	background: #3BAEDA;
+	margin-top: 10px;
 }
 .section_2 .section_left .biao_3 {
 	width: 100%;
@@ -217,6 +218,7 @@ a:hover {
 	float: left;
 	margin-left: 9px;
 	background: #37BD9C;
+	margin-top: 0px;
 }
 .section_2 .section_left .biao_4 {
 	width: 100%;
@@ -305,7 +307,7 @@ a:hover {
 .help .biao_help .biao_help_1 {
 	background: url(../img/index_x.png) -48px -353px no-repeat
 }
-.help .biao_help {} .help .biao_help .biao_help_2 {
+.help .biao_help .biao_help_2 {
 	background: url(../img/index_x.png) 0 -353px no-repeat
 }
 .help .biao_help .biao_help_3 {

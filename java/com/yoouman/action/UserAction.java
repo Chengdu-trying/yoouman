@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import com.yoouman.dao.UserDao;
 import com.yoouman.entity.User;
 import com.yoouman.util.ImageHelper;
+import com.yoouman.util.MD5Util;
 import com.yoouman.util.UploadConfigurationRead;
 import com.opensymphony.xwork2.Action;
 /*
@@ -48,11 +49,9 @@ public class UserAction extends BaseAction{
 	 */
 	public String doLogin() throws Exception{
 		System.out.println(name+"//"+pwd);				
-//		String string1=MD5Util.md5Encode(name);
-//		String string2=MD5Util.md5Encode(pwd);
-//		System.out.println(string1);
+		String md5Password=MD5Util.md5Encode(pwd);
 //		System.out.println(string2);
-		User u=dao.login(name, pwd);
+		User u=dao.login(name, md5Password);
 		System.out.println(u);
 		if(u!=null){			
 			session.setAttribute("user", u);

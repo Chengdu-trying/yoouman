@@ -59,10 +59,49 @@ public class ProductDaoImpl extends HibernateTemplate implements ProductDao{
 				query.setMaxResults(page.getPageCount()); 
 				List<Product> list = query.list(); 
 				return list;
-			}
-			
+			}	
 		});
 		return null;
+	}
+
+	@Override
+	public Page<Product> getPageByKeyWords(final String keywords,int pageCount,int pageIndex) {
+		Page<Product> page=new Page<Product>();
+		List<Product> list=find("from Product p where p.pName like ?",keywords);
+		list.addAll(find("from Product p where p.pType.tId in (select tId from PType t where t.tDesc like ?)",keywords));
+		page.setPageCount(pageCount);
+		page.setCount(list.size());
+		page.setPageIndex(pageIndex);
+		int start=pageCount*(pageIndex-1);
+		int end=pageCount*pageIndex;
+		if(end<=list.size()){
+			page.setList(list.subList(start,end));
+		}else{
+			page.setList(list.subList(start,list.size()));
+		}
+		return page;
+	}
+
+	@Override
+	public Page<Product> getPageForAllList(int pageCount, final int pageIndex) {
+		final Page<Product> page=new Page<>();
+		page.setPageCount(pageCount);
+	
+		@SuppressWarnings("unchecked")
+		List<Product> list=execute(new HibernateCallback() {
+			@Override
+			public List<Product> doInHibernate(Session session) throws HibernateException, SQLException {
+				Query query = session.createQuery("from Product");
+				page.setCount(query.list().size());
+				page.setPageIndex(pageIndex);
+				query.setFirstResult((page.getPageIndex()-1)*page.getPageCount()); 
+				query.setMaxResults(page.getPageCount()); 
+				List<Product> list = query.list(); 
+				return list;
+			}	
+		});
+		page.setList(list);
+		return page;
 	}
 
 }

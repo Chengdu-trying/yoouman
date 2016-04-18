@@ -24,7 +24,7 @@ public interface CommentDao{
 	 * @param page	页面
 	 * @return	该页评论
 	 */
-	List<Comment> getListForPageByPId(int productId,Page page);
+	Page<Comment> getListForPageByPId(int productId,int pageIndex,int pageCount);
 	/**
 	 * 通过用户id查询该用户所有评论
 	 * @param userId	用户id

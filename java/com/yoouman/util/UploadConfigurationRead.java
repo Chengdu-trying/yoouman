@@ -16,7 +16,7 @@ public class UploadConfigurationRead {
 	/**
 	 * �����ļ�ȫ��,��Ҫ��ʱ������������PFILE
 	 */
-	private static String PFILE = "upload.properties";
+	private static String PFILE = "yoouman.properties";
 
 	/**
 	 * �����ļ�·��

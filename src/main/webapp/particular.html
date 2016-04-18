@@ -77,6 +77,7 @@
 				</div>
 		<ol class="breadcrumb text-left">
 		  <li><a href="index.html">首页</a></li>
+		  <li><a href="#">全部商品</a></li>
 		  <li><a id="pType" href="java">商品分类</a></li>
 		  <li type="active" id="product_Name">商品名</li>
 		</ol>
@@ -130,7 +131,7 @@
 							<dt>购买数量：</dt>
 							<dd>
 								<span>
-									<input type="text" name="num" value="1" class="goods_num">
+									<input type="text" id="num" value="1" class="goods_num">
 									<div class="container" id="alter_num">
 										<a href="javascript:void(0);" class="augmented">
 											<div class="container" id="num_add"></div>
@@ -219,7 +220,18 @@
 					</li>
 				</ul>
 				<div class="col-md-10 container" id="product_desc">
-					<button class="btn btn-info btnSend" onclick="commitNew()"></button>
+					
+					<!--<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-17 05:39:35</span><p>?</p></span><span class="comment_content" onclick="newReEditor(this)">回复</div>
+					<button class='btn-info btn btnSend' onclick='fabiao(this)'>发表评价</button>-->
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
+					
 				</div>
 				
 				
@@ -227,11 +239,12 @@
 		</div>
 
 		<!-- 底部 -->
-		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=150 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
+		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" style="margin-bottom: 5%;" height="155px" marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
 
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="dist/js/wangEditor.min.js"></script>
+		<script type="text/javascript" src="js/laypage/laypage.js"></script>
 		<script type="text/javascript" src="js/particular.js"></script>
 	</body>
 

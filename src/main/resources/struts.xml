@@ -9,9 +9,14 @@
     	<!-- 全局result，404页面	502页面 -->
     	<interceptors>
     		<interceptor name="userLogin" class="com.yoouman.interceptor.UserInterceptor"></interceptor>
+    		<interceptor-stack name="default">
+    			<interceptor-ref name="userLogin"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
     	</interceptors>
     	<global-results>
     		<result name="404">/404.htm</result>
+    		<result name="fail">/page/fail.html</result>
     		<result name="error">/error.html</result>
     		<result name="login">/Login.html</result>
     	</global-results>
@@ -22,7 +27,6 @@
     		<result name="success">/particular.html</result>
     	</action>
     	<action name="comment*" class="commentAction" method="{1}">
-    		<result name="fail">/page/fail.html</result>
     		<result name="success">/particular.html</result>
     	</action>
     	<action name="shoppingCar*" class="shoppingCarAction" method="{1}">
@@ -30,8 +34,7 @@
     	</action>
     	<action name="order*" class="orderAction" method="{1}">
     		<result name="success" type="redirect">/page/order.jsp</result>
-    		<interceptor-ref name="defaultStack"></interceptor-ref>
-    		<interceptor-ref name="userLogin"></interceptor-ref>
+    		<interceptor-ref name="default"></interceptor-ref>
     	</action>
     </package>
 </struts>

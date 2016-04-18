@@ -10,9 +10,6 @@
 
 <body class="container">
 <style>
-	#nav_{
-		padding-left:55%;
-	}
 	#footer{ font-size: 10px;}
 	.bottom_big ul{list-style-type: none; font-size: 10px;}
 	#banner{
@@ -22,10 +19,10 @@
 <!--头部公共开始-->
 <!--页眉-->
 	<div id="title">
-		<nav class="navbar navbar-default navbar-static-top" id="nav_">
+		<nav class=" navbar-default navbar-static-top">
 			<div class="row">
 				<div>
-				  <ul class="nav navbar-nav ">
+				  <ul class="nav navbar-nav col-md-6 daohangbar">
 					
 					 <li class="dropdown">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
@@ -68,9 +65,14 @@
 							$("#user_name").attr("href","");
 							$("#user_name").css("padding","5px 0px 0px 0px");
 							$("#user_name").css("margin","0px");
-							$("#user_register").remove();
 					}else{
-							$("#user_name").html(user.userName);
+							var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
+							+"<img src='Public/header/defaultHeader.gif' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+				   			+"</div>";
+				   			$("#user_name").html(s);
+				   			$("#user_name").attr("href","");
+							$("#user_name").css("padding","5px 0px 0px 0px");
+							$("#user_name").css("margin","0px");
 					}
 				}
 			},
@@ -84,12 +86,12 @@
 			<!--
 					banner
 				-->
-			<div class="row" id="banner">
-				<img src="images/logo.jpg.jpg" />
+			<div class="row" id="banner" style="margin-left: 0px;margin-right: 0px;">
+				<img src="images/logo.jpg.jpg" title="返回首页"/>
 				 
 			</div>
 <!--搜索-->
-			<div class="row" style="padding-bottom:10px;">
+			<div class="row" style="padding-bottom:10px;margin-left: 0px;margin-right: 0px;">
 			 	<div class="col-md-6 text-left">
 			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
 	    			</div> 			
@@ -102,11 +104,11 @@
 				  							<span class="glyphicon glyphicon-search"></span>
 				  						</td>
 				  						<td>
-				  							<input type="text" class="form-control " placeholder="请输入关键词搜索">
+				  							<input type="text" class="form-control " id="search_keywords" placeholder="请输入关键词搜索">
 				  						</td>
 				  						
 				  						<td>
-				  							<button type="button" class="btn btn-info">搜索</button>				  							
+				  							<button type="button" class="btn btn-info" onclick="search()">搜索</button>				  							
 				  						</td>
 				  					</tr>
 				  				</table>				  			
@@ -234,6 +236,9 @@ $(document).ready(function(){
 			 		});
  	
 });
+function search(){
+	location.href="page/search.html?kw="+$("#search_keywords").val();
+}
 </script>
 <!--正文-->
       <!--导航分类，幻灯片-->
@@ -246,7 +251,7 @@ $(document).ready(function(){
     <!--新品上架-->
     <div class="new_stores_1">
       <div class="new_stores_2">
-        <div class="biaoti_big"> <!--<a href="#" class="more_big">更多</a>-->
+        <div class="biaoti_big"><a href="#" class="more_big">更多</a>
           <div class="biaoti"><img src="images\shangchengzhong_67.jpg"></div>
         </div>
         <!--商品排列-->
@@ -260,7 +265,7 @@ $(document).ready(function(){
     <!--热销商品-->
     <div class="new_stores_1">
       <div class="new_stores_2">
-        <div class="biaoti_big"> <!--<a href="#" class="more_big">更多</a>-->
+        <div class="biaoti_big"><a href="#" class="more_big">更多</a>
           <div class="biaoti"><img src="images\shangchengzhong_90.jpg"></div>
         </div>
         <!--商品排列-->

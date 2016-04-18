@@ -122,7 +122,7 @@
 	
 	<!-- 切面 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="perform" expression="execution(* com.yoouman.action..*.*(..))" />
+		<aop:pointcut id="perform" expression="execution(* com.yoouman.action.*.*(..))" />
 		<aop:advisor advice-ref="advice" pointcut-ref="perform"/>
 	</aop:config>
 	<!-- bean工厂 -->

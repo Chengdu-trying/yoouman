@@ -376,11 +376,21 @@ body {
 }
 .comment_content{
 	font-family: "微软雅黑";
-	font-size: 14px;
+	font-size: 12px;
+	color: #AAAAAA;
+	float: right;
+	position: relative;
+	top: -85px;
+	right: 10px;
 	cursor: pointer;
 }
 .comment_content:hover{
-	
+	color: #337AB7;	
+}
+#showEditor{
+	    position: relative;
+    right: -55px;
+}
 }
 .comment_date{
 	margin-left:5%;
@@ -413,4 +423,15 @@ p img{
     background: #da4453;
     color: #FFFFFF;
     border-right: 1px solid #da4453;
+}
+#turnPage{
+	padding-left: 5%;
+}
+.cutpage{
+	float: right;
+	padding-left: 15%;
+}
+#showPosition{
+	font-size: 12px;
+	color: #313131;
 }

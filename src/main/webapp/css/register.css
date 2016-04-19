@@ -4,16 +4,39 @@
 /**
  * 中部
  */
-
+#banner{
+		padding-bottom:20px;
+		max-width: 90%;
+		margin: 0px auto ;
+		}
+		.breadcrumb{
+			max-width: 90%;
+		margin: 0px auto 20px auto;
+		}
 #register_center {
-	max-width: 980px;
+	max-width: 90%;
 	height: 610px;
 	border: 0px solid red;
 	background: url(../img/002.jpg) no-repeat;
 	background-size: cover;
+	margin: 0px auto;
 }
 #defaultForm {
-	max-width: 400px;
+	max-width: 50%;
 	padding: 15px;
-	margin: 30px auto;
+	margin: 5% auto;
+}
+.leeInput{
+	line-height: 34px;
+    height: 36px;
+    max-width: 80%;
+}
+.leeLable{
+	font-family: 微软雅黑;
+    font-size: 18px;
+    
+}
+.form-group{
+	margin-bottom: 10%;
+	
 }

@@ -16,6 +16,14 @@
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 	<filter>
+		<filter-name>AccessControlFilter</filter-name>
+		<filter-class>com.yoouman.filter.AccessControlFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AccessControlFilter</filter-name>
+		<url-pattern>/page/order.jsp</url-pattern>
+	</filter-mapping>
+	<filter>
 		<filter-name>OpenSessionInViewFilter</filter-name>
 		<filter-class>
 			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter

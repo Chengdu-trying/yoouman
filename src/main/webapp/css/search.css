@@ -39,15 +39,15 @@ body{
 	}
 .search_right_parent{
 	
-	border: 0px solid #337AB7;
+	border-left: 0px solid #337AB7;
 	float: right;
-	padding-bottom: 200px;
+	padding-bottom: 120px;
 }
 .biaoqian{
 	height: 8%;
 	width: 90%;
 	margin-left: 5%;
-	border: 1px dashed #CC001C;
+	border: 1px solid #c0c0c0;
 }
 .biaoqian_son{
 	margin: 0px;
@@ -114,4 +114,86 @@ body{
 /*当被选择时*/
 .goods_choose:hover{ border:1px solid #ed5565!important}
 .goods_big .goods_choose p:hover{ color:#393939!important}
-.goods_big .goods_choose .nav_big .jiage_big .jiage{ color:#fff!important} 
+.goods_big .goods_choose .nav_big .jiage_big .jiage{ color:#fff!important}
+
+#footer {width: 980px; margin: 10px auto 0; overflow: hidden;text-align:center; color: #aaa; line-height:20px;position:relative;top:0px; }
+.friendship{ margin:10px auto}
+#footer p { color:#666;  line-height:30px; text-align:center; height:auto; display:block  }
+#footer a { color:#666; text-decoration: none;margin-left:7px; margin-right:4px; display:inline; white-space: nowrap;}
+#footer a:hover { text-decoration: underline; }
+/*bottom*/
+.bottom_big {
+	background: #FFFFFF;
+	padding-top:13px;
+	height: auto;
+}
+.bottom_big .help_big {
+	margin: 0 auto 15px; /*padding-top:28px*/
+	    position: fixed;
+    top: 500px;
+    left: 140px;
+}
+.bottom_big .help_big .help {
+	width: 190px;
+	height: auto;
+	float: left;
+	margin-left: 6px;
+	display: inline;
+	-margin-left: 4px;
+}
+.bottom_big .help_big .help .biao_help {
+	width: 190px;
+	line-height: 37px;
+	text-align: left;
+	font-family: "微软雅黑", "宋体";
+	font-size: 18px;
+	text-indent: 44px;
+	color: #313131;
+	position: relative
+}
+.help .biao_help .biao_help_1, .help .biao_help .biao_help_2, .help .biao_help .biao_help_3, .help .biao_help .biao_help_4, .help .biao_help .biao_help_5 {
+	width: 36px;
+	height: 37px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0;
+	overflow: hidden
+}
+.help .biao_help .biao_help_1 {background: url(../images/index_x.png) -48px -353px no-repeat
+	
+}
+.help .biao_help{position:relative;left:50px;top:-10px;}
+.help .biao_help .biao_help_2 {
+	background: url(../images/index_x.png) 0 -353px no-repeat
+}
+.help .biao_help .biao_help_3 {
+	background: url(../images/index_x.png) -95px -353px no-repeat
+}
+.help .biao_help .biao_help_4 {
+	background: url(../images/index_x.png) -143px -353px no-repeat
+}
+.help .biao_help .biao_help_5 {
+	background: url(../images/index_x.png) -190px -353px no-repeat
+}
+.bottom_big .help_big .help ul {
+	width: 148px;
+	height: auto;
+	float: left;
+	margin-left: 44px;
+	display: inline;
+}
+.bottom_big .help_big .help ul li {
+	width: 148px;
+	height: 28px;
+	line-height: 28px;
+	text-align: left;
+	float: left
+}
+
+.bottom_big .help_big .help ul li a {
+	color: #999999;
+}
+.bottom_big .help_big .help ul li a:hover {
+	text-decoration: underline
+} 

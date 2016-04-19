@@ -1,7 +1,7 @@
 var editor;		//编辑器
 var loginFlag=false;	//是否登录
 var productId=GetQueryString("productId");	//当前商品id
-var commentsStr="<p style='color:#c0c0c0;'>评论空空如也，快来添加吧！</p>";
+var commentsStr="<div  class='doComent'  style='height: 80px;'><p style='color:#c0c0c0;'>评论空空如也，快来添加吧！</p></div>";
 var pageIndex=1;
 var totalCount=1;
 var pageFlag=false;
@@ -13,26 +13,39 @@ var product;
 (function(){
 	//初始化=ready()
 	function init(){		
+		var $doc=$(window.frames["iFrame1"].document).find("#titile");
+		$doc.append("<li><a  onclick='doSearch(this);' style='cursor: pointer;'>全部商品</a></li>")
+				
 		if(productId==null){
 			//location.href="error.html";
 		}
-		Login();
+		//Login();
 		$.post("productdoInfo.action",{pId:productId},function(data){
 			if(data=="none"){
 				//location.href="404.htm";
 			}
 			product=data;
+			$doc.append("<li><a  onclick='doSearch(this);' style='cursor: pointer;'>"+product.pType.tName+"</a></li>")
+			$doc.append("<li><a  onclick='doSearch(this);' style='cursor: pointer;'>"+product.pName+"</a></li>")
 			loadProductInfo();
 		},"json");
 		loadComment(productId,1);
 		
 	}
 	$("#evaluate").hover(function(){
-		$("#evaluate").addClass("activeComment");
-		$("#product_details").removeClass("activeComment");
-		$("#product_details").css("color","#1B1B1B");
+		$("#evaluate").removeClass("evaluate_cl1");
+		$("#evaluate").addClass("evaluate_cl2");
+		$("#product_details").removeClass("product_cl1");
+		$("#product_details").addClass("product_cl2");
+	});
+	$("#product_details").hover(function(){
+		$("#evaluate").removeClass("evaluate_cl2");
+		$("#evaluate").addClass("evaluate_cl1");
+		$("#product_details").addClass("product_cl1");
+		$("#product_details").removeClass("product_cl2");
 	});
 	$("#evaluate").click(function(){
+		
 		loadInfo(productId,pageIndex);
 		console.log("编辑器检测：",{str:commentsStr});
 		
@@ -40,13 +53,10 @@ var product;
 			$("#product_desc").after("<div class='col-md-8 cutpage'><div id='turnPage'></div><div id='showPosition'></div></div>");
 			pageFlag=true;
 		}
+		
 		turnPage(totalCount);
 	});
-	$("#product_details").hover(function(){
-		$("#evaluate").removeClass("activeComment");
-		$("#product_details").addClass("activeComment");
-		$("#product_details").css("color","#FFFFFF");
-	});
+	
 	$("#product_details").click(function() {
 		loadProductInfo();
 	});
@@ -91,11 +101,11 @@ function GetQueryString(name)
 	}
 	//加载商品介绍
 	function loadProductInfo() {
+		
 		$("#title_recommend").html(product.pName+"<br /><span>"+
 				"货 号：YM0000<font id='"+product.pId+"'>"+product.pId+"</font>"+
 				"</span>");
-				$("#pType").html(product.pType.tName);
-				$("#product_Name").html(product.pName);
+				
 				$("#product_price").html(product.pPrice);
 				$("#product_desc").html(product.pDesc);
 				$("#big_img").css("background","url("+product.imgUrl+".340x340.jpg) no-repeat center center");
@@ -115,7 +125,7 @@ function GetQueryString(name)
 	}
 	function loadComment(){
 		$.post("commentdoInfo.action",{pId:productId,pageIndex:1},function(data){
-			totalCount=data.maxPage;
+			totalCount=data.maxPage || 1;
 			$("#evaluate").html("商品评价("+data.count+")");
 		},"json");
 	}
@@ -124,7 +134,8 @@ function GetQueryString(name)
 		pageIndex=index;
 		var comments;
 		$.post("commentdoInfo.action",{pId:productId,pageIndex:index},function(data){
-			totalCount=data.maxPage;
+			totalCount=data.maxPage || 1;
+			console.log("in loadInfo",totalCount);
 			comments=eval(data.list);
 			$("#evaluate").html("商品评价("+data.count+")");
 			appendCommentStr(comments);
@@ -152,9 +163,12 @@ function GetQueryString(name)
 				
 							
 			}
-			commentsStr+="<button class='btn-info btn btnSend' id='showEditor' onclick='fabiao(this)'>发表评价</button>";
-			$("#product_desc").html(commentsStr);
+			commentsStr+="<button class='btn-info btn ' id='showEditor' onclick='fabiao(this)'>发表评价</button>";
+		}else{
+			commentsStr+="<button class='btn-info btn ' style='position: static;' id='showEditor' onclick='fabiao(this)'>发表评价</button>";
 		}
+		
+		$("#product_desc").html(commentsStr);
 	}
 	function newEditor(){
 		var editorStr="<div class='col-md-12 container' id='recomments'></div><button class='btn-info btn btnSend' onclick='commitNew()'>发表</button>";
@@ -183,7 +197,76 @@ function GetQueryString(name)
 		         '|',     // '|' 是菜单组的分割线
 		        'img'
 		];
-
+		editor.config.emotions = {
+        'default': {
+            title: '默认',
+            size: 18,
+            imgs: [
+                'static/emotions/default/1.gif',
+                'static/emotions/default/2.gif',
+                'static/emotions/default/3.gif',
+                'static/emotions/default/4.gif',
+                'static/emotions/default/5.gif',
+                'static/emotions/default/6.gif',
+                'static/emotions/default/7.gif',
+                'static/emotions/default/8.gif',
+                'static/emotions/default/9.gif',
+                'static/emotions/default/10.gif',
+                'static/emotions/default/11.gif',
+                'static/emotions/default/12.gif',
+                'static/emotions/default/13.gif',
+                'static/emotions/default/14.gif',
+                'static/emotions/default/15.gif',
+                'static/emotions/default/16.gif',
+                'static/emotions/default/17.gif',
+                'static/emotions/default/18.gif',
+                'static/emotions/default/19.gif',
+                'static/emotions/default/20.gif',
+                'static/emotions/default/21.gif',
+                'static/emotions/default/22.gif',
+                'static/emotions/default/23.gif',
+                'static/emotions/default/24.gif',
+                'static/emotions/default/25.gif',
+                'static/emotions/default/26.gif',
+                'static/emotions/default/27.gif',
+                'static/emotions/default/28.gif',
+                'static/emotions/default/29.gif',
+                'static/emotions/default/30.gif',
+                'static/emotions/default/31.gif',
+                'static/emotions/default/32.gif',
+                'static/emotions/default/33.gif',
+                'static/emotions/default/34.gif',
+                'static/emotions/default/35.gif',
+                'static/emotions/default/36.gif',
+                'static/emotions/default/37.gif',
+                'static/emotions/default/38.gif',
+                'static/emotions/default/39.gif',
+                'static/emotions/default/40.gif',
+                'static/emotions/default/41.gif',
+                'static/emotions/default/42.gif',
+                'static/emotions/default/43.gif',
+                'static/emotions/default/44.gif',
+                'static/emotions/default/45.gif',
+                'static/emotions/default/46.gif',
+                'static/emotions/default/47.gif',
+                'static/emotions/default/48.gif',
+                'static/emotions/default/49.gif',
+                'static/emotions/default/50.gif'
+            ]
+        },
+        'jinxing': {
+            title: '金星',
+            size: 50,
+            imgs: [
+                'static/emotions/jinxing/1.gif',
+                'static/emotions/jinxing/2.gif',
+                'static/emotions/jinxing/3.gif',
+                'static/emotions/jinxing/4.gif',
+                'static/emotions/jinxing/5.gif',
+                'static/emotions/jinxing/6.gif'
+            ]
+        }
+    };
         editor.create();	
 	}
 	function newReEditor($obj){
@@ -211,7 +294,7 @@ function commitNew(){
 		        			$("#recomments").remove();
 		        			loadInfo(productId,1);
 		        			console.log("发布后：",{comment:commentsStr})
-		        			commentsStr+="<button class='btn-info btn btnSend' id='showEditor' onclick='fabiao(this)'>发表评价</button>";
+		        			commentsStr+="<button class='btn-info btn' id='showEditor' onclick='fabiao(this)'>发表评价</button>";
 							$("#product_desc").html(commentsStr);
 		        			/*var tempstr="";
 		        			var user=obj;
@@ -249,33 +332,14 @@ function Login(){
 				if(user!=0){
 					obj=user;
 					loginFlag=true;
-					console.log("登录成功！",{loginFlag,obj});
-					if(user.headerImg!="" && user.headerImg!=null){
-						var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
-							+"<img src='"+user.headerImg+"' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
-				   			+"</div>";
-				   			$("#user_name").html(s);
-							$("#user_name").attr("href","");
-							$("#user_name").css("padding","5px 0px 0px 0px");
-							$("#user_name").css("margin","0px");
-					}else{
-							var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
-							+"<img src='Public/header/defaultHeader.gif' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
-				   			+"</div>";
-				   			$("#user_name").html(s);
-				   			$("#user_name").attr("href","");
-							$("#user_name").css("padding","5px 0px 0px 0px");
-							$("#user_name").css("margin","0px");
-					}
+					console.log("登录成功！",{loginflag:loginFlag,user:obj});
 				}
-			},
-			error:function(){
-				alert("检测用户登录异常！");
 			}
 		});
 }
 
 function turnPage(count){
+	console.log("in turnPage",count);
 	laypage({
 	     cont: $('#turnPage'), //容器。值支持id名、原生dom对象，jquery对象,
 	    pages: count, //总页数
@@ -283,8 +347,10 @@ function turnPage(count){
 	    first: false,
 	    last: false,
 	    jump: function(obj,first){
+	    	console.log("jump",first);
 	    	if(!first){
-		    	loadInfo(productId,obj.curr);		    	
+		    	loadInfo(productId,obj.curr);
+		    	
 		        $("#showPosition").html('目前正在第'+ obj.curr +'页，一共有：'+ obj.pages +'页');
 	      }
 	    }
@@ -332,6 +398,22 @@ function goTop(acceleration, time) {
 		window.setTimeout(invokeFunction, time);
 	}
 }
+/**
+ * 导向搜索页面
+ */
+function search(){
+	location.href="page/search.html?kw="+$("#search_keywords").val();
+}
+
+function doSearch(obj){
+	location.href="page/search.html?kw="+$(obj).text();
+}
+/**
+ * 按比例缩放
+ * @param {Object} element
+ * @param {Object} maxWidth
+ * @param {Object} maxHeight
+ */
 function resize(element, maxWidth, maxHeight){
 	if(element.width > maxWidth || element.height > maxHeight){
 		if(element.width / element.height > maxWidth / maxHeight){

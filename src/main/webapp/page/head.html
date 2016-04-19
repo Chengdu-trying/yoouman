@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html style="overflow: hidden;">
+	<head>
+		<meta charset="UTF-8">
+		<title>导航页</title>
+	</head>
+	
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css"/>
+	<link rel="stylesheet" href="../css/head.css" />
+	<link href="../index/index_new.css" rel="stylesheet" type="text/css">
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<!--头部公共开始-->
+<!--页眉-->
+	<div id="title" style="padding-bottom: 10px;">
+		<nav class=" navbar-default navbar-static-top">
+			<div class="row">
+				<div>
+				  <ul class="nav navbar-nav col-md-6 daohangbar">
+					
+					 <li class="dropdown">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+							我的账户
+						   <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+						   <li><a href="../orderdoLoadOrderList.action">待付款订单</a></li>
+						   <li><a href="#">已付款订单</a></li>
+						   <li><a href="#">短消息</a></li>
+						</ul>
+					 </li>
+					 <li><s></s><a href="../shoppingList.html" target="_parent"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
+					 </li>
+					  <li class="fore Id menu_1"><s></s><a href="javascript:void(0)">收藏夹</a></li>	
+					  <li><a href="../Login.html" id="user_name" target="_parent">请登录 </a></li>
+					
+					<li><a href="../register.html" id="user_register" target="_parent">免费注册</a></li>
+					 <li><a href="javascript:void(0);">收藏本店</a></li>		                  
+				  </ul>
+			   </div>				  	
+			  </div>				  
+		</nav>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$.ajax({
+			url:"../userdoGetUserObj.action",
+			type:"POST",
+			dataType:"json",
+			data:{"check":"check"},
+			success:function(user){
+				if(user!=0){
+					window.parent.window.loginFlag=true;
+					window.parent.window.user=user;
+					if(user.headerImg!="" && user.headerImg!=null){
+						var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
+							+"<img src='../"+user.headerImg+"' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+				   			+"</div>";
+				   			$("#user_name").html(s);
+							$("#user_name").attr("href","");
+							$("#user_name").css("padding","5px 0px 0px 0px");
+							$("#user_name").css("margin","0px");
+					}else{
+							var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
+							+"<img src='../Public/header/defaultHeader.gif' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+				   			+"</div>";
+				   			$("#user_name").html(s);
+				   			$("#user_name").attr("href","");
+							$("#user_name").css("padding","5px 0px 0px 0px");
+							$("#user_name").css("margin","0px");
+					}
+				}
+			},
+			error:function(){
+				alert("检测用户登录异常！");
+			}
+		});
+		
+	});
+	/**
+ * 导向搜索页面
+ */
+function search(){
+	window.open("search.html?kw="+$("#search_keywords").val());
+}
+
+function doSearch(obj){
+	window.open("search.html?kw="+$(obj).text());
+}
+	</script>
+			<!--
+					banner
+				-->
+			<div class="row" id="banner" style="margin-left: 0px;margin-right: 0px;">
+				<img src="../images/logo.jpg.jpg" title="返回首页"/>
+				 
+			</div>
+<!--搜索-->
+			<div class="row" style="padding-bottom:10px;margin-left: 0px;margin-right: 0px;">
+			 	<div class="col-md-6 text-left">
+			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
+	    			</div> 			
+				 </div>		 	
+				 <div class="col-md-6">
+				  		<div class="row" >				  				
+				  				<table align="right" border="0px" cellspacing="0px" cellpadding="0px" width="80%">				  					
+				  					<tr>
+				  						<td>
+				  							<span class="glyphicon glyphicon-search"></span>
+				  						</td>
+				  						<td>
+				  							<input type="text" class="form-control " id="search_keywords" placeholder="请输入关键词搜索">
+				  						</td>
+				  						
+				  						<td>
+				  							<button type="button" class="btn btn-info" onclick="search()">搜索</button>				  							
+				  						</td>
+				  					</tr>
+				  				</table>				  			
+				  		</div>
+				 </div>			  	 
+				</div>
+				
+				<!--
+            	作者：2338133722@qq.com
+            	时间：2016-03-26
+            	描述：面包屑导航
+            	-->			
+				<ol class="breadcrumb" id="titile">
+				  <li><a href="../index.html" target="_parent">首页</a></li>
+				</ol>
+	<script type="text/javascript">
+		$('.carousel').carousel({
+		  interval: 100
+		})
+	</script>
+	
+	
+	</body>
+</html>

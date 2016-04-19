@@ -25,7 +25,7 @@ body {
 	width: 968px;
 	height: 448px;
 	border: 1px solid #FEE0CE;
-	margin: 10px auto;
+	margin: 10px 8%;
 	padding: 0px;
 }
 #middle_buy_img {
@@ -222,10 +222,11 @@ body {
  */
 
 #particulars {
-	max-width: 968px;
+	max-width: 99%;
 	padding: 0px;
 	margin-bottom: 30px;
 	margin-top: 20px;
+	margin-left: 8%;
 }
 /**
  * 新品上架
@@ -329,20 +330,16 @@ body {
 	text-align: center;
 	line-height: 28px;
 }
-#product_details {
-	color: #FFFFFF;
-	border-top: 1px solid #DA4453;
-	border-right: 1px solid #DA4453;
-	display: block;
-	width: auto !important;
-	min-width: 98px;
-	text-decoration: none;
-}
 /**
  * 评价
  */
-
-#evaluate {
+#evaluate{
+	text-decoration: none;
+}
+#product_details{
+	text-decoration: none;
+}
+.evaluate_cl1 {
 	text-decoration: none;
 	width: auto !important;
 	padding: 0px 10px;
@@ -355,14 +352,44 @@ body {
 	border-right: 1px solid #D4D4D4;
 	line-height: 28px;
 }
-#product_desc {
-	max-width: 772px;
-	margin-left: 8px;
-	border: 1px solid #EEEEEE;
-	height: auto;
-	float: left;
-	padding: 10px 30px;
+.evaluate_cl2{
+	text-decoration: none;
+	width: auto !important;
+	padding: 0px 10px;
+	height: 28px;
+	min-width: 98px;
+	display: block;
 	line-height: 28px;
+	border-top: 1px solid #da4453;
+    /* background: #eb5701; */
+    background: #da4453;
+    color: #FFFFFF;
+    border-right: 1px solid #da4453;
+}
+.evaluate_cl2:hover{
+  color: #FFFFFF;
+}
+.product_cl1 {
+	color: #FFFFFF;
+	border-top: 1px solid #DA4453;
+	border-right: 1px solid #DA4453;
+	background: #da4453;
+	display: block;
+	width: auto !important;
+	min-width: 98px;
+	text-decoration: none;
+}
+.product_cl2 {
+	color: #1B1B1B;
+	border-top: 1px solid #D4D4D4;
+	border-right: 1px solid #D4D4D4;
+	display: block;
+	width: auto !important;
+	min-width: 98px;
+	text-decoration: none;
+}
+.product_cl1:hover{
+	  color: #FFFFFF;
 }
 #recomments{
 	height: 15%;
@@ -384,12 +411,23 @@ body {
 	right: 10px;
 	cursor: pointer;
 }
+#product_desc {
+	max-width: 79%;
+	margin-left: 8px;
+	border: 1px solid #EEEEEE;
+	height: auto;
+	float: left;
+	padding: 10px 30px;
+	line-height: 28px;
+}
+
 .comment_content:hover{
 	color: #337AB7;	
 }
 #showEditor{
 	    position: relative;
-    right: -55px;
+	    float: right;
+    right: -10%;
 }
 }
 .comment_date{
@@ -410,12 +448,10 @@ p img{
 	width: 10%;
 	float: right;
 }
-#evaluate:hover{
-    border-top: 1px solid #da4453;
-    /* background: #eb5701; */
-    background: #da4453;
-    color: #FFFFFF;
-    border-right: 1px solid #da4453;
+.btnShowEditor{
+	width: 10%;
+	float: right;
+	margin-right: 10%;
 }
 .activeComment{
 	border-top: 1px solid #da4453;

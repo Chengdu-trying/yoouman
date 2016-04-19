@@ -99,6 +99,13 @@ public class User implements Serializable{
 		this.gender = gender;
 	}
 
+	public User(String userName, String userEmail, String userPwd) {
+		super();
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPwd = userPwd;
+	}
+
 	public int getUserId() {
 		return userId;
 	}

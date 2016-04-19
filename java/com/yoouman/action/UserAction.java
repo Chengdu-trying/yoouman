@@ -35,8 +35,6 @@ public class UserAction extends BaseAction{
 	private String pwd;		//登录密码		/注册
 	
 	private String email;
-	private String gender;
-	private String birthday;
 	
 	private String x;		//图片剪切需求参数
 	private String y;
@@ -67,9 +65,8 @@ public class UserAction extends BaseAction{
 	
 	public String saveUserByRegisted() throws NumberFormatException, ParseException{
 		
-		System.out.println(pwd+"///"+email+"///"+name);
-		System.out.println(gender+"///"+birthday);
-		User user=new User(name, email, pwd, new SimpleDateFormat("yyyy-MM-dd").parse(birthday), Integer.parseInt(gender));
+		System.err.println("注册/pwd:"+pwd+"///email:"+email+"///name:"+name);
+		User user=new User(name, email, pwd);
 		if(dao.saveUserByRegin(user)>0){
 			session.setAttribute("user", user);
 			return Action.SUCCESS;
@@ -190,22 +187,6 @@ public class UserAction extends BaseAction{
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
 	}
 
 	

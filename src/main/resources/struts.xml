@@ -7,18 +7,18 @@
     <!-- 页面上对应的请求链接:actionName!MethodName.action -->
     <package name="dmi" namespace="/" extends="struts-default">
     	<!-- 全局result，404页面	502页面 -->
-    	<interceptors>
-    		<interceptor name="userLogin" class="com.yoouman.interceptor.UserInterceptor"></interceptor>
+    	<!-- <interceptors>
+    		<interceptor name="userLogin" class="userInterceptor"></interceptor>
     		<interceptor-stack name="default">
     			<interceptor-ref name="userLogin"></interceptor-ref>
     			<interceptor-ref name="defaultStack"></interceptor-ref>
     		</interceptor-stack>
-    	</interceptors>
+    	</interceptors> -->
     	<global-results>
     		<result name="404">/404.htm</result>
     		<result name="fail">/page/fail.html</result>
     		<result name="error">/error.html</result>
-    		<result name="login">/Login.html</result>
+    		<result name="login" type="redirect">/Login.html</result>
     	</global-results>
     	<action name="user*" class="userAction" method="{1}">
     		<result	name="success" type="redirect">/index.html</result>
@@ -34,7 +34,6 @@
     	</action>
     	<action name="order*" class="orderAction" method="{1}">
     		<result name="success" type="redirect">/page/order.jsp</result>
-    		<interceptor-ref name="default"></interceptor-ref>
     	</action>
     </package>
 </struts>

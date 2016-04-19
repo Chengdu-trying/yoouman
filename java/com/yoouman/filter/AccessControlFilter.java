@@ -30,7 +30,7 @@ public class AccessControlFilter implements Filter {
 		
 		User user = (User)request.getSession().getAttribute("user");
 		if (user ==null) {
-			response.sendRedirect("Login.html");
+			response.sendRedirect("../Login.html");
 			return;
 		}
 		chain.doFilter(request, response);

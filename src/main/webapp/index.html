@@ -59,7 +59,7 @@
 				if(user!=0){
 					if(user.headerImg!="" && user.headerImg!=null){
 						var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
-							+"<img src='"+user.headerImg+"' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+							+"<img src='"+user.headerImg+"' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
 				   			+"</div>";
 				   			$("#user_name").html(s);
 							$("#user_name").attr("href","");
@@ -67,7 +67,7 @@
 							$("#user_name").css("margin","0px");
 					}else{
 							var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
-							+"<img src='Public/header/defaultHeader.gif' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+							+"<img src='Public/header/defaultHeader.gif' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
 				   			+"</div>";
 				   			$("#user_name").html(s);
 				   			$("#user_name").attr("href","");
@@ -93,7 +93,7 @@
 <!--搜索-->
 			<div class="row" style="padding-bottom:10px;margin-left: 0px;margin-right: 0px;">
 			 	<div class="col-md-6 text-left">
-			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
+			  		<div style="padding-top:6px;"> 热门搜索：<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">T恤</a>&nbsp;<a 	onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">帆布包</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">公仔</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">扇子</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">卡贴</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">手办</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">海报</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">同学录</a>
 	    			</div> 			
 				 </div>		 	
 				 <div class="col-md-6">
@@ -131,31 +131,31 @@
 		<ul class="Classification_navigation_big" style="list-style:none;">
       <li class="surrounding surrounding_0" data="1">		
 			<span></span>
-			<h3 class="item-hd item-hd_1 "> <a href="#">周边</a> </h3>
+			<h3 class="item-hd item-hd_1 "> <a onclick="doSearch(this);" style="cursor: pointer;">周边</a> </h3>
 			
 			<p class="item-col">
-				<a href="#">服装鞋帽</a>&nbsp;<a href="#">饰品挂件</a>&nbsp;<a href="#">文具用品</a>&nbsp;<a href="#">箱包收纳</a>&nbsp;<a href="#">日用生活</a>&nbsp;<a href="#">休闲娱乐</a></p>
+				<a onclick="doSearch(this);" style="cursor: pointer;">服装鞋帽</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">饰品挂件</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">文具用品</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">箱包收纳</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">日用生活</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">休闲娱乐</a></p>
       </li><li class="surrounding surrounding_1" data="100">
 			
 			<span></span>
-			<h3 class="item-hd item-hd_3 "> <a href="#">杂志</a> </h3>
+			<h3 class="item-hd item-hd_3 "> <a onclick="doSearch(this);" style="cursor: pointer;">杂志</a> </h3>
 			
 			<p class="item-col">
-				<a href="#">知音漫客</a>&nbsp;<a href="#">小说绘</a>&nbsp;<a href="#">绘心&amp;绘意</a>&nbsp;<a href="#">童话绘</a>&nbsp;<a href="#">星期天</a>&nbsp;<a href="#">漫客·悬疑</a>			 </p>
+				<a onclick="doSearch(this);" style="cursor: pointer;">知音漫客</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">小说绘</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">绘心&amp;绘意</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">童话绘</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">星期天</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">漫客·悬疑</a>			 </p>
       </li><li class="surrounding surrounding_2" data="116">
 			
 			<span></span>
-			<h3 class="item-hd item-hd_13 "> <a href="#">漫画单行本</a> </h3>
+			<h3 class="item-hd item-hd_13 "> <a onclick="doSearch(this);" style="cursor: pointer;">漫画单行本</a> </h3>
 			
 			<p class="item-col">
-				<a href="#">偷星九月天</a>&nbsp;<a href="#">暗夜协奏曲</a>&nbsp;<a href="#">龙族</a><a href="#">神精榜</a>&nbsp;<a href="#">绯色安娜</a>&nbsp;<a href="#">逍遥奇侠</a>			 </p>
+				<a onclick="doSearch(this);" style="cursor: pointer;">偷星九月天</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">暗夜协奏曲</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">龙族</a><a onclick="doSearch(this);" style="cursor: pointer;">神精榜</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">绯色安娜</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">逍遥奇侠</a>			 </p>
       </li><li class="surrounding surrounding_3" data="101">
 			
 			<span></span>
-			<h3 class="item-hd item-hd_11 "> <a href="#">绘本/画集</a> </h3>
+			<h3 class="item-hd item-hd_11 "> <a onclick="doSearch(this);" style="cursor: pointer;">绘本画集</a> </h3>
 			
 			<p class="item-col">
-				<a href="#">画集</a>&nbsp;<a href="#">世说新语八周刊</a>&nbsp;<a href="#">寻找自我的世界</a>&nbsp;<a href="#">城</a>&nbsp;<a href="#">橙子故事</a>&nbsp;<a href="#">昨日青空</a>			 </p>
+				<a onclick="doSearch(this);" style="cursor: pointer;">画集</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">世说新语八周刊</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">寻找自我的世界</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">城</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">橙子故事</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">昨日青空</a>			 </p>
       </li>
 </ul>
   </div>
@@ -238,6 +238,9 @@ $(document).ready(function(){
 });
 function search(){
 	location.href="page/search.html?kw="+$("#search_keywords").val();
+}
+function doSearch(obj){
+	location.href="page/search.html?kw="+$(obj).text();
 }
 </script>
 <!--正文-->

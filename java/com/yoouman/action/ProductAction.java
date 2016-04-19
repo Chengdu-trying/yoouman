@@ -77,9 +77,9 @@ public class ProductAction extends BaseAction{
 		String pageIndex=request.getParameter("pageIndex");
 		String keywords=request.getParameter("keywords");
 		Page<Product> page=null;
-		System.out.println("keywords:"+pageIndex);
-		if(keywords!="全部商品" && keywords != "" && keywords != null){
-			page=dao.getPageByKeyWords("%"+keywords+"%",Integer.parseInt(count), Integer.parseInt(pageIndex));
+		System.err.println("keywords:"+keywords);
+		if( !keywords.equals("全部商品") && !keywords.equals("") && keywords != null){
+			page=dao.getPageByKeyWords(cutAndAppend(keywords),Integer.parseInt(count), Integer.parseInt(pageIndex));
 		}else{
 			page=dao.getPageForAllList(Integer.parseInt(count), Integer.parseInt(pageIndex));
 		}
@@ -101,5 +101,14 @@ public class ProductAction extends BaseAction{
 		}
 		response.setCharacterEncoding("utf-8");
 	}
-	
+	public String cutAndAppend(String str){
+		char[] strs=str.trim().toCharArray();
+		StringBuffer newStr = new StringBuffer();
+		for (int i = 0; i < strs.length; i++) {
+			newStr.append("%"+strs[i]);
+		}
+		
+		return newStr.append("%").toString();
+		
+	}
 }

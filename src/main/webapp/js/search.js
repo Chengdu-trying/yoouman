@@ -11,8 +11,6 @@ $(document).ready(function(){
 			kw=$("#search_keywords").val();
 		}
 		getMaxCount(kw);
-		
-		
 });
 function getMaxCount(keywords){
 	kw=keywords;
@@ -65,7 +63,7 @@ function login(){
 				if(user!=0){
 					if(user.headerImg!="" && user.headerImg!=null){
 						var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
-							+"<img src='../"+user.headerImg+"' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+							+"<img src='../"+user.headerImg+"' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
 				   			+"</div>";
 				   			$("#user_name").html(s);
 							$("#user_name").attr("href","");
@@ -73,7 +71,7 @@ function login(){
 							$("#user_name").css("margin","0px");
 					}else{
 							var s="<div style='width:35px; height:35px; border-radius:50%; overflow:hidden;'>"
-							+"<img src='../Public/header/defaultHeader.gif' alt='"+user.userName+"' id='userImage' width='35px' height='35px'>"
+							+"<img src='../Public/header/defaultHeader.gif' title='"+user.userName+"' id='userImage' width='35px' height='35px'>"
 				   			+"</div>";
 				   			$("#user_name").html(s);
 				   			$("#user_name").attr("href","");

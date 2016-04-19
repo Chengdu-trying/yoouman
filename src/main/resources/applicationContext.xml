@@ -17,7 +17,7 @@
 	<!-- 此整合方式是将hibernate配置文件整合到Spring的配置文件中 -->
 	<!-- 下面表示的是可以将数据库连接作为属性文件写在外面，直接导入Spring的配置文件后取键值 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/> 
-	<context:component-scan base-package="com.yoouman"  />
+	<context:component-scan base-package="com.yoouman*"  />
 	<!-- 配置数据源：c3p0(连接池)/dbcp(逐渐不使用) -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}">
@@ -133,5 +133,6 @@
      </bean>
 	<bean id="mapper" class=" org.codehaus.jackson.map.ObjectMapper">
 	</bean>
+	<!-- <bean id="userInterceptor" class="com.yoouman.interceptor.UserInterceptor"></bean> -->
 	
 </beans>

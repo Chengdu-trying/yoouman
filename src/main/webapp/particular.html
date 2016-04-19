@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 	<head>
+		<base target="_blank">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>优漫-你身边的动漫商城--商品查看</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -19,68 +20,9 @@
 	</style>
 
 	<body class="container">
-		<nav class="navbar navbar-default" id="nav_">
-			<div class="row">
-				<div>
-				  <ul class="nav navbar-nav ">
-					
-					 <li class="dropdown">
-						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-							我的账户
-						   <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-						   <li><a href="#">待付款订单</a></li>
-						   <li><a href="#">已付款订单</a></li>
-						   <li><a href="#">短消息</a></li>
-						</ul>
-					 </li>
-					 <li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
-					 </li>
-					  <li class="fore"><s></s><a href="javascript:void(0)">收藏夹</a></li>
-					   <li><a href="Login.html" id="user_name">请登录 </a></li>
-					
-					<li><a href="register.html" id="user_register">免费注册</a></li>
-					 <li><a href="javascript:void(0);">收藏本店</a></li>	
-				  </ul>
-			   </div>				  	
-			  </div>				  
-			</nav>
-			<div class="row" id="banner">
-				<a href="index.html"><img src="images/logo.jpg.jpg" /></a>
-				 
-			</div>
-			<!--搜索-->
-			<div class="row" style="padding-bottom:10px;">
-			 	<div class="col-md-6 text-left">
-			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
-	    			</div> 			
-				 </div>		 	
-				 <div class="col-md-6">
-				  		<div class="row" >				  				
-				  				<table align="right" border="0px" cellspacing="0px" cellpadding="0px" width="80%">				  					
-				  					<tr>
-				  						<td>
-				  							<span class="glyphicon glyphicon-search"></span>
-				  						</td>
-				  						<td>
-				  							<input type="text" class="form-control " placeholder="请输入关键词搜索">
-				  						</td>
-				  						
-				  						<td>
-				  							<button type="button" class="btn btn-info">搜索</button>				  							
-				  						</td>
-				  					</tr>
-				  				</table>				  			
-				  		</div>
-				 </div>			  	 
-				</div>
-		<ol class="breadcrumb text-left">
-		  <li><a href="index.html">首页</a></li>
-		  <li><a href="#">全部商品</a></li>
-		  <li><a id="pType" href="java">商品分类</a></li>
-		  <li type="active" id="product_Name">商品名</li>
-		</ol>
+		<iframe id="iFrame1" name="iFrame1" width="100%" onload="this.height=iFrame1.document.body.scrollHeight" frameborder="0" src="page/head.html"></iframe>
+		
+		
 		<div id="middle" style="z-index: -1;">
 			<!-- 购买 -->
 			<div id="middle_buy">
@@ -203,7 +145,7 @@
 							<div class="new_font">
 								<a href="javascript:void(0)">MK十周年典藏...</a>
 							</div>
-							<div class="new_font_shopping">
+							<div class="new_font_shopping" >
 								商城价
 								<font>￥58.00</font>
 							</div>
@@ -213,16 +155,16 @@
 				<!-- 产品描述 -->
 				<ul id="describe">
 					<li>
-						<a id="product_details" class="activeComment" href="javascript:void(0)">产品详情</a>
+						<a id="product_details" class="product_cl1" href="javascript:void(0)">产品详情</a>
 					</li>
 					<li>
-						<a id="evaluate" href="javascript:void(0)">商品评价(0)</a>
+						<a id="evaluate" class="evaluate_cl1" href="javascript:void(0)">商品评价(0)</a>
 					</li>
 				</ul>
 				<div class="col-md-10 container" id="product_desc">
 					
 					<!--<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-17 05:39:35</span><p>?</p></span><span class="comment_content" onclick="newReEditor(this)">回复</div>
-					<button class='btn-info btn btnSend' onclick='fabiao(this)'>发表评价</button>-->
+					<button class='btn-info btn btnSend' onclick='fabiao(this)'>发表评价</button>
 					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
 					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
 					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
@@ -231,7 +173,7 @@
 					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
 					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
 					<div class="doComent"><a href="javascript:void(0)" class="comment_owner"><div style="width:30px; height:30px; border-radius:50%; overflow:hidden;display: inline-block;"><img src="Public/header/defaultHeader.gif" width="30px" height="30px" title="admin"></div>admin</a><span class="comment_date">2016-04-18 09:07:05</span><p>浮生物语啊</p><span class="comment_content" onclick="newReEditor(this)">回复该评论</span></div>
-					
+					-->
 				</div>
 				
 				

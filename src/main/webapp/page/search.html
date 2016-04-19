@@ -4,7 +4,6 @@
 		<meta charset="UTF-8">
 		<title>搜索结果</title>
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
-	   
 	    <link href="../css/search.css" rel="stylesheet" type="text/css">
 	    <script src="../js/jquery.min-1.9.1.js" type="text/javascript"></script>
 	    <script src="../js/bootstrap.min.js"></script>
@@ -24,17 +23,17 @@
 						   <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-						   <li><a href="orderdoLoadOrderList.action">待付款订单</a></li>
-						   <li><a href="#">已付款订单</a></li>
+						   <li><a href="../orderdoLoadOrderList.action">待付款订单</a></li>
+						   <li><a href="../orderdoLoadOrderList.action">已付款订单</a></li>
 						   <li><a href="#">短消息</a></li>
 						</ul>
 					 </li>
 					 <li><s></s><a href="shoppingList.html"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
 					 </li>
 					  <li class="fore Id menu_1"><s></s><a href="javascript:void(0)">收藏夹</a></li>	
-					  <li><a href="Login.html" id="user_name">请登录 </a></li>
+					  <li><a href="../Login.html" id="user_name">请登录 </a></li>
 					
-					<li><a href="register.html" id="user_register">免费注册</a></li>
+					<li><a href="../register.html" id="user_register">免费注册</a></li>
 					 <li><a href="javascript:void(0);">收藏本店</a></li>		                  
 				  </ul>
 			   </div>				  	
@@ -47,13 +46,13 @@
 					banner
 				-->
 			<div class="row" id="banner" style="margin-left: 0px;margin-right: 0px;">
-				<img src="../images/logo.jpg.jpg" />
+				<a href="../index.html"><img src="../images/logo.jpg.jpg" /></a>
 				 
 			</div>
 <!--搜索-->
 			<div class="row" style="padding-bottom:10px;margin-left: 0px;margin-right: 0px;">
 			 	<div class="col-md-6 text-left">
-			  		<div style="padding-top:6px;"> 热门搜索：<a href="#" class="label label-info">T恤</a>&nbsp;<a 	href="#" class="label label-info">帆布包</a>&nbsp;<a href="#" class="label label-info">公仔</a>&nbsp;<a href="#" class="label label-info">扇子</a>&nbsp;<a href="#" class="label label-info">卡贴</a>&nbsp;<a href="#" class="label label-info">手办</a>&nbsp;<a href="#" class="label label-info">海报</a>&nbsp;<a href="#" class="label label-info">同学录</a>
+			  		<div style="padding-top:6px;"> 热门搜索：<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">T恤</a>&nbsp;<a 	onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">帆布包</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">公仔</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">扇子</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">卡贴</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">手办</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">海报</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;" class="label label-info">同学录</a>
 	    			</div> 			
 				 </div>		 	
 				 <div class="col-md-6">
@@ -83,40 +82,40 @@
             	-->			
 				<ol class="breadcrumb">
 				  <li><a class="active" href="../index.html">首页</a></li>
-				  <li><a class="active">全部商品</a></li>
-				  <li><a id="#resultsKeyWords" onclick="doSearch(this);" style="cursor: pointer;">周边</a></li>
+				  <li><a  onclick="doSearch(this);" style="cursor: pointer;">全部商品</a></li>
 				</ol>
-				
+				<!--<iframe id="iFrame1" name="iFrame1" width="100%" onload="this.height=iFrame1.document.body.scrollHeight" frameborder="0" src="head.html"></iframe>
+	-->
 	<!--分类导航-->
   	<div class="col-md-3">
 		<ul class="" style="list-style:none;padding-left: 0px;">
 	      <li class="" data="1">		
 				<span></span>
-				<h3 class="item-hd"> <a href="#">周边</a> </h3>
+				<h3 class="item-hd"> <a onclick="doSearch(this);" style="cursor: pointer;">周边</a> </h3>
 				
 				<p class="item-col">
-					<a href="#">服装鞋帽</a>&nbsp;<a href="#">饰品挂件</a>&nbsp;<a href="#">文具用品</a>&nbsp;<a href="#">箱包收纳</a>&nbsp;<a href="#">日用生活</a>&nbsp;<a href="#">休闲娱乐</a></p>
+					<a onclick="doSearch(this);" style="cursor: pointer;">服装鞋帽</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">饰品挂件</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">文具用品</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">箱包收纳</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">日用生活</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">休闲娱乐</a></p>
 	      </li><li class="" data="100">
 				
 				<span></span>
-				<h3 class="item-hd"> <a href="#">杂志</a> </h3>
+				<h3 class="item-hd"> <a onclick="doSearch(this);" style="cursor: pointer;">杂志</a> </h3>
 				
 				<p class="item-col">
-					<a href="#">知音漫客</a>&nbsp;<a href="#">小说绘</a>&nbsp;<a href="#">绘心&amp;绘意</a>&nbsp;<a href="#">童话绘</a>&nbsp;<a href="#">星期天</a>&nbsp;<a href="#">漫客·悬疑</a>			 </p>
+					<a onclick="doSearch(this);" style="cursor: pointer;">知音漫客</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">小说绘</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">绘心绘意</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">童话绘</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">星期天</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">漫客悬疑</a>			 </p>
 	      </li><li class="" data="116">
 				
 				<span></span>
-				<h3 class="item-hd"> <a href="#">漫画单行本</a> </h3>
+				<h3 class="item-hd"> <a onclick="doSearch(this);" style="cursor: pointer;">漫画单行本</a> </h3>
 				
 				<p class="item-col">
-					<a href="#">偷星九月天</a>&nbsp;<a href="#">暗夜协奏曲</a>&nbsp;<a href="#">龙族</a><a href="#">神精榜</a>&nbsp;<a href="#">绯色安娜</a>&nbsp;<a href="#">逍遥奇侠</a>			 </p>
+					<a onclick="doSearch(this);" style="cursor: pointer;">偷星九月天</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">暗夜协奏曲</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">龙族</a><a onclick="doSearch(this);" style="cursor: pointer;">神精榜</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">绯色安娜</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">逍遥奇侠</a>			 </p>
 	      </li><li class="" data="101">
 				
 				<span></span>
-				<h3 class="item-hd"> <a href="#">绘本/画集</a> </h3>
+				<h3 class="item-hd"> <a onclick="doSearch(this);" style="cursor: pointer;">绘本画集</a> </h3>
 				
 				<p class="item-col">
-					<a href="#">画集</a>&nbsp;<a href="#">世说新语八周刊</a>&nbsp;<a href="#">寻找自我的世界</a>&nbsp;<a href="#">城</a>&nbsp;<a href="#">橙子故事</a>&nbsp;<a href="#">昨日青空</a>			 </p>
+					<a onclick="doSearch(this);" style="cursor: pointer;">画集</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">世说新语八周刊</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">寻找自我的世界</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">城</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">橙子故事</a>&nbsp;<a onclick="doSearch(this);" style="cursor: pointer;">昨日青空</a>			 </p>
 	      </li>
 		</ul>
 		<div class="xinping">
@@ -189,8 +188,8 @@
   			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">知音漫客</a></li>
   			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">浮生物语</a></li>
   			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">生日礼物</a></li>
-  			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">小说</a></li>
-  			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">文学</a></li>
+  			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">小说文学</a></li>
+  			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">国漫</a></li>
   			<li class="biaoqian_single"><a onclick="doSearch(this);" style="cursor: pointer;">在下坂本，有何贵干</a></li>
   		</ul>
   		
@@ -206,6 +205,31 @@
   	</div>
   		
   </div>
+  <!--bottom-->
+
+   <div id="footer">
+<div class="friendship">
+  <p>友情链接: 
+  <a href="#" target="_blank">动漫萌图</a>
+   |<a href="#" target="_blank">团购网站排名</a>
+   |<a href="#" target="_blank">美食的俘虏</a>
+   |<a href="#" target="_blank">恶魔奶爸</a>
+   |<a href="#" target="_blank">银魂</a>
+   |<a href="#" target="_blank">妖精的尾巴</a>
+   |<a href="#" target="_blank">在线漫画</a>
+   |<a href="#" target="_blank">漫客栈</a>
+   |<a href="#" target="_blank">全职猎人</a>
+   |<a href="#" target="_blank">小破孩</a>
+   |<a href="#" target="_blank">乐贝贝童装网</a>
+   |<a href="#" target="_blank">漫画在线</a>
+   |<a href="#" target="_blank">刀剑神域</a>
+   |<a href="#" target="_blank">新网球王子</a>
+   |<a href="#" target="_blank">漫画盒子</a>
+   |</p>
+  </div>
+  <p><a href="javascript:void(0);" >聚漫社简介</a> | <a href="javascript:void(0);"  >广告招商</a> | <a href="javascript:void(0);"  >合作专区</a> | <a href="javascript:void(0);">联系我们</a></p>
+		   <p style="text-align: center;">北大青鸟   成都锦江  Trying 小组</p>
+</div><div class="clear"></div>
   <script type="text/javascript" src="../js/laypage/laypage.js"></script>
   <script type="text/javascript" src="../js/search.js" charset="UTF-8"></script>
 </body>

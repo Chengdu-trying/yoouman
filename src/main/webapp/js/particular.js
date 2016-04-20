@@ -176,7 +176,7 @@ function GetQueryString(name)
 		console.log("实例化编辑器");
 		editor = new wangEditor('recomments');
         // 上传图片
-        editor.config.uploadImgUrl = '/UACshopping/getFile/UploadImgServiet';
+        editor.config.uploadImgUrl = 'http://localhost:8080/UACshopping/UploadImgServiet';
 	  	editor.config.uploadImgFns.onload = function (resultText, xhr) {
 	        // resultText 服务器端返回的text
 	        // xhr 是 xmlHttpRequest 对象，IE8、9中不支持

@@ -1,6 +1,7 @@
 package com.yoouman.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.yoouman.dao.OrderDao;
 import com.yoouman.entity.Orders;
 import com.yoouman.entity.Page;
 import com.yoouman.entity.User;
+import com.yoouman.util.ActionHelp;
 
 @Controller("orderAction")@Scope("singleton")  
 public class OrderAction extends BaseAction{
@@ -23,7 +25,12 @@ public class OrderAction extends BaseAction{
 	private ObjectMapper mapper;
 	
 	public String doLoadOrderList(){
+		ActionHelp.setPageEcoding(response, request);
 		User u=(User) session.getAttribute("user");
+		if(u==null){
+			ActionHelp.alert(response,request,"对不起！您还没有登录","Login.html");
+			return "login";
+		}
 		Page<Orders> page=new Page<Orders>();
 		page.setPageCount(5);
 		page.setCount(dao.getOrderNumByUserId(u.getUserId()));

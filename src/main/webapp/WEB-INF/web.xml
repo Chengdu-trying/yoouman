@@ -52,19 +52,20 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
-	
-	<!-- session有效时间30分钟 -->
-	<session-config>
-		<session-timeout>30</session-timeout>
-	</session-config>
-	<servlet>
+	<!-- 上传图片Servlet -->
+		<servlet>
     	<servlet-name>UploadImgServiet</servlet-name>
     	<servlet-class>com.yoouman.action.UploadImgServiet</servlet-class>
     </servlet>
     <servlet-mapping>
     	<servlet-name>UploadImgServiet</servlet-name>
-    	<url-pattern>/getFile/UploadImgServiet</url-pattern>
+    	<url-pattern>/UploadImgServiet</url-pattern>
     </servlet-mapping>
+	<!-- session有效时间30分钟 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
 	<welcome-file-list>
     	<welcome-file>index.html</welcome-file>
     </welcome-file-list>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import com.yoouman.dao.ProductDao;
 import com.yoouman.entity.Page;
 import com.yoouman.entity.Product;
+import com.yoouman.util.ActionHelp;
 import com.yoouman.util.UploadConfigurationRead;
 @Controller("productAction")@Scope("singleton")  
 public class ProductAction extends BaseAction{
@@ -24,7 +25,7 @@ public class ProductAction extends BaseAction{
 	
 	public String getList(){
 		// TODO 向页面发送数据
-		setPageEcoding();
+		ActionHelp.setPageEcoding(response,request);
 		List<Product> products=dao.getIndexlist();
 		String string="";
 		try {
@@ -40,7 +41,7 @@ public class ProductAction extends BaseAction{
 	}
 
 	public String doInfo(){
-		setPageEcoding();
+		ActionHelp.setPageEcoding(response,request);
 		String pid=request.getParameter("pId");
 		//查询单个产品
 		System.out.println(pid);
@@ -61,7 +62,7 @@ public class ProductAction extends BaseAction{
 		return "none";
 	}
 	public String doHotInfo(){
-		setPageEcoding();
+		ActionHelp.setPageEcoding(response,request);
 		List<Product> list=dao.getListByType(6);
 		try {
 			response.getWriter().println(mapper.writeValueAsString(list));
@@ -72,7 +73,7 @@ public class ProductAction extends BaseAction{
 		return "none";
 	}
 	public String doSearchByKeyWordsForPage(){
-		setPageEcoding();
+		ActionHelp.setPageEcoding(response,request);
 		String count=UploadConfigurationRead.getInstance().getConfigItem("SearchShowCount").trim();
 		String pageIndex=request.getParameter("pageIndex");
 		String keywords=request.getParameter("keywords");
@@ -91,24 +92,13 @@ public class ProductAction extends BaseAction{
 		}
 		return "none";
 	}
-	public void setPageEcoding(){
-		response.setContentType("text/html");
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.setCharacterEncoding("utf-8");
-	}
+	
 	public String cutAndAppend(String str){
 		char[] strs=str.trim().toCharArray();
 		StringBuffer newStr = new StringBuffer();
 		for (int i = 0; i < strs.length; i++) {
 			newStr.append("%"+strs[i]);
-		}
-		
-		return newStr.append("%").toString();
-		
+		}	
+		return newStr.append("%").toString();	
 	}
 }

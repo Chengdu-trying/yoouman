@@ -1033,8 +1033,8 @@ a:active {
 .bottom_big .help_big .help {
 	height: auto;
 	float: left;
-	font-size: 14px;
-	margin-left: 20px;
+	font-size: 10px;
+	margin-left: 0px;
 	display: inline;
 	-margin-left: 4px;
 }

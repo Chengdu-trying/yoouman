@@ -36,10 +36,18 @@
 			#banner{
 				text-align:left;
 			}
+			a{
+				    color: #337ab7;
+    text-decoration: none;
+			}
+			a:hover{
+				    color: #23527c;
+    text-decoration: underline;
+			}
 		</style>
 	</head>
 
-	<body>
+	<body class="container">
 	
 			<nav class="navbar navbar-default" id="nav_">
 			<div class="row">
@@ -97,11 +105,11 @@
 				 </div>			  	 
 				</div>
 		<ol class="breadcrumb text-left">
-		  <li><a class="#">首页</a></li>
-		  <li><a class="#">个人中心</a></li>
-		  <li type="active">订单管理</li>
+		  <li><a href="../index.html">首页</a></li>
+		  <li><a href="../user.html">个人中心</a></li>
+		  <li>订单管理</li>
 		</ol>
-		<div class="nav_big">
+		<div class="nav_big" style="width: 95%;">
 			<!-- 新品上架 -->
 			<div class="container" id="new_shopping">
 				<div class="container" id="new_shopping_div"></div>
@@ -155,7 +163,7 @@
 			</div>
 
 			<!--==============================================个人中心right==================================-->
-			<div class="Personal_center_right_big" style="max-width: 772px;">
+			<div class="Personal_center_right_big" style="max-width: 75%;padding-left: 4%;">
 				<!--位置-->
 				<div class="position_common">
 					
@@ -290,8 +298,8 @@
 		</div>
 		<div class="clear"></div>
 		<!-- 底部 --->
-		<div class="bottom_big">
-			<div class="help_big">
+		<div class="bottom_big" style="width: 100%;padding-left: 10%;">
+			<div class="help_big" style="width: 100%;max-width: 100%;">
 				<div class="help">
 					<div class="biao_help"><span class="biao_help_1"></span>新手指南</div>
 					<ul>

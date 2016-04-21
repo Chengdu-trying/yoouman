@@ -69,7 +69,6 @@ $(document).ready(function() {
 				var $obj=$($(".goods_num").get(obj));
 				var num = $obj.val();
 				num++;
-				alert(num);
 				checkNumberIsRight($obj, num);
 			};
 			function cut(obj) {

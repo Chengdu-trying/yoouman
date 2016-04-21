@@ -51,7 +51,7 @@ body{
 .new_stores_2{ width:100%; padding-bottom:10px;padding-top:10px;}
 /*标题 */
 .new_stores_2 .biaoti_big{ width:93%; height:36px; background:#ed5565; float:left; margin-left:40px; margin-top:6px; display:inline}
-.new_stores_2 .biaoti_big .more_big{ width:40px; float:right; margin-right:12px; line-height:17px; margin-top:12px; background:url(images/shangchengzhong_93.jpg) right 2px no-repeat; height:16px; text-align:left; color:#fff; font-family:"微软雅黑", "宋体", "黑体";}
+.new_stores_2 .biaoti_big .more_big{ width:40px; float:right; margin-right:12px; line-height:17px; margin-top:12px; background:url(../images/shangchengzhong_93.jpg) right 2px no-repeat; height:16px; text-align:left; color:#fff; font-family:"微软雅黑", "宋体", "黑体";}
 .new_stores_2 .biaoti_big .biaoti{ float:left; margin-left:10px; margin-top:8px; display:inline}
 
 .advertising_big_2{position:relative;top:-340px;}

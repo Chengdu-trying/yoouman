@@ -65,11 +65,11 @@
 						   <li><a href="#">短消息</a></li>
 						</ul>
 					 </li>
-					 <li><s></s><a href="shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
+					 <li><s></s><a href="../shoppingList.jsp"><span class="gouwu"></span>购物车<span class="naber" id="cart_number">0</span>件</a>
 					 </li>
 					  <li class="fore"><s></s><a href="javascript:void(0)">收藏夹</a></li>
-					  <li><a href="#">请登录 </a></li>					
-					<li><a href="Register.html" id="user_register">免费注册</a></li>
+					  <li><a href="../Login.html">请登录 </a></li>					
+					<li><a href="../Register.html" id="user_register">免费注册</a></li>
 					 <li><a href="javascript:void(0);">收藏本店</a></li>
 				  </ul>
 			   </div>				  	
@@ -163,7 +163,7 @@
 			</div>
 
 			<!--==============================================个人中心right==================================-->
-			<div class="Personal_center_right_big" style="max-width: 75%;padding-left: 4%;">
+			<div class="Personal_center_right_big" style="max-width: 80%;padding-left: 4%; width: 100%;">
 				<!--位置-->
 				<div class="position_common">
 					
@@ -201,7 +201,7 @@
 													<tr>
 														<td class="baobei borde_right" style="border-bottom:none;">
 															<a href="#" class="tuzhan" style="background:url(http://localhost:8080/UACshopping/${product.imgUrl }.50x50.jpg);"></a>
-															<div class="wenzhan"><a href="GoodsInfoServlet?goods_id=${product.pId }" class="baobei-name">${product.pName }</a>
+															<div class="wenzhan"><a href="../particular.html?productId=${product.pId }" class="baobei-name">${product.pName }</a>
 																<!-- <div class="spec"><span>第一删</span><span>第一删</span></div>-->
 															</div>
 														</td>
@@ -219,7 +219,7 @@
 												<tr>
 													<td rowspan="3" class="amount borde_right" style="border:none;">
 														<c:choose>
-															<c:when test="${order.orderStatus=='1'}">
+															<c:when test="${order.orderStatus!='0'}">
 																<strong>${order.totalPrice} </strong>
 															</c:when>
 															<c:otherwise>
@@ -229,16 +229,33 @@
 
 													</td>
 													<td rowspan="3" class="trade-status borde_right" style="border:none;">
-														<c:if test="${order.orderStatus=='0' }">
-															<p class="co7">等待买家付款</p>
-														</c:if>
-														<a href="GoodsInfoServlet?goods_id=0" target="_blank">订单详情</a>
+														<c:choose>
+															<c:when test="${order.orderStatus=='0' }">
+																<p class="co7">等待买家付款</p>
+															</c:when>
+															<c:when test="${order.orderStatus=='1' }">
+																<p class="co7">等待收货</p>
+															</c:when>
+															<c:otherwise>
+																<p class="co7">订单已完成</p>
+															</c:otherwise>
+														</c:choose>
+														<a href="../particular.html?productId=${order.products.get(0).pId}" target="_blank">订单详情</a>
 													</td>
 													<td rowspan="3" class="other" style="border:none;">
-														<c:if test="${order.orderStatus=='0'}">
-															<a href="javascript:fukuan(${order.orderId })" class="verifystatus">立即付款</a></br>
-														</c:if>
-														&nbsp;&nbsp;<a href="javascript:void(0)" class="verifystatus">取消订单</a>
+													<c:choose>
+															<c:when test="${order.orderStatus=='0' }">	
+																<a href="javascript:;" class="verifystatus fukuan">立即付款</a></br>
+																&nbsp;&nbsp;<a href="javascript:void(0)" class="verifystatus">取消订单</a>
+															</c:when>
+															<c:when test="${order.orderStatus=='1' }">
+																<a href="javascript:fukuan(${order.orderId })" class="verifystatus">完成收货</a></br>
+															</c:when>
+															<c:otherwise>
+																<a href="javascript:fukuan(${order.orderId })" class="verifystatus">立即评价</a></br>
+															</c:otherwise>
+														</c:choose>
+														
 													</td>
 												</tr>
 											</tbody>
@@ -248,6 +265,23 @@
 							</tbody>
 						</c:forEach>
 					</table>
+					<div class="theme-popover">
+		<div class="theme-poptit">
+		<a href="javascript:void(0);" title="关闭" class="close">×</a>
+		<h3>登录 是一种态度</h3>
+		</div>
+		<div class="theme-popbod dform">
+		<form class="theme-signin" name="loginform" action="" method="post">
+		<ol>
+		<li><h4>你必须先登录！</h4></li>
+		<li><strong>用户名：</strong><input class="ipt" type="text" name="log" value="lanrenzhijia" size="20" /></li>
+		<li><strong>密码：</strong><input class="ipt" type="password" name="pwd" value="***" size="20" /></li>
+		<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " /></li>
+		</ol>
+		</form>
+		</div>
+		</div>
+		<div class="theme-popover-mask"></div>
 					<!--页码-->
 					<div id="pages"></div>
 					<div class="clear"></div>
@@ -378,16 +412,26 @@
 				</div>
 			</div>
 		</div>
+		
+		
 		<iframe NAME="content_frame" width=100% frameborder=0 scrolling="no" height=200 marginwidth=0 marginheight=0 SRC="../bottom.html"></iframe>
 
 		<script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
 		<script src="../js/bootstrap.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				$(".hsliber").hslider({
-					width: 728
-				});
-				$.ajax({
+		$(document).ready(function() {
+			loadOrders();
+			$('.fukuan').click(function(){
+				$('.theme-popover-mask').fadeIn(100);
+				$('.theme-popover').slideDown(200);
+			});
+			$('.theme-poptit .close').click(function(){
+					$('.theme-popover-mask').fadeOut(100);
+					$('.theme-popover').slideUp(200);
+			});
+		});
+	function loadOrders(){
+		$.ajax({
 			url:"../userdoGetUserObj.action",
 			type:"POST",
 			dataType:"json",
@@ -415,7 +459,7 @@
 				alert("检测用户登录异常！");
 			}
 		});
-			});
+	}
 		</script>
 	</body>
 

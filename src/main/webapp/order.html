@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>优漫</title>
-		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/user_order.css" />
 		<link rel="stylesheet" href="css/default.css">
 		<link rel="stylesheet" href="css/WdatePicker.css" />
@@ -36,6 +36,54 @@
 			}
 			#banner{
 				text-align:left;
+			}
+			
+			.theme-popover-mask {
+				z-index: 9998;
+				position:fixed;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:#000;
+				opacity:0.4;
+				filter:alpha(opacity=40);
+				display:none
+			}
+			.theme-popover {
+				    z-index: 9999;
+				    position: fixed;
+				    top: 40%;
+				    left: 45%;
+				    width: 60%;
+				    height: 70%;
+				    margin: -180px 0 0 -330px;
+				    border-radius: 5px;
+				    border: solid 2px #666;
+				    background-color: #fff;
+				    display: none;
+				    box-shadow: 0 0 10px #666;
+			}
+			.close{
+				top: -10px;
+			    right: 10px;
+			    position: relative;
+			}
+			.weixin{
+				width: 50%;
+				height: 100%;
+				float: left;
+			}
+			.weixin img{
+				    max-width: 70%;
+			}
+			.alipay{
+				width: 50%;
+				height: 100%;
+				float: right;
+			}
+			.alipay img{
+				    max-width: 70%;
 			}
 		</style>
 	</head>
@@ -97,6 +145,9 @@
 				  		</div>
 				 </div>			  	 
 				</div>
+				
+				
+	
 		<ol class="breadcrumb text-left">
 		  <li><a class="#">首页</a></li>
 		  <li><a class="#">个人中心</a></li>
@@ -104,6 +155,7 @@
 		</ol>
 		<div class="nav_big" style="width: 100%;">
 			<!-- 新品上架 -->
+			
 			<div class="container" id="new_shopping">
 				<div class="container" id="new_shopping_div"></div>
 				<ul>
@@ -230,7 +282,7 @@
 													</td>
 													<td rowspan="3" class="other" style="border:none;">
 														<c:if test="${order.order_status=='0'}">
-															<a href="javascript:fukuan(${order.order_id })" class="verifystatus">立即付款</a></br>
+															<a href="javascript:;" class="verifystatus fukuan">立即付款</a></br>
 														</c:if>
 														&nbsp;&nbsp;<a href="javascript:void(0)" class="verifystatus">取消订单</a>
 													</td>
@@ -242,6 +294,23 @@
 							</tbody>
 						</c:forEach>
 					</table>
+					<div class="theme-popover">
+		<div class="theme-poptit">
+		<a href="javascript:void(0);" title="关闭" class="close">×</a>
+		<h3>付款</h3>
+		</div>
+		<div class="theme-popbod dform">
+			<div class="weixin">
+				
+				<img src="images/pay2.png"/>
+			</div>
+			<div class="alipay">
+				
+				<img src="images/pay3.png"/>
+			</div>
+		</div>
+		</div>
+		<div class="theme-popover-mask"></div>
 					<!--页码-->
 					<div id="pages"></div>
 					<div class="clear"></div>
@@ -372,11 +441,25 @@
 				</div>
 			</div>
 		</div>
+		
 		<iframe NAME="content_frame" width="100%" frameborder=0 scrolling="no" height=200 marginwidth=0 marginheight=0 SRC="bottom.html"></iframe>
 
-		<script src="js/jquery-1.9.1.js" type="text/javascript"></script>
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.js" type="text/javascript"></script>
 		<script src="js/order.js" type="text/javascript"></script>
+		<script>
+			jQuery(document).ready(function($) {
+	//$('.fukuan').click(function(){
+		$('.theme-popover-mask').fadeIn(100);
+		$('.theme-popover').slideDown(200);
+	//});
+	$('.theme-poptit .close').click(function(){
+		$('.theme-popover-mask').fadeOut(100);
+		$('.theme-popover').slideUp(200);
+	});
+
+})
+		</script>
 	</body>
 
 </html>

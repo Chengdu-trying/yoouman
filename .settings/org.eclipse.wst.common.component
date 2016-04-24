@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/java"/>
-        <property name="context-root" value="UACshopping"/>
         <property name="java-output-path" value="/UACshopping/target/classes"/>
+        <property name="context-root" value="uac"/>
     </wb-module>
 </project-modules>

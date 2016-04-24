@@ -87,7 +87,7 @@
 					<tr>
 						<td align="left" width="60" bgcolor="#fdeade" id="order_button">
 							<span>
-          						<input type="checkbox" value="" name="selectall" checked="checked" class="selectall">全选
+          						<input type="checkbox" value="" name="selectall" checked="checked" class="selectall" id="checkAll">全选
 							</span>
 						</td>
 						<td width="423" bgcolor="#fdeade" class="order_font">商品</td>
@@ -99,7 +99,6 @@
 					</tr>
 				</table>
 			</div>
-
 			<!--书本展示-->
 			<form action="ordersaveNewOrder.action" method="post" id="myform" onkeypress="if(event.keyCode==13||event.which==13){return false;}">
 				<div class="show">

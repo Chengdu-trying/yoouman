@@ -2,18 +2,26 @@ package com.yoouman;
 
 
 
+import java.io.File;
+import java.util.Hashtable;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.yoouman.dao.CommentDao;
 import com.yoouman.dao.OrderDao;
 import com.yoouman.dao.ProductDao;
 import com.yoouman.entity.Orders;
 import com.yoouman.entity.Page;
 import com.yoouman.entity.Product;
+import com.yoouman.service.MatrixToImageWriter;
 import com.yoouman.util.MD5Util;
 
 /**
@@ -24,14 +32,38 @@ public class App
 {
     public static void main( String[] args ) throws Exception
     {
-    	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+//    	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+//    	
+//    	
+//    	ProductDao dao=(ProductDao) context.getBean("productDao");
+//    	ObjectMapper mapper=(ObjectMapper) context.getBean("mapper");
+//    	System.err.println(cutAndAppend("动漫画集"));
+//    	Page page=dao.getPageByKeyWords(cutAndAppend("动漫画集"), 12, 1);
+//    	System.out.println(mapper.writeValueAsString(page));
     	
     	
-    	ProductDao dao=(ProductDao) context.getBean("productDao");
-    	ObjectMapper mapper=(ObjectMapper) context.getBean("mapper");
-    	System.err.println(cutAndAppend("动漫画集"));
-    	Page page=dao.getPageByKeyWords(cutAndAppend("动漫画集"), 12, 1);
-    	System.out.println(mapper.writeValueAsString(page));
+    	
+    	//2016年4月24日17:40:55
+    	 String text = "917797065@qq.com/id=123s"; // 二维码内容  
+         int width = 300; // 二维码图片宽度  
+         int height = 300; // 二维码图片高度  
+         String format = "png";// 二维码的图片格式  
+           
+         Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>(); 
+         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");   // 内容所使用字符集编码  
+         hints.put(EncodeHintType.MARGIN, 1);//设置二维码边的空度，非负数  
+           
+         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);  
+         // 生成二维码  
+         File outputFile = new File("E:/cache/new.png");  
+         MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile); 
+    	
+    	
+    	
+    	
+    	
+    	
     }
     public static String cutAndAppend(String str){
 		char[] strs=str.trim().toCharArray();

@@ -65,4 +65,10 @@ public class OderDaoImpl extends HibernateTemplate implements OrderDao{
 		return 1;
 	}
 
+	@Override
+	public int saveNewOrder(Orders order) {
+		int  result=(int) save(order);
+		return result;
+	}
+
 }

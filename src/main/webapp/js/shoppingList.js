@@ -4,11 +4,11 @@ $(document).ready(function() {
 	 			type:"POST",
 	 			dataType:"json",
 	 			success:function(data){
-	 				var list=eval(data.products_buy);
+	 				var list=eval(data.products_all);
 	 				var str_new="";
 	 				for(var i=0;i<list.length;i++){
 	 					str_new+="<tr><td width='10'>"
-	 								+"<input type='checkbox' name='cart_id' value="+list[i].pId+" checked='checked' class='check' /></td>"
+	 								+"<input type='checkbox' name='subBox' value="+list[i].pId+" checked='checked' class='check' onchange='checkProduct(this,"+list[i].pId+")'/></td>"
 	 							+"<td width='80'><a href='javascript:void(0);' target='_blank'>"
 	 								+"<div class='baobei' style='background:url("+list[i].imgUrl+".50x50.jpg); cursor:pointer'></div></a></td>"
 	 							+"<td width='353' id='goods_introduce'>"
@@ -18,7 +18,7 @@ $(document).ready(function() {
 	 								+"<p id='shopping_price'>￥<span id='shop_price_437134' class='goodsprice'>"+list[i].pPrice+"</span></p></td>"
 	 							+"<td width='111'><div class='tb'>"
 	 								+"<a href='javascript:cut("+i+");' class='diminished'><img src='img/buy_20.jpg' width='24' height='24' /></a>"
-	 								+"<input type='text' id='goods_"+list[i].pId+"' value='"+list[i].pBuyCount+"' class='goods_num' onchange='checkNumberIsRight($(this),this.value)' />"
+	 								+"<input type='text' id='"+list[i].pId+"' value='"+list[i].pBuyCount+"' class='goods_num' onchange='checkNumberIsRight($(this),this.value)' />"
 	 								+"<a href='javascript:add("+i+");' class='augmented'><img src='img/buy_22.jpg' width='24' height='24' /></a></div></td>"
 	 							+"<td width='112' id='googs_price'>￥ <span id='subtotal_"+list[i].pId+"' class='subtotal' data="+list[i].pId+"></span></td>"
 	 							+"<td width='57' id='shanchu'>"
@@ -35,6 +35,56 @@ $(document).ready(function() {
 			
 			loadHot();
 		});
+		function checkProduct(obj,pId){
+			if(!$(obj).prop("checked")){
+				$.getJSON("shoppingCarcheck.action",{"productId":pId},function(data){
+					console.log("勾选是否成功：",data);
+				});
+			}else{
+				$.getJSON("shoppingCarcheckadd.action",{"productId":pId},function(data){
+					console.log("勾选是否成功：",data);
+				});
+			}
+			calcshopping();
+		}
+		function submitOrder(){
+			var totoalPrice=$("#totalPrices_hidden").val();
+			var orders={"totalPrice":totoalPrice,"products":[]};
+			$("#cartList").find("tr").each(function(i, ele) {
+					if($(ele).find(".check").prop("checked")){
+						var num = $(ele).find(".goods_num").val();
+						var pId= $(ele).find("input[name='subBox']:checked").val();
+						var product={"pId":pId,"count":num};
+						orders.products.push(product);
+					}
+			});
+			console.log("提交数据：order",orders);
+			
+			
+			$.post("ordersaveNewOrder.action",{"order":JSON.stringify(orders)},function(data){
+				console.log("提交订单，返回消息：",data);
+				if(parseInt(data)>0){
+					alert("订单提交成功！");
+					location.href="orderdoLoadOrderList.action";
+				}else{
+					alert("订单提交失败！请刷新页面。");
+				}
+			},"text");
+		}
+		$("#submit_button").click(function() {
+				//$("#myform").submit();
+				submitOrder();
+			});
+		$(function() {
+           $("#checkAll").click(function() {
+                $('input[name="subBox"]').prop("checked",this.checked); 
+                calcshopping();
+            });
+            var $subBox = $("input[name='subBox']");
+            $subBox.click(function(){
+                $("#checkAll").prop("checked",$subBox.length == $("input[name='subBox']:checked").length ? true : false);
+            });
+        });
 			//商品计算函数
 			function calcshopping() {
 				var shoppingTotal = 0.0;
@@ -44,13 +94,22 @@ $(document).ready(function() {
 					var priceSigle=$(ele).find(".goodsprice").html();
 					var price_sigle = parseFloat(priceSigle) * num;
 					//商品的价格累加
-					shoppingTotal += price_sigle;
+					if($(ele).find(".check").prop("checked")){
+//						$.getJSON("shoppingCarnum.action",{"productId":$(ele).find(".check").val(),"num":num},function(data){
+//							alert(data);
+//						});
+						shoppingTotal += price_sigle;
+					}	
 					//将值显示到页面上
 					$(ele).find(".subtotal").text(returnDoubleNum(price_sigle));
 				});
-				var totalPriceAddYun=shoppingTotal + 8;						
+				var totalPriceAddYun=0.0;
+				if(shoppingTotal>0){
+					totalPriceAddYun=shoppingTotal + 8;			
+				}		
 				$("#totalPrice").text(returnDoubleNum(shoppingTotal));
 				$("#totalPrices").text(returnDoubleNum(totalPriceAddYun));
+				
 				$("#totalPrices_hidden").val(shoppingTotal + 8);
 			};
 			
@@ -70,12 +129,22 @@ $(document).ready(function() {
 				var num = $obj.val();
 				num++;
 				checkNumberIsRight($obj, num);
+				if($($(".check").get(obj)).prop("checked")){
+					$.post("shoppingCarnum.action",{"productId":$($(".check").get(obj)).val(),"num":num},function(data){
+						console.log("增加数量是否成功：",data);
+					},"json");
+				}	
 			};
 			function cut(obj) {
 				var $obj=$($(".goods_num").get(obj));
 				var num = $obj.val();
 				num--;
-				checkNumberIsRight($obj, num);		
+				checkNumberIsRight($obj, num);
+				if($($(".check").get(obj)).prop("checked")){
+					$.post("shoppingCarnum.action",{"productId":$($(".check").get(obj)).val(),"num":num},function(data){
+						console.log("增加数量是否成功：",data);
+					},"json");
+				}
 			};
 			/*
 			 *检查数量是否正确，obj:检查对象（input标签）num：需要检查的数字
@@ -90,9 +159,7 @@ $(document).ready(function() {
 				}
 				calcshopping();
 			}
-			$("#submit_button").click(function() {
-				$("#myform").submit();
-			});
+			
 			/*
 			 *给一个number返回其double取值的字符串
 			 */

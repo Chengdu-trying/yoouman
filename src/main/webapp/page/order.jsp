@@ -44,6 +44,57 @@
 				    color: #23527c;
     text-decoration: underline;
 			}
+			.theme-popover-mask {
+				z-index: 9998;
+				position:fixed;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:#000;
+				opacity:0.4;
+				filter:alpha(opacity=40);
+				display:none
+			}
+			.theme-popover {
+				    z-index: 9999;
+				    position: fixed;
+				    top: 40%;
+				    left: 45%;
+				    width: 60%;
+				    height: 70%;
+				    margin: -180px 0 0 -330px;
+				    border-radius: 5px;
+				    border: solid 2px #666;
+				    background-color: #fff;
+				    display: none;
+				    box-shadow: 0 0 10px #666;
+			}
+			.close{
+				top: -10px;
+			    right: 10px;
+			    position: relative;
+			}
+			.weixin{
+				width: 50%;
+				height: 100%;
+				float: left;
+			}
+			.weixin img{
+				    max-width: 70%;
+			}
+			.weixin h3{
+				font-family: "微软雅黑";
+				color: #0068B7;
+			}
+			.alipay{
+				width: 50%;
+				height: 100%;
+				float: right;
+			}
+			.alipay img{
+				    max-width: 70%;
+			}
 		</style>
 	</head>
 
@@ -245,7 +296,7 @@
 													<td rowspan="3" class="other" style="border:none;">
 													<c:choose>
 															<c:when test="${order.orderStatus=='0' }">	
-																<a href="javascript:;" class="verifystatus fukuan">立即付款</a></br>
+																<a href="javascript:fukuan('${order.orderNum}');" class="verifystatus">立即付款</a></br>
 																&nbsp;&nbsp;<a href="javascript:void(0)" class="verifystatus">取消订单</a>
 															</c:when>
 															<c:when test="${order.orderStatus=='1' }">
@@ -265,23 +316,26 @@
 							</tbody>
 						</c:forEach>
 					</table>
+					
+					<!--遮罩窗体-->
 					<div class="theme-popover">
-		<div class="theme-poptit">
-		<a href="javascript:void(0);" title="关闭" class="close">×</a>
-		<h3>登录 是一种态度</h3>
-		</div>
-		<div class="theme-popbod dform">
-		<form class="theme-signin" name="loginform" action="" method="post">
-		<ol>
-		<li><h4>你必须先登录！</h4></li>
-		<li><strong>用户名：</strong><input class="ipt" type="text" name="log" value="lanrenzhijia" size="20" /></li>
-		<li><strong>密码：</strong><input class="ipt" type="password" name="pwd" value="***" size="20" /></li>
-		<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " /></li>
-		</ol>
-		</form>
-		</div>
-		</div>
-		<div class="theme-popover-mask"></div>
+						<div class="theme-poptit">
+							<a href="javascript:void(0);" title="关闭" class="close">×</a>
+							<h3>付款</h3>
+						</div>
+						<div class="theme-popbod dform">
+							<div class="weixin">
+								
+								<img id="payImg" src="../images/pay2.png"/>
+								<h3>优漫支付</h3>
+							</div>
+							<div class="alipay">
+								
+								<img src="../images/pay3.png"/>
+							</div>
+						</div>
+					</div>
+					<div class="theme-popover-mask"></div>
 					<!--页码-->
 					<div id="pages"></div>
 					<div class="clear"></div>
@@ -419,17 +473,38 @@
 		<script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
 		<script src="../js/bootstrap.js" type="text/javascript"></script>
 		<script type="text/javascript">
+		var timerId=0;
+		var ordernum="";
 		$(document).ready(function() {
 			loadOrders();
-			$('.fukuan').click(function(){
-				$('.theme-popover-mask').fadeIn(100);
-				$('.theme-popover').slideDown(200);
-			});
-			$('.theme-poptit .close').click(function(){
+			
+			
+		});
+		function fukuan(num){
+			$.get("../ordergoPay.action",{"orderNum":num},function(data){
+				console.log("图片地址：",data);
+					$("#payImg").attr("src","../"+data)
+					$('.theme-popover-mask').fadeIn(100);
+					$('.theme-popover').slideDown(200);
+					ordernum=num;
+					timerId=setInterval(checkOrderStatus,2000);
+			},"text");
+		}
+		$('.theme-poptit .close').click(function(){
 					$('.theme-popover-mask').fadeOut(100);
 					$('.theme-popover').slideUp(200);
+					clearInterval(timerId);
 			});
-		});
+		function checkOrderStatus(){
+   			$.post("../ordercheckStatus.action",{"orderNum":ordernum},function(data){
+				console.log("检测订单状态，返回消息：",data);
+				if(parseInt(data)>0){
+					alert("支付已完成！");
+					$('.theme-poptit .close').trigger("click");
+					location.href="../orderdoLoadOrderList.action";
+				}
+			},"text");
+		}
 	function loadOrders(){
 		$.ajax({
 			url:"../userdoGetUserObj.action",
@@ -460,6 +535,7 @@
 			}
 		});
 	}
+	
 		</script>
 	</body>
 

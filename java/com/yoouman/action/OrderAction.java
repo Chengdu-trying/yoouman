@@ -1,9 +1,7 @@
 package com.yoouman.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,14 +10,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.Action;
 import com.yoouman.dao.OrderDao;
 import com.yoouman.entity.Orders;
 import com.yoouman.entity.Page;
-import com.yoouman.entity.Product;
 import com.yoouman.entity.ShoppingCar;
 import com.yoouman.entity.User;
 import com.yoouman.util.ActionHelp;
-import com.yoouman.util.JsonToObj;
 
 @Controller("orderAction")@Scope("singleton")  
 public class OrderAction extends BaseAction{
@@ -44,14 +42,52 @@ public class OrderAction extends BaseAction{
 			System.out.println(orders2.getOrderNum());
 		}
 		session.setAttribute("ordersList", orders);
+		
+		return "success";
+	}
+	
+	public String goPay(){
+		String orderNum=request.getParameter("orderNum");
+		String url=request.getSession().getServletContext().getRealPath("/Public/header");
+		System.err.println("into"+url);
+		String imgurl=ActionHelp.payFor("http://yooman.vicp.net/UACshopping/orderupdatePay.action?orderNum="+orderNum,url);
+		System.err.println(imgurl);
 		try {
-			response.getWriter().print(mapper.writeValueAsString(orders));
+			response.getWriter().println("Public/header/"+imgurl);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "success";
+		return "none";
 	}
+	public String updatePay(){
+		ActionHelp.setPageEcoding(response, request);
+		String orderNum=request.getParameter("orderNum");
+		System.err.println("支付订单编号："+orderNum);
+		Orders orders=dao.getOrderByOrderNum(orderNum);
+		orders.setOrderStatus(1);
+		orders.setPayDate(new Date());
+		if(dao.updateOrderByid(orders)>0){
+			ActionHelp.alert(response, request, "支付成功！",null);
+			System.out.println("success");
+		}else {
+			System.err.println("fail");
+		}
+		return "none";
+	}
+	public  String checkStatus(){
+		ActionHelp.setPageEcoding(response, request);
+		String orderNum=request.getParameter("orderNum");
+		Orders orders=dao.getOrderByOrderNum(orderNum);
+		try {
+			response.getWriter().print(orders.getOrderStatus());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "none";
+	}
+	
 	
 	public String saveNewOrder(){
 		ActionHelp.setPageEcoding(response, request);
@@ -96,7 +132,6 @@ public class OrderAction extends BaseAction{
 	public void setOrder(String order) {
 		this.order = order;
 	}
-	
 	//打印request头
 //	Enumeration names = request.getHeaderNames();
 //    System.out.println("===================================================================");

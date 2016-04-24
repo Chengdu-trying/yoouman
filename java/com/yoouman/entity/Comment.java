@@ -44,11 +44,11 @@ public class Comment implements Serializable{
 	@JsonSerialize(using = CustomDateSerializer.class)
 	private Date cDate;
 	// 评价人 外键：用户表id
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(cascade = {CascadeType.ALL })
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "user_Id")
 	private User owner;
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(cascade = {CascadeType.ALL })
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "product_Id")
 	private Product product;

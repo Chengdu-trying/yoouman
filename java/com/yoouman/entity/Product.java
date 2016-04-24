@@ -1,5 +1,6 @@
 package com.yoouman.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -12,7 +13,11 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name = "product")
 @JsonIgnoreProperties(value={"comments"})
-public class Product {
+public class Product implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7628301740178206642L;
 	// 商品编号
 	@Id
 	@Column(name = "product_Id")
@@ -46,6 +51,7 @@ public class Product {
 	private int pStockCount;
 	// 商品评价列表
 	@OneToMany(mappedBy="product",cascade={CascadeType.ALL})
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Comment> comments;
 
 	public int getpId() {

@@ -22,6 +22,7 @@ import com.yoouman.entity.Orders;
 import com.yoouman.entity.Page;
 import com.yoouman.entity.Product;
 import com.yoouman.service.MatrixToImageWriter;
+import com.yoouman.util.ActionHelp;
 import com.yoouman.util.MD5Util;
 
 /**
@@ -32,9 +33,10 @@ public class App
 {
     public static void main( String[] args ) throws Exception
     {
-//    	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-//    	
-//    	
+    	ApplicationContext context=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+    	
+    	OrderDao dao=(OrderDao) context.getBean("orderDao");
+    	System.out.println(dao.getOrderByOrderNum("YM14614817854655365046").getProducts_str());
 //    	ProductDao dao=(ProductDao) context.getBean("productDao");
 //    	ObjectMapper mapper=(ObjectMapper) context.getBean("mapper");
 //    	System.err.println(cutAndAppend("动漫画集"));
@@ -44,20 +46,7 @@ public class App
     	
     	
     	//2016年4月24日17:40:55
-    	 String text = "917797065@qq.com/id=123s"; // 二维码内容  
-         int width = 300; // 二维码图片宽度  
-         int height = 300; // 二维码图片高度  
-         String format = "png";// 二维码的图片格式  
-           
-         Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>(); 
-         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");   // 内容所使用字符集编码  
-         hints.put(EncodeHintType.MARGIN, 1);//设置二维码边的空度，非负数  
-           
-         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);  
-         // 生成二维码  
-         File outputFile = new File("E:/cache/new.png");  
-         MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile); 
+    	
     	
     	
     	

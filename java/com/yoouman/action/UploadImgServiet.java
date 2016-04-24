@@ -67,6 +67,7 @@ public class UploadImgServiet extends HttpServlet {
         String imgUrl = hostPath+"/"+ fileName;
         response.setContentType("text/text;charset=utf-8");
         PrintWriter out = response.getWriter();
+        System.err.println(imgUrl);
         out.print(imgUrl);  //返回url地址
         out.flush();
         out.close();

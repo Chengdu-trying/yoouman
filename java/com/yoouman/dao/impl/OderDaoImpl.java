@@ -43,14 +43,14 @@ public class OderDaoImpl extends HibernateTemplate implements OrderDao{
 
 	@Override
 	public Orders getOrderByOrderId(int orderId) {
-		Orders orders=(Orders) find("from Orders o where o.orderId=?",orderId).get(0);
-		return orders;
+		Orders order=(Orders) find("from Orders o where o.orderId=?",orderId).get(0);
+		return order;
 	}
 
 	@Override
 	public Orders getOrderByOrderNum(String orderNum) {
-		// TODO Auto-generated method stub
-		return null;
+		Orders order=(Orders) find("from Orders o where o.orderNum=?",orderNum).get(0);
+		return order;
 	}
 
 	@Override

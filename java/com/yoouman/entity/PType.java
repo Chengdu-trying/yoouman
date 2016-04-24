@@ -1,5 +1,7 @@
 package com.yoouman.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ptype")
-public class PType {
+public class PType implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8573764830732511341L;
 	// 商品类型编号
 	@Id
 	@Column(name = "type_id")

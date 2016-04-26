@@ -7,7 +7,7 @@
 * 项目地址：[yoouman.trying.git](https://github.com/Chengdu-trying/yoouman)
 
 ![](http://tuchuang.ibilibili.com/upload/首页.jpg)
-
+![](http://tuchuang.ibilibili.com/upload/注册页面.jpg)
 
 #2.成员
 

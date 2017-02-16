@@ -2,28 +2,12 @@ package com.yoouman;
 
 
 
-import java.io.File;
-import java.util.Hashtable;
-import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
+
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.yoouman.dao.CommentDao;
 import com.yoouman.dao.OrderDao;
-import com.yoouman.dao.ProductDao;
-import com.yoouman.entity.Orders;
-import com.yoouman.entity.Page;
-import com.yoouman.entity.Product;
-import com.yoouman.service.MatrixToImageWriter;
-import com.yoouman.util.ActionHelp;
-import com.yoouman.util.MD5Util;
 
 /**
  * Hello world!

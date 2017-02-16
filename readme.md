@@ -16,7 +16,7 @@
 
 * 由于Github限制了单文件大小，因此删除了静态资源文件夹,改为从网盘下载。下载后解压到webapp目录即可：<br>
 
-*		下载地址:   [百度云盘](http://pan.baidu.com/s/1o8dhFDo) 密码：qgs0
+* 下载地址:[百度云盘](http://pan.baidu.com/s/1o8dhFDo) 密码：qgs0
 
 ##1.介绍
 

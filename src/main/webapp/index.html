@@ -54,7 +54,7 @@
 			url:"userdoGetUserObj.action",
 			type:"POST",
 			dataType:"json",
-			data:{"check":"check"},
+			data:{},
 			success:function(user){
 				if(user!=0){
 					if(user.headerImg!="" && user.headerImg!=null){
@@ -221,14 +221,14 @@ $(document).ready(function(){
  		});
  		 
 			 		 $.ajax({
-			 			url:"ShoppingCarServlet",
+			 			url:"shoppingCargetList.action",
 			 			type:"POST",
 			 			dataType:"json",
-			 			data:{"message":"size"},
+			 			data:{},
 			 			success:function(data){
-			 				
+			 				console.log(data);
 			 				if(data!=null){
-			 					$("#cart_number").text(data);
+			 					$("#cart_number").text(data['size']);
 			 					$("#cart_number").css("color","red");
 			 				}
 						 	

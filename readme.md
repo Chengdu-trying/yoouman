@@ -26,9 +26,9 @@
 
 ##2.成员
 
-* 李磊 [tearslee](https://github.com/tearslee)
+* 绿柚子 [tearslee](https://github.com/tearslee)
 
-* 谢鑫 [Adam-Xie](https://github.com/Adam-Xie)
+* 潇湘夜雨 [Adam-Xie](https://github.com/Adam-Xie)
 
 * 熊诗锌 [znxsx](https://github.com/znxsx)
 
